@@ -1,11 +1,28 @@
+import sys
+import getopt
 import urllib2
 import simplejson as json
 
+#def main():
+try:
+	opts, args = getopt.getopt(sys.argv[1:], "i:" )
+except getopt.GetoptError, err:
+	print str(err)
+	sys.exit(2)
 
-urlBase = "http://www.datamarket.com/"
-urlTail = "/api/v1/series.json?callback=&ds=v28&maxresults=10"
+id = 28 #def value
 
-fullUrl = urlBase + urlTail 
+for o,v in opts:
+	if o == "-i":
+		id = v
+
+#if __name__ == "__main__":
+#	main()
+
+ 
+urlBase = "http://www.datamarket.com/api/v1/series.json?callback="
+
+fullUrl = urlBase + "&ds=" + str(id)
 
 
 #gets a json timeline from the url given
