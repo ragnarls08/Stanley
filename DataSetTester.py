@@ -5,10 +5,10 @@ from DataSet import DataSet
 class DataSetTester(unittest.TestCase):
 
 	def setUp(self):
-		self.dataSet = DataSet()
+		self.dataSet = DataSet("Atvinnuleysi", "v28")
 
 	def testInsertItem(self):
-		self.dataSet.timelines.append("bleleafds")
+		self.dataSet.append("Karlar 28", "1ke")
 
 		self.assertEqual(len(self.dataSet), 1)
 

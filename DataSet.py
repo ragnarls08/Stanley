@@ -10,12 +10,15 @@ class DataSet(list):
 	def __len__(self):
 		return len(self.timelines)
 
-	#error in join part
 	def __repr__(self):
-			return "Title: " + self.title \
-				+ "\nId: " + self.dsId \
-				+ "\n".join( self.timelines )
+		return "Title: " + self.title \
+			+ "\nId: " + self.dsId + "\n" \
+			+ "\n".join( str(x) for x in self.timelines )
 
+	def __str__(self):
+		return "Title: " + self.title \
+			+ "\nId: " + self.dsId + "\n" \
+			+ "\n".join( str(x) for x in self.timelines )
 
 	def append(self, title, cId):
 		self.timelines.append( TimeLine(title, cId) )

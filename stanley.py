@@ -22,7 +22,7 @@ for o,v in opts:
  
 urlBase = "http://www.datamarket.com/api/v1/series.json?callback="
 
-fullUrl = urlBase + "&ds=" + str(id)
+fullUrl = urlBase + "&ds=" + str(id) + "&maxresults=10"
 
 
 #gets a json timeline from the url given

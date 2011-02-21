@@ -6,6 +6,8 @@ class TimeLine:
 		self.cId = cId
 	
 	def __repr__(self):
-		return "timeline"
+		return "\tTitle: " + self.title \
+			+ "\n\tId: " + self.cId
 	def __str__(self):
-		return "timalina" 
+		return "\tTitle: " + self.title \
+			+ "\n\tId: " + self.cId
