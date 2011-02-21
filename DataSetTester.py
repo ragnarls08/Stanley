@@ -5,7 +5,7 @@ from DataSet import DataSet
 class DataSetTester(unittest.TestCase):
 
 	def setUp(self):
-		self.dataSet = DataSet("Atvinnuleysi", "v28")
+		self.dataSet = DataSet("Atvinnuleysi", "v28", "Year")
 
 	def testInsertItem(self):
 		self.dataSet.append("Karlar 28", "1ke")
