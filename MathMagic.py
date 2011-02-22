@@ -8,7 +8,7 @@ class MathMagic:
 	#Add function, used by the reduce func to sum up lists
 	def add(self,x,y): return x+y
 	
-	#Calcutates standard deviation of a list of numbers
+	#Calcutates standard deviation of a list of numbers (not population standard deviation)
 	#param: list
 	#return: real number
 	def standardDev(self,ds):
