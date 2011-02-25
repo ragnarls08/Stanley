@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import sys
 import getopt
 import urllib2
@@ -10,7 +11,7 @@ except getopt.GetoptError, err:
 	print str(err)
 	sys.exit(2)
 
-id = 28 #def value
+id = 28 #def vaue
 
 for o,v in opts:
 	if o == "-i":
@@ -23,7 +24,6 @@ for o,v in opts:
 urlBase = "http://www.datamarket.com/api/v1/series.json?callback="
 
 fullUrl = urlBase + "&ds=" + str(id) + "&maxresults=10"
-
 
 #gets a json timeline from the url given
 #returns a json object
