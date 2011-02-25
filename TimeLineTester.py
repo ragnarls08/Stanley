@@ -9,6 +9,7 @@ class TimeLineTester(unittest.TestCase):
 
 	def testSetTitle(self):
 		self.assertEqual(self.timeLine.title, "Karlar 18-35")
+
 	def testSetId(self):
 		self.assertEqual(self.timeLine.cId, 5)
 
