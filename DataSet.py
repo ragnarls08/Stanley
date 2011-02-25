@@ -16,7 +16,7 @@ class DataSet(list):
 			+ "\n\t---TimeLines---\n" \
 			+ "\n" + "\n\n".join( str(x) for x in self )
 
-	def apend(self, item):
+	def append(self, item):
 		if not isinstance(item, TimeLine):
 			raise TypeError, 'item is not of type %s' % TimeLine
 		super(DataSet, self).append(item)
