@@ -16,6 +16,8 @@ class TimeLine(list):
 
 	def extend(self, ls):
 		super(TimeLine, self).extend( ls )
-	
+
+	def getListNoNoneType(self):
+		return [item for item in self if type(item) != type(None)]	
 
 

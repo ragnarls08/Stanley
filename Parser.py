@@ -29,12 +29,13 @@ class Parser:
 	#Parses an url into a DataSet:list of timelines
 	#Return: DataSet
 	def parse(self):
-		job = self.getJsonFromUrl()[0]
+		job = self.getJsonFromUrl()
 
 		#REFACTOR W/THROW EXCEPTION
 		if not job:
 			print "ble"
 			return None 
+		job = job[0]
 	
 		#get data as a list of rows instead of columns	
 		colData = map(None, *job["data"] )
