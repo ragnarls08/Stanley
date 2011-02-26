@@ -16,13 +16,13 @@ class Parser:
 	#Gets a json object from the url
 	#Return: Json object
 	def getJsonFromUrl(self):
-
+		try:
 			request = urllib2.Request( self.urlBase + self.urlQuery )
 			response = urllib2.urlopen( request )
 			results = json.load( response )
-
 			return results
-	
+		except:
+			return None
 
 	#Parses an url into a DataSet:list of timelines
 	#Return: DataSet
