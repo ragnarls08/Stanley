@@ -19,6 +19,7 @@ class Parser:
 		if not job:
 			print "ble"
 			return None 
+
 		job = job[0]
 	
 		#get data as a list of rows instead of columns	
