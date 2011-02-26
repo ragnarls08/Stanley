@@ -11,26 +11,33 @@ import unittest
 from Notifier import Notifier
 from DataSet import DataSet
 from TimeLine import TimeLine
+from StaticGateway import StaticGateway
+from Parser import Parser
 
 class NotifierTester(unittest.TestCase):
 
 	def setUp(self):
-		self.notifier = Notifier()
-		self.testList = [1,2,3,4,5]
-		self.ds = DataSet("Atvinnuleysi", "v28", "Year")
-		self.ls = TimeLine("1st", "1ke", [1,2,3])
-		
-		self.ds.append(self.ls)
-		
-
+		self.notifier = Notifier()				
+		self.gate = StaticGateway()
+		p = Parser(self.gate)
+		self.dsObj = p.parse("bull")						
 					
 	def testMultiply(self):
 		self.assertEqual(self.notifier.multi(2), 4)
 		
-#	def testIsIntresting(self):
-#		self.assertEqual(self.notifier.isIntresting(self.ds), 1)
+	def testIsIntresting(self):
+
+		testResult = self.notifier.isIntresting(self.dsObj)
 		
-	
+		self.assertEqual(testResult[0][4][0][0], 1)
+		self.assertEqual(testResult[0][4][1][0], 2)
+		self.assertEqual(testResult[1][4][0][0], 1)
+		self.assertEqual(testResult[1][4][1][0], 2)
+		self.assertEqual(testResult[2][4][0][0], 2)
+		self.assertEqual(testResult[3][4][0][0], 1)
+		self.assertEqual(testResult[3][4][1][0], 2)			
+		self.assertEqual(testResult[4][4][0][0], 0)
+		
 def suite():
 	suite = unittest.TestLoader().loadTestsFromTestCase(NotifierTester)
 	return suite
