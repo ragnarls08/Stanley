@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-
 from DataSet import DataSet
 import math
+from statlib import stats
 
 class MathMagic:
 	
