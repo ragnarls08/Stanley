@@ -65,19 +65,4 @@ class Notifier:
 				if len(listOfFlags) > 0:
 					report.append([ds.dsId, ds.title, timeline.cId, timeline.title, listOfFlags])
 				
-		return report
-	
-
-def main():
-	gateway = StaticGateway()
-	
-	p = Parser(gateway)
-	ds = p.parse("V28", 0)
-	n = Notifier()
-	results = n.isIntresting(ds)
-
-	for x in results:
-		print x
-		
-if __name__ == '__main__':
-	main()
+		return report	
