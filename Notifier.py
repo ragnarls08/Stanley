@@ -34,6 +34,7 @@ class Notifier:
 		report = []
 		
 		for timeline in ds[1:-1]:
+	
 			newest = timeline.pop()			
 			standarddev = stats.lstdev(timeline.getListNoNoneType())
 #			for x in timeline[0:]:
