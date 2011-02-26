@@ -40,9 +40,7 @@ class Notifier:
 	#param: dataSet
 	#return: the timeline id if it is intresting else none
 	def isIntresting(self, ds):
-
-		report = []
-	
+		report = []	
 		for timeline in ds[1:]:	
 			newest = timeline.pop()		#the latest value in the timeline						
 			param = timeline.getListNoNoneType()	#holds the value to compair
