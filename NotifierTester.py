@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # encoding: utf-8
 """
 NotifierTester.py
@@ -20,15 +19,10 @@ class NotifierTester(unittest.TestCase):
 		self.notifier = Notifier()				
 		self.gate = StaticGateway()
 		p = Parser(self.gate)
-		self.dsObj = p.parse("bull")						
+		self.dsObj = p.parse("")						
 					
-	def testMultiply(self):
-		self.assertEqual(self.notifier.multi(2), 4)
-		
 	def testIsIntresting(self):
-
-		testResult = self.notifier.isIntresting(self.dsObj)
-		
+		testResult = self.notifier.isIntresting(self.dsObj)		
 		self.assertEqual(testResult[0][4][0][0], 1)
 		self.assertEqual(testResult[0][4][1][0], 2)
 		self.assertEqual(testResult[1][4][0][0], 1)
@@ -41,6 +35,3 @@ class NotifierTester(unittest.TestCase):
 def suite():
 	suite = unittest.TestLoader().loadTestsFromTestCase(NotifierTester)
 	return suite
-
-if __name__ == '__main__':
-	unittest.main()
