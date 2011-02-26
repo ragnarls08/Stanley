@@ -6,33 +6,20 @@ from DataSet import DataSet
 from TimeLine import TimeLine
 
 class Parser:
-
-	def __init__(self, urlBase="http://www.datamarket.com/api/v1/series.json?callback=", 
-			urlQuery="&ds=v28&maxresults=5" ):
-		self.urlBase = urlBase
-		self.urlQuery = urlQuery
-
-
-	#Gets a json object from the url
-	#Return: Json object
-	def getJsonFromUrl(self):
-		try:
-			request = urllib2.Request( self.urlBase + self.urlQuery )
-			response = urllib2.urlopen( request )
-			results = json.load( response )
-			return results
-		except:
-			return None
+	
+	def __init__(self, gateway):
+		self.gate = gateway
 
 	#Parses an url into a DataSet:list of timelines
 	#Return: DataSet
-	def parse(self):
-		job = self.getJsonFromUrl()
+	def parse(self, dsId, maxResults=0):
+		job = self.gate.getDs(dsId, maxResults)
 
 		#REFACTOR W/THROW EXCEPTION
 		if not job:
 			print "ble"
 			return None 
+
 		job = job[0]
 	
 		#get data as a list of rows instead of columns	
