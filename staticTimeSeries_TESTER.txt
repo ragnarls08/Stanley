@@ -1,0 +1,4 @@
+FYRSTA PRUFUSETT SEM ER EKKI SKIPULAGT
+staticDataSet_LinearIncrease.json
+staticDataSet.json
+staticDataSet_Umferdarstofa.json
