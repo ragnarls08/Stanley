@@ -9,10 +9,12 @@ Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 import simplejson
 
 class StaticGateway:
+	def __init__(self, param):
+		self.param = param
 	
 	def getDs(self, dsId, maxResults=0):
 		return self.call()
 
 	def call(self):
-		return simplejson.load(open("staticDataSet.json"))
+		return simplejson.load(open(self.param))
 		
