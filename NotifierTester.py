@@ -17,7 +17,7 @@ class NotifierTester(unittest.TestCase):
 
 	def setUp(self):
 		self.notifier = Notifier()				
-		self.gate = StaticGateway()
+		self.gate = StaticGateway("staticDataSet.json")
 		p = Parser(self.gate)
 		self.dsObj = p.parse("")						
 					
