@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import numpy
 
 class TimeLine(list):
 	def __init__(self, title, cId, data=[]):
@@ -20,4 +21,5 @@ class TimeLine(list):
 	def getListNoNoneType(self):
 		return [item for item in self if type(item) != type(None)]	
 
-
+	def getMaskedArray(self):
+		return numpy.ma.masked_array([ numpy.nan if type(item) == type(None) else item for item in self ])	
