@@ -18,8 +18,9 @@ gate = DmGateway()
 ps = Parser(gate)
 
 dset = ps.parse("wf5")
-series = ts.time_series(dset[1].getMaskedArray(),
+series = ts.time_series(dset[5].getMaskedArray(),
 						start_date=ts.Date(freq=dset.granularity, year=int(dset[0][0][0:4]), month=1))
+print series.count
 
 fig = tplot.tsfigure()
 # 111 = width, height, subplots
@@ -29,15 +30,15 @@ fsp = fig.add_tsplot(111)
 fsp.tsplot(series, '-')
 
 #draw moving average, framesize 5, dotted green line
-avg = mov_average(series, 5)
-std = mov_std(series, 5)
+avg = mov_average(series, 6)
+std = mov_std(series, 6)
 
 lowerlim = avg+std*1.5
 upperlim = avg-std*1.5
 
 fsp.tsplot(lowerlim, '--r')
 fsp.tsplot(upperlim, '--r')
-fsp.tsplot(mov_average(series, 5), '--g')
+fsp.tsplot(avg, '--g')
 
 #t = sp.fft(dset[1].getMaskedArray())
 #fftSer = ts.time_series(sp.fft(dset[1].getMaskedArray()),
