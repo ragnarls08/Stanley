@@ -13,7 +13,6 @@ class DmGatewayTester(unittest.TestCase):
 		self.assertRaises(urllib2.HTTPError, self.gate.getDs, None, 0)
 
 
-
 # test below were used in unittest lib in python 2.7
 
 #	def testNoneExistingPage(self):		
