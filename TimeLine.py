@@ -22,4 +22,4 @@ class TimeLine(list):
 		return [item for item in self if type(item) != type(None)]	
 
 	def getMaskedArray(self):
-		return numpy.ma.masked_array([ numpy.nan if type(item) == type(None) else item for item in self ])	
+		return numpy.ma.masked_array([ numpy.NaN if type(item) == type(None) else item for item in self ])	
