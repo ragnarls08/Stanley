@@ -1,5 +1,11 @@
 Please list all external modules/libraries used by the system
 
-statlib
+er að fara út #statlib
 simplejason
+unittest2
+
+numpy
+scipy
+matplotlib
+scikits.timeseries
 
