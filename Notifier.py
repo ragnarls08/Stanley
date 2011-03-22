@@ -25,7 +25,7 @@ class Notifier:
 	#Loops through a dataSet and applies statistical analysis on the timelines in the dataset
 	#param: dataSet
 	#return: a list of results from the statistical analyser
-	def isIntresting(self, ds):
+	def getReport(self, ds):
 		report = []	
 		for timeline in ds[1:]:	
 			newest = timeline.pop()		#the latest value in the timeline						
@@ -34,7 +34,7 @@ class Notifier:
 			if param != []:
 				standarddev = stats.lstdev(param)	
 				mean = stats.mean(param)					
-				diff = (math.sqrt(math.pow((mean - newest), 2)))				
+				diff = (math.sqrt(math.pow((mean - newest), 2)))
 				
 				listOfFlags = []
 				#flags if newest is the lowest value in the timeline
