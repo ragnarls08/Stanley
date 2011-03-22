@@ -1,4 +1,4 @@
-import unittest
+import unittest2 as unittest
 from DataSet import DataSet
 from TimeLine import TimeLine
 
