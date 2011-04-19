@@ -32,4 +32,4 @@ class Notifier:
 			listOfFlags = self.mathMagic.standardDevAnalysis(timeline, ds[0])
 			report.append([ds.dsId, ds.title, timeline.cId, timeline.title, listOfFlags])
 				
-		return report	
+#		return report	

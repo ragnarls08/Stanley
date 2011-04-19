@@ -22,5 +22,5 @@ class Rynir:
 			return ret	
 		else:
 			dset = self.parser.parse( inQueryString )
-			return self.notifier.getReport( dset )
+			return [self.notifier.getReport( dset )]
 		

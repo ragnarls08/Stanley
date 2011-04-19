@@ -17,8 +17,10 @@ from Parser import Parser
 gate = DmGateway()
 ps = Parser(gate)
 
-dset = ps.parse("wf5")
-series = ts.time_series(dset[5].getMaskedArray(),
+#dset = ps.parse("wf5")
+dset = ps.parse("1eh3")
+
+series = ts.time_series(dset[1].getMaskedArray(),
 						start_date=ts.Date(freq=dset.granularity, year=int(dset[0][0][0:4]), month=1))
 print series.count
 

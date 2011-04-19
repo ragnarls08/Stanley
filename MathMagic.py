@@ -17,8 +17,6 @@ class MathMagic:
     std = mov_std(timeline, frameSize)
     flags = []
     
-    print "**************************"
-    print timeline[0]
     lowerlim = avg+std*2
     upperlim = avg-std*2
     
