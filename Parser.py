@@ -28,7 +28,6 @@ class Parser:
 		dataset = DataSet( job["title"].encode('utf-8'), job["id"].encode('utf-8'), 
 									job["columns"][0]["time_granularity"].encode('utf-8'))
 		
-		
 
 		for col in range(0, len(colData ) ):
 			tl = TimeLine( job["columns"][col]["title"].encode('utf-8'),

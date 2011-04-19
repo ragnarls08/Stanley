@@ -12,6 +12,8 @@ from DmGateway import DmGateway
 from StaticGateway import StaticGateway
 from Parser import Parser
 
+frameSize = 20
+
 
 #gate = StaticGateway("staticDataSet.json")
 gate = DmGateway()
@@ -32,16 +34,31 @@ fsp = fig.add_tsplot(111)
 fsp.tsplot(series, '-')
 
 #draw moving average, framesize 5, dotted green line
-avg = mov_average(series, 6)
-std = mov_std(series, 6)
+avg = mov_average(series, frameSize)
+avg2 = mov_average_expw(series, frameSize)
+avg3 = cmov_average(series, frameSize)
 
-lowerlim = avg+std*1.5
-upperlim = avg-std*1.5
+std = mov_std(series, frameSize)
+
+lowerlim = avg+std*2.0
+upperlim = avg-std*2.0
+
+lowerlim2 = avg3+std*2.0
+upperlim2 = avg3-std*2.0
+
+
 
 fsp.tsplot(lowerlim, '--r')
 fsp.tsplot(upperlim, '--r')
-fsp.tsplot(avg, '--g')
 
+fsp.tsplot(lowerlim2, '--g')
+fsp.tsplot(upperlim2, '--g')
+
+
+
+#fsp.tsplot(avg, '--g')
+#fsp.tsplot(avg2, '--y')
+#fsp.tsplot(avg3, '--b')
 #t = sp.fft(dset[1].getMaskedArray())
 #fftSer = ts.time_series(sp.fft(dset[1].getMaskedArray()),
 #						start_date=ts.Date(freq=dset.granularity, year=int(dset[0][0][0:4]), month=1))
