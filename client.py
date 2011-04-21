@@ -14,8 +14,6 @@ time_series = "1eh3"
 report = rynir.analyze(time_series)
 
 
-
-
 for x in report[0]:
 	print x
 
