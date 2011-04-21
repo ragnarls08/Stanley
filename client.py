@@ -13,21 +13,10 @@ rynir = Rynir()
 time_series = "1eh3"
 report = rynir.analyze(time_series)
 
-
-
-
 for x in report[0]:
 	print x
 
-
-
-
-
-
-
-
 #debugging plot below, make sure parameters match the ones actually used
-   
 gate = DmGateway()
 ps = Parser(gate)
 

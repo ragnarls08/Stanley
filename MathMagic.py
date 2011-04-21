@@ -19,9 +19,13 @@ class MathMagic:
     
     lowerlim = avg+std*2
     upperlim = avg-std*2
-    
-    for i in range(len(timeline)):
-      if (timeline[i] < lowerlim[i] or timeline[i] > upperlim[i]):
-	flags.append((timeAxis[i],50)) #index of flag + severity of flag
+
+
+    #for i in range(len(timeline)):
+    #  if (timeline[i] < lowerlim[i] or timeline[i] > upperlim[i]):
+#	flags.append((timeAxis[i],50)) #index of flag + severity of flag
+    for index, item in enumerate(timeline):
+      print index
+      print item
 	
     return flags
