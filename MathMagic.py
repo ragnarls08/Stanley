@@ -20,6 +20,8 @@ class MathMagic:
     lowerlim = avg+std*2
     upperlim = avg-std*2
 
+	for i in range(5):
+	  print i
 
     #for i in range(len(timeline)):
     #  if (timeline[i] < lowerlim[i] or timeline[i] > upperlim[i]):
@@ -29,3 +31,5 @@ class MathMagic:
       print item
 	
     return flags
+
+
