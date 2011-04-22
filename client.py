@@ -10,7 +10,8 @@ from DmGateway import DmGateway
 from Parser import Parser
 
 rynir = Rynir()
-time_series = "1eh3"
+#time_series = "1eh3"
+time_series = "1d8b|wzl=6"
 report = rynir.analyze(time_series)
 
 for x in report[0]:
@@ -33,8 +34,9 @@ fsp = fig.add_tsplot(111)
 fsp.tsplot(series, '-')
 
 #draw moving average, framesize 5, dotted green line
-avg = mov_average(series, 12)
-std = mov_std(series, 12)
+avg = mov_average(series, 60)
+#avg = mov_average_expw(series, 60)
+std = mov_std(series, 60)
 
 lowerlim = avg+std*2
 upperlim = avg-std*2
