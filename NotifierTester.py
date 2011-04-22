@@ -22,7 +22,7 @@ class NotifierTester(unittest.TestCase):
 		self.dsObj = p.parse("")						
 					
 	def testIsIntresting(self):
-		testResult = self.notifier.getReport(self.dsObj)		
+		testResult = self.notifier.getReport(self.dsObj)
 		self.assertEqual(testResult[0][4][0][0], 1)
 		self.assertEqual(testResult[0][4][1][0], 2)
 		self.assertEqual(testResult[1][4][0][0], 1)
