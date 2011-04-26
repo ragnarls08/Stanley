@@ -1,0 +1,83 @@
+%
+% File eacl2009.tex
+%
+% Contact  oflazer@gmail.com or das@ling.uni-potsdam.de
+%%
+
+%% Based on the style files for EACL 2006 by 
+%%e.agirre@ehu.es or Sergi.Balari@uab.es
+%% and that of ACL 08 by Joakim Nivre and Noah Smith
+
+\documentclass[11pt]{article}
+\usepackage{eacl2009}
+\usepackage{times}
+\usepackage{url}
+\usepackage{latexsym}
+\usepackage[icelandic]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+%\setlength\titlebox{6.5cm}    % You can expand the title box if you
+% really have to
+
+\title{Rýnir}
+
+\author{Arnór Barkarson\\
+  Reykjavík University\\
+  Reykjavík, Iceland\\
+  {\tt arnorbarkar@ru.is}  \And
+  Ragnar Lárus Sigurðsson\\
+  Reykjavík University\\
+  Reykjavík, Iceland\\
+  {\tt  ragnarls08@ru.is}\\  \And
+  Þórður Arnarsson\\
+  Reykjavík University\\
+  Reykjavík, Iceland\\
+  {\tt  thordura08@ru.is}  \And
+  Gunnar Sveinsson\\
+  Reykjavík University\\
+  Reykjavík, Iceland\\
+  {\tt  gunnarsve06@ru.is} 
+}
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+Rynir is a statistical analizer designed for Datamarket.com, 
+a data portal that provides access to statistics and structured data from various public and private sector organizations.\\ 
+It's purpose is to analyze time series and return a list of flags, 
+indicating intresting points in time for a given set of time series. 
+
+ 
+\section{Dependencies}
+Rýnir is written in Python 2.6 and has the following dependencies:\\
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\theenumi}
+\begin{enumerate}
+ \item NumPy\\ \url{http://numpy.scipy.org/}
+ \item SciPy\\ \url{http://www.scipy.org/}
+ \item Mathplotlib\\ \url{http://matplotlib.sourceforge.net/index.html}
+ \item SciKits.timeseries\\ \url{http://pytseries.sourceforge.net/index.html}
+ \item Unittest2\\ \url{http://pypi.python.org/pypi/unittest2}
+ \item Simplejson\\ \url{http://pypi.python.org/pypi/simplejson/}
+\end{enumerate}
+
+\section{General Instructions}
+
+
+\subsection{Installation}
+No special oprerations are needed if all dependencies are fulfilled. Simply unzip the package in any directory.
+\subsection{Configuration}
+In the config file following parameters can be set;\\
+N: Determines the framesize or N-period of a simple moving average.\\
+K: Determines upper and lower bands at K times an N-period standard deviation, upper = $ K*\sigma$ and lower = $-(K*\sigma)$\\
+TOP: Determines how many flags are to be returned at most.
+
+\subsection{Addons}
+
+To be added ;)
+
+\end{document}
