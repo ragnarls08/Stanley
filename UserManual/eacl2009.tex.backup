@@ -22,38 +22,19 @@
 
 \title{Rýnir}
 
-\author{Arnór Barkarson\\
-  Reykjavík University\\
-  Reykjavík, Iceland\\
-  {\tt arnorbarkar@ru.is}  \And
-  Ragnar Lárus Sigurðsson\\
-  Reykjavík University\\
-  Reykjavík, Iceland\\
-  {\tt  ragnarls08@ru.is}\\  \And
-  Þórður Arnarsson\\
-  Reykjavík University\\
-  Reykjavík, Iceland\\
-  {\tt  thordura08@ru.is}  \And
-  Gunnar Sveinsson\\
-  Reykjavík University\\
-  Reykjavík, Iceland\\
-  {\tt  gunnarsve06@ru.is} 
-}
 
 \date{}
 
 \begin{document}
 \maketitle
 
-\section{Introduction}
-Rynir is a statistical analizer designed for Datamarket.com, 
-a data portal that provides access to statistics and structured data from various public and private sector organizations.\\ 
-It's purpose is to analyze time series and return a list of flags, 
-indicating intresting points in time for a given set of time series. 
-
+\section{Inngangur}
+Rynir er tölfræðigreinir sem hannaður er fyrir Datamarket.com.\\
+Datamarket er gagnagátt sem veitir aðgengi að tölfræði og skipulögðum gögnum frá ýmsum stofnunum bæði opinberum og úr einkageiranum.\\
+Tilgangur Rýnirs er að greina tiltekið safn af tímröðum og skila af sér flöggum sem segja til um áhugaverða atburði í tíma fyrir gefið safn.
  
-\section{Dependencies}
-Rýnir is written in Python 2.6 and has the following dependencies:\\
+\section{Kröfur}
+Rýnir er skrifaður í Python 2.6 og styðst við eftirfaradi aðgerðarsöfn (e. libraries)\\
 \renewcommand{\theenumi}{\roman{enumi}}
 \renewcommand{\labelenumi}{\theenumi}
 \begin{enumerate}
@@ -65,15 +46,20 @@ Rýnir is written in Python 2.6 and has the following dependencies:\\
  \item Simplejson\\ \url{http://pypi.python.org/pypi/simplejson/}
 \end{enumerate}
 
-\section{General Instructions}
+\section{Almennar leiðbeiningar}
 
 
-\subsection{Installation}
+\subsection{Innsetning}
 No special oprerations are needed if all dependencies are fulfilled. Simply unzip the package in any directory.
-\subsection{Configuration}
+Engra sérstakara aðgerða er þörf ef allar kröfur eru uppfylltar. Afþjap
+\subsection{Stillingar}
 In the config file following parameters can be set;\\
 N: Determines the framesize or N-period of a simple moving average.\\
-K: Determines upper and lower bands at K times an N-period standard deviation, upper = $ K*\sigma$ and lower = $-(K*\sigma)$
-\subsection{Addons}
+K: Determines upper and lower bands at K times an N-period standard deviation, upper = $ K*\sigma$ and lower = $-(K*\sigma)$\\
+TOP: Determines how many flags are to be returned at most.
+
+\subsection{Viðbætur}
+
+To be added ;)
 
 \end{document}
