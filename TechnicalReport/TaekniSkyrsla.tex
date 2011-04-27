@@ -16,6 +16,7 @@
 \usepackage[icelandic]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{graphicx}
 
 %\setlength\titlebox{6.5cm}    % You can expand the title box if you
 % really have to
@@ -25,59 +26,70 @@
 \author{Arnór Barkarson\\
   Reykjavík University\\
   Reykjavík, Iceland\\
-  {\tt arnorbarkar@ru.is}  \And
+  {\tt arnorbarkar@ru.is}  \And  
   Ragnar Lárus Sigurðsson\\
   Reykjavík University\\
   Reykjavík, Iceland\\
-  {\tt  ragnarls08@ru.is}\\  \And
+  {\tt  ragnarls08@ru.is}\\ \And 
   Þórður Arnarsson\\
   Reykjavík University\\
   Reykjavík, Iceland\\
-  {\tt  thordura08@ru.is}  \And
+  {\tt  thordura08@ru.is}  \And 
   Gunnar Sveinsson\\
   Reykjavík University\\
   Reykjavík, Iceland\\
   {\tt  gunnarsve06@ru.is} 
 }
 
+
+
 \date{}
 
 \begin{document}
 \maketitle
 
+
+\section{Summary}
 \section{Introduction}
-Rynir is a statistical analizer designed for Datamarket.com, 
-a data portal that provides access to statistics and structured data from various public and private sector organizations.\\ 
-It's purpose is to analyze time series and return a list of flags, 
-indicating intresting points in time for a given set of time series. 
+\section{Body}
+
+\subsection{Bollinger bands}
+\label{sec:third}
+
+Bollinger bönd eru upprunalega þróuð sem greiningartól á þróun verðbréfaverða. Síðan þá hefur þessari aðferð verið beitt á ýmis
+vandamál með misgóðum niðurstöðum. \\
+
+Bollinger bönd samanstanda af
+\begin{itemize}
+  \item Miðband, N-lotu einfalt hlaupandi meðaltal (HM).
+  \item Efra band, N-lotu staðalfrávik margfaldað með K, fyrir ofan miðbandið (HM + K$\sigma$).
+  \item Neðra band, N-lotu staðalfrávik margfaldað með K, fyrir neðan miðbandið (HM - K$\sigma$).
+\end{itemize}
+
+Bollinger böndin nýtast því vel til þess að greina hvar í tímalínu óeðlileg hækkun eða lækkun á sér stað.
+
+
+
+...
+
+Útfærslan okkar byggist á því að keyra ítranir af Bollinger böndum á tímalínu með mismunandi gluggastærð, þar sem gluggastærðin er að hluta til ákvörðuð
+af stærð tímalínunnar. Hverri ítrun er síðan gefið ákveðið vægi miðað við gluggastærð hennar, væginu er hagað þannig að 100\% vægi skiptist niður á ítranirnar.
+
+...
+
+\begin{figure}
+  \includegraphics[width=.15\textwidth]{bollinger.jpg}
+  %\caption{Bollinger bands\label{fig:first}}
+\end{figure}
+
+
+
+
+\section{Conclusion}
+\section{Abstract}
 
  
-\section{Dependencies}
-Rýnir is written in Python 2.6 and has the following dependencies:\\
-\renewcommand{\theenumi}{\roman{enumi}}
-\renewcommand{\labelenumi}{\theenumi}
-\begin{enumerate}
- \item NumPy\\ \url{http://numpy.scipy.org/}
- \item SciPy\\ \url{http://www.scipy.org/}
- \item Mathplotlib\\ \url{http://matplotlib.sourceforge.net/index.html}
- \item SciKits.timeseries\\ \url{http://pytseries.sourceforge.net/index.html}
- \item Unittest2\\ \url{http://pypi.python.org/pypi/unittest2}
- \item Simplejson\\ \url{http://pypi.python.org/pypi/simplejson/}
-\end{enumerate}
-
-\section{General Instructions}
 
 
-\subsection{Installation}
-No special oprerations are needed if all dependencies are fulfilled. Simply unzip the package in any directory.
-\subsection{Configuration}
-In the config file following parameters can be set;\\
-N: Determines the framesize or N-period of a simple moving average.\\
-K: Determines upper and lower bands at K times an N-period standard deviation, upper = $ K*\sigma$ and lower = $-(K*\sigma)$\\
-TOP: Determines how many flags are to be returned at most.
-
-\subsection{Addons}
-
-To be added ;)
 
 \end{document}
