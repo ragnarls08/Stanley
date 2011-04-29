@@ -17,11 +17,12 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx}
+\usepackage{wrapfig}
 
-%\setlength\titlebox{6.5cm}    % You can expand the title box if you
+\setlength\titlebox{9.5cm}    % You can expand the title box if you
 % really have to
 
-\title{Rýnir}
+\title{Rýnir - Tækniskýrsla}
 
 \author{Arnór Barkarson\\
   Reykjavík University\\
@@ -53,16 +54,35 @@
 \section{Introduction}
 \section{Body}
 \subsection{Fourier transformations}
-Fourier transformations eru stærðfræðilegar aðgerðir sem brjóta merki niður í tíðnir þess. Þær gátum við nýtt okkur með því að láta umbreyta 
-tímalínu í tíðnir og ef áberandi virk tíðni fannst, þá er ferli í tímalínunni sem er að endurtakast. Sem dæmi um slíkt í okkar kerfi er þegar 
-kortavelta á Íslandi er skoðuð.\\\\
-Það má sjá að tímalínan hefur ákveðnar endurtekningar á EFITR AÐ SETJA INN UPPLŶSINGAR
+Fourier transformations eru stærðfræðilegar aðgerðir sem brjóta merki niður í tíðnir þess. Slíkt gátum við nýtt okkur með því að láta umbreyta 
+tímalínu í tíðnir. Ef áberandi tíðni fannst þá er endurtekning í tímalínunni. Sem dæmi um slíkt í okkar kerfi er þegar 
+rafmagnsnotkun í ótilgreindu landi er skoðuð.\\
 
-Hér er svo mynd af því sem Fourier skilar. Þar má sjá að hann greinir endurtekningu á XXXXXXX fresti.
+\begin{wrapfigure}{l}{6cm}
+%\begin{figure}
+ \begin{center}
+ \includegraphics[width=.45\textwidth]{Rafmagnsnotkun.png}
+ \caption{Tímalína um rafmagnsnotkun}
+  \end{center}
+%\end{figure}
+\end{wrapfigure}
+\hfill
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-\begin{picture}(2,2)
- \includegraphics[width=.50\textwidth]{Kortavelta.png}
-\end{picture}
+Það má sjá að tímalínan hefur ákveðnar endurtekningar, nánar til tekið þá er mikil notkun á veturna en lítil á sumrin.
+Þessa föstu sveiflu í tímalinunni greinir Fourier og skilar eftirfarandi grafi. 
+Það segir okkur að á 12 staka fresti í tímalínunni er endurtekning.
+
+\begin{wrapfigure}{l}{6cm}
+%\begin{figure}
+ \begin{center}
+ \includegraphics[width=.45\textwidth]{Fourier.png}
+ \caption{Fourier um rafmagnsnotkun}
+  \end{center}
+%\end{figure}
+\end{wrapfigure}
+\hfill
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 \subsection{Hlaupandi meðaltal (HM)}
 Í tölfræði er hlaupandi meðaltal, einnig kallað fljótandi meðaltal, notað til greiningar á gagnamengi. 
