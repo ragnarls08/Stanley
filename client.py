@@ -11,10 +11,10 @@ from DmGateway import DmGateway
 from Parser import Parser
 
 rynir = Rynir()
-time_series = "1eh3" #british fatalities in afghanistan
+#time_series = "1eh3" #british fatalities in afghanistan
 #time_series = "1d8b|wzl=6" #crude oil
 #time_series = "18ax|l2g=1w:l2h=2:l2i=12" #avocado
-#time_series = "1ctt|wtr=3t:wts=f:wtt=1" #age population brazil
+time_series = "1ctt|wtr=3t:wts=f:wtt=1" #age population brazil
 #time_series = "1bdn|twc=6:twe=k" #elecricity generation
 #time_series = "17tl|kqb=3" #rising slope, not interesting
 #time_series = "1bcz|tuh=1o:tui=b:tuj=k" #oil import from iraq
@@ -22,7 +22,7 @@ time_series = "1eh3" #british fatalities in afghanistan
 report = rynir.analyze(time_series)
 
 for x in report[0]:
-	pass#print x
+	print x
 
 #debugging plot below, make sure parameters match the ones actually used
 gate = DmGateway()

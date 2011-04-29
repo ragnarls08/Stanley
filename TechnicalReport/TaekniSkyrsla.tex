@@ -56,7 +56,7 @@
 Fourier transformations eru stærðfræðilegar aðgerðir sem brjóta merki niður í tíðnir þess. Þær gátum við nýtt okkur með því að láta umbreyta 
 tímalínu í tíðnir og ef áberandi virk tíðni fannst, þá er ferli í tímalínunni sem er að endurtakast. Sem dæmi um slíkt í okkar kerfi er þegar 
 kortavelta á Íslandi er skoðuð.\\\\
-Það má sjá að tímalínan hefur ákveðnar endurtekningar á EFITR AÐ SETJA INN UPPLŶSINGAR
+Það má sjá að tímalínan hefur ákveðnar endurtekningar á EFITR AÐ SETJA INN UPPLÝSINGAR
 
 Hér er svo mynd af því sem Fourier skilar. Þar má sjá að hann greinir endurtekningu á XXXXXXX fresti.
 
@@ -87,7 +87,7 @@ $VHM = \frac{x+2(x+1)+3(x+2)+\dots+(x+10(N-1))}{1+2+\dots+10}$
 \label{sec:third}
 
 Bollinger bönd eru upprunalega þróuð sem greiningartól á þróun verðbréfaverða. 
-Tilgangur þess er að veita viðeigandi skilgreiningu hágum og lágum gildum. Einnig hefur þessari aðferð verið beitt á ýmis önnur
+Tilgangur þeirra er að veita viðeigandi skilgreiningu hágum og lágum gildum. Einnig hefur þessari aðferð verið beitt á ýmis önnur
 vandamál með misgóðum niðurstöðum. \\
 
 Bollinger bönd samanstanda af
@@ -98,11 +98,29 @@ Bollinger bönd samanstanda af
 \end{itemize}
 Bollinger bönd nýtast því vel til greininga hvar í tímalínu óeðlileg hækkun eða lækkun á sér stað.
 \subsubsection{Okkar útfærsla á Bollinger}
-...
-Útfærslan okkar byggist á því að keyra ítranir af Bollinger böndum á tímalínu með mismunandi gluggastærð, 
-þar sem gluggastærðin er að hluta til ákvörðuð af stærð tímalínunnar. 
-Hverri ítrun er síðan gefið ákveðið vægi miðað við gluggastærð hennar, væginu er hagað þannig að 100\% vægi skiptist niður á ítranirnar.
-...
+Útfærslan okkar byggist á því að ítra í gegnum mismunandi stórar rammastærðir fyrir hverja tímalínu.
+Hver rammastærð gefur hverjum punkti einkunn út frá því hvar punkturinn er staddur með tilliti til Bollinger bandanna.
+Til þess ákváðum við að nota breytta útgáfu af því sem kallast $percentb$ sem gefur punkti gildi yfir 1 ef punkturinn er fyrir utan 
+efri mörk Bollinger bandsins, tölugildi á bilinu 1-0 ef punkturinn liggur á milli þeirra og neikvæða tölu ef hann er undir þeim.
+$percentb = (last - lowerBB) / (upperBB - lowerBB)$
+Við notum breytta útgáfu af formúlunni sem hundsar hvort við erum fyrir ofan eða neðan böndin og gefur einfaldlega gildi á bilinu
+0-1 ef punkturinn liggur á milli bandanna en annars gildi yfir einum ef punkturinn er fyrir utan. Haldið er utan um hvort punkturinn 
+lá fyrir ofan eða neðan í flagginu sjálfu.
+$percentb = abs((item - avg[index])/(upperlim[index] - avg[index]))$
+Hver rammastærð margfaldar sína útkomu úr formúlunni við gildið sem punkturinn hefur fyrir.
+Þannig gefum við punktum sem líta út fyrir að vera snörp hækkun í litlum ramma lækkað vægi þegar hann lendir innan bandanna í stærri ramma
+og telst því til eðlilegrar hegðunar þegar horft er lengra aftur í tímann.
+Punktar sem leggja utan Bollinger bandanna í nokkrum rammastærðum fá einnig aukið vægi þar sem hver rammi hækkar gildið.
+
+Ef að í tímalínunni er tímabil sem inniheldur svipaðar eða eins tölur á kafla sem er stærri en rammastærðin er vandamál að Bollinger 
+böndin þrengjast mikið. Það gerði það að verkum að litlar breytingar eftir þannig tímabil voru gefin óeðlilega hátt gildi, 
+jafnvel töluvert hærra gildi en það sem teldist til mikið áhugaverðari punkta í sjón. Til að koma í veg fyrir þetta er notast við
+einfalda athugun sem skoðar hvort bandbreiddin fyrir viðkomandi punkt er óeðlilega þröng miðað við meðalbandbreidd tímalínunnar.
+Ef svo er er punktinum gefið lægra gildi. Þegar þetta er skrifað er notast við fasta margföldun en hugmyndir eru uppi um að lækka 
+gildið útfrá meðaltali gilda í tímalínunni.
+
+Að lokum hreinsum við flögg sem liggja hlið við hlið, liggja sömu megin Bollinger bandanna og innihalda sífellt hækkandi gildi, 
+þannig skilum við einungis toppum á hækkunum sem kerfið sér, en ekki punkta innan hækkunaninnar.
 
 \begin{picture}(2,2)
   \includegraphics[width=.45\textwidth]{bollinger.png}

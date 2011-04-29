@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.4.25)  29 APR 2011 13:06
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.4.29)  29 APR 2011 16:49
 entering extended mode
  %&-line parsing enabled.
 **TaekniSkyrsla.tex
@@ -303,7 +303,7 @@ File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
 Package graphics Info: Driver file: pdftex.def on input line 91.
 
 (/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
-File: pdftex.def 2009/08/25 v0.04m Graphics/color for pdfTeX
+File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
 \Gread@gobject=\count88
 ))
 \Gin@req@height=\dimen108
@@ -328,7 +328,7 @@ LaTeX Font Info:    Try loading font information for T1+ptm on input line 48.
  (/usr/share/texmf-texlive/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
-(/usr/share/texmf/tex/context/base/supp-pdf.mkii
+(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count89
 \scratchdimen=\dimen110
@@ -363,70 +363,81 @@ File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 55.
 
-Underfull \hbox (badness 10000) in paragraph at lines 56--59
-\T1/ptm/m/n/10.95 Furier trans-for-ma-tions eru stærðfræði-le-gar
+Underfull \hbox (badness 10000) in paragraph at lines 56--60
+\T1/ptm/m/n/10.95 Fourier trans-for-ma-tions eru stærðfræði-le-gar
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 56--59
+Underfull \hbox (badness 10000) in paragraph at lines 56--60
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 56--59
+Underfull \hbox (badness 1635) in paragraph at lines 56--60
+\T1/ptm/m/n/10.95 Það má sjá að tí-malí-nan he-fur ákveð-nar en-
+ []
 
+
+Underfull \hbox (badness 2197) in paragraph at lines 56--60
+\T1/ptm/m/n/10.95 durtekningar á EFITR AÐ SET-JA INN UP-
+ []
+
+
+Underfull \hbox (badness 1546) in paragraph at lines 61--62
+[]\T1/ptm/m/n/10.95 Hér er svo mynd af því sem Fouri-er ski-
  []
 
 <Kortavelta.png, id=1, 733.74126pt x 368.37625pt>
 File: Kortavelta.png Graphic file (type png)
  <use Kortavelta.png>
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 67.
+(Font)              <10.95> on input line 70.
 
-Underfull \hbox (badness 5403) in paragraph at lines 86--89
+Underfull \hbox (badness 5403) in paragraph at lines 89--92
 \T1/ptm/m/n/10.95 Bollinger bönd eru up-prunale-ga þróuð sem
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 86--89
+Underfull \hbox (badness 10000) in paragraph at lines 89--92
 
  []
 
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 92.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 95.
 (/usr/share/texmf-texlive/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 92.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 95.
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
-<bollinger.png, id=2, 542.025pt x 228.855pt>
+
+
+ <./Kortavelta.png (PNG copy)>]
+<bollinger.png, id=15, 542.025pt x 228.855pt>
 File: bollinger.png Graphic file (type png)
- <use bollinger.png> [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+ <use bollinger.png> [2
 
-
-
- <./Kortavelta.png (PNG copy)> <./bollinger.png (PNG copy)>] (./TaekniSkyrsla.a
-ux) ) 
+ <./bollinger.png (PNG copy)>] (./TaekniSkyrsla.aux) ) 
 Here is how much of TeX's memory you used:
- 1941 strings out of 495061
- 22336 string characters out of 1182621
- 78969 words of memory out of 3000000
- 5099 multiletter control sequences out of 15000+50000
+ 1944 strings out of 495061
+ 22413 string characters out of 1182621
+ 81238 words of memory out of 3000000
+ 5102 multiletter control sequences out of 15000+50000
  24603 words of font info for 44 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
  25i,9n,24p,193b,263s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf-texlive/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-te
-xlive/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts
-/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/publi
-c/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
-m/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/
-texmf-texlive/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-texlive/font
-s/type1/urw/times/utmb8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/ut
-mr8a.pfb>
-Output written on TaekniSkyrsla.pdf (1 page, 162515 bytes).
+{/usr/share/texmf-texlive
+/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfo
+nts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi
+8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
+share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-t
+exlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/font
+s/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/urw/
+courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pfb><
+/usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb>
+Output written on TaekniSkyrsla.pdf (2 pages, 169769 bytes).
 PDF statistics:
- 45 PDF objects out of 1000 (max. 8388607)
+ 48 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
