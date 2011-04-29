@@ -1,2 +1,4 @@
 MyTester.*
 *.pyc
+*.log
+*.pdf
