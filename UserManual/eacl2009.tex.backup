@@ -1,0 +1,65 @@
+%
+% File eacl2009.tex
+%
+% Contact  oflazer@gmail.com or das@ling.uni-potsdam.de
+%%
+
+%% Based on the style files for EACL 2006 by 
+%%e.agirre@ehu.es or Sergi.Balari@uab.es
+%% and that of ACL 08 by Joakim Nivre and Noah Smith
+
+\documentclass[11pt]{article}
+\usepackage{eacl2009}
+\usepackage{times}
+\usepackage{url}
+\usepackage{latexsym}
+\usepackage[icelandic]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+%\setlength\titlebox{6.5cm}    % You can expand the title box if you
+% really have to
+
+\title{Rýnir}
+
+
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Inngangur}
+Rynir er tölfræðigreinir sem hannaður er fyrir Datamarket.com.\\
+Datamarket er gagnagátt sem veitir aðgengi að tölfræði og skipulögðum gögnum frá ýmsum stofnunum bæði opinberum og úr einkageiranum.\\
+Tilgangur Rýnirs er að greina tiltekið safn af tímröðum og skila af sér flöggum sem segja til um áhugaverða atburði í tíma fyrir gefið safn.
+ 
+\section{Kröfur}
+Rýnir er skrifaður í Python 2.6 og styðst við eftirfaradi aðgerðarsöfn (e. libraries)\\
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumi}{\theenumi}
+\begin{enumerate}
+ \item NumPy\\ \url{http://numpy.scipy.org/}
+ \item SciPy\\ \url{http://www.scipy.org/}
+ \item Mathplotlib\\ \url{http://matplotlib.sourceforge.net/index.html}
+ \item SciKits.timeseries\\ \url{http://pytseries.sourceforge.net/index.html}
+ \item Unittest2\\ \url{http://pypi.python.org/pypi/unittest2}
+ \item Simplejson\\ \url{http://pypi.python.org/pypi/simplejson/}
+\end{enumerate}
+
+\section{Almennar leiðbeiningar}
+
+
+\subsection{Innsetning}
+No special oprerations are needed if all dependencies are fulfilled. Simply unzip the package in any directory.
+Engra sérstakara aðgerða er þörf ef allar kröfur eru uppfylltar. Afþjap
+\subsection{Stillingar}
+In the config file following parameters can be set;\\
+N: Determines the framesize or N-period of a simple moving average.\\
+K: Determines upper and lower bands at K times an N-period standard deviation, upper = $ K*\sigma$ and lower = $-(K*\sigma)$\\
+TOP: Determines how many flags are to be returned at most.
+
+\subsection{Viðbætur}
+
+To be added ;)
+
+\end{document}
