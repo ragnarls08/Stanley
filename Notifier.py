@@ -17,7 +17,8 @@ class Notifier:
 	def getReport(self, ds):
 		report = []	
 		for timeline in ds[1:]: #wouldn't it be better if this was a tuple? name is not a DS and should therefore not be a part of this list of DS
-			listOfFlags = self.mathMagic.standardDevAnalysis(timeline, ds[0], 20)
+			listOfFlags = self.mathMagic.analyze(timeline, ds[0])
+			#self.mathMagic.fourierAnalysis(timeline, ds[0])
 			flag = FlagObj(ds.dsId, ds.title, timeline.cId, timeline.title, listOfFlags)
 			report.append(flag)
 				

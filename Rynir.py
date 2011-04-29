@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from DmGateway import DmGateway
+from StaticGateway import StaticGateway
 from Notifier import Notifier
 from Parser import Parser
 
@@ -8,6 +9,7 @@ from Parser import Parser
 class Rynir:
 	def __init__(self):
 		gate = DmGateway()
+		#gate = StaticGateway("staticDataSet.json")
 		self.parser = Parser(gate)
 		self.notifier = Notifier()
 	
