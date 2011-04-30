@@ -22,7 +22,7 @@ time_series = "1eh3" #british fatalities in afghanistan
 report = rynir.analyze(time_series)
 
 for x in report[0]:
-	pass#print x
+	print x
 
 #debugging plot below, make sure parameters match the ones actually used
 gate = DmGateway()
@@ -38,9 +38,11 @@ fig = tplot.tsfigure()
 # 111 = width, height, subplots
 fsp = fig.add_tsplot(111)
 
+
+
 #draw the series from the parser, solid line
 fsp.tsplot(series, '-')
-
+"""
 #draw moving average, framesize 5, dotted green line
 avg = mov_average(series, 13)
 #avg9 = mov_average(series, 9)
@@ -79,8 +81,31 @@ fsp.tsplot(avgexp, '--y')
 
 #fsp.tsplot(fftSer, '--y')
 #print t
+"""
 
+#fig = plot.figure(1, figsize=(8,5))
+#ax = fig.add_subplot(111, autoscale_on=False)#, xlim=(-1,5), ylim=(-4,3))
+
+
+print series
+
+for item in report[0]:
+    for x in item.listOfFlags:
+        print "-----Flag: " + str(x[0])
+          
+        fsp.annotate('arc', xy=(2006, 1),  xycoords='data',
+                xytext=(0.2, 0.5), textcoords='offset points',
+                arrowprops=dict(arrowstyle="->",
+                                connectionstyle="arc,angleA=0,armA=30,rad=10"),
+                )
+
+
+
+
+  
 plot.show()
+
+
 
 
 

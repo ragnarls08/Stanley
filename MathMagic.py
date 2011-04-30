@@ -11,90 +11,163 @@ import operator
 emptySet = ['--', 'nan']
 
 class MathMagic:	
+
 	def analyze(self, timeline, timeAxis, frameSize = None):
-		listi = {}
+		dictionary = {}
 		
 		for item in timeAxis:
-			listi[item] = 1
+			dictionary[item] = (None, None, 1)
 		
 		if frameSize:
-			bollingerAnalysis(timeline, listi, frameSize, timeAxis, 1)
+			print "received frameSize"
+			dictionary = bollingerAnalysis(timeline, dictionary, frameSize, timeAxis, 1)
 		else:	
+			print "no framesize, iterating"
 			#kalla í fourier, ef það kemur rammastærð úr því þá kalla í BollingerFourier, annars iterativeBollinger
-			self.iterativeBollinger(timeline, timeAxis, listi)
+			dictionary = self.iterativeBollinger(timeline, timeAxis, dictionary)
+			
+			
+		listi = self.removeConsolidatingFlags(dictionary)
 			
 		#return listi
-		return sorted(listi.iteritems(), key=operator.itemgetter(1))
+		#return sorted(listi.iteritems(), key=operator.itemgetter(1))
+		return listi
 	
 	def iterativeBollinger(self, timeline, timeAxis, dictionary):
-		self.bollingerAnalysis(timeline,dictionary,9, timeAxis, 0.8)#0.45)#0.30)
-		self.bollingerAnalysis(timeline,dictionary,13, timeAxis, 0.5)#0.30)#0.15)
-		self.bollingerAnalysis(timeline,dictionary,20, timeAxis, 0.3)#0.15)#0.10)
+		self.bollingerAnalysis(timeline,dictionary,9, timeAxis)
+		self.bollingerAnalysis(timeline,dictionary,13, timeAxis)
+		self.bollingerAnalysis(timeline,dictionary,20, timeAxis)
 		
-		return dictionary
+		retDict = {}
+		
+		for key in dictionary:
+			if dictionary[key][2] > 1:
+				retDict[key] = dictionary[key]
+
+		return retDict
+
+
+	def removeConsolidatingFlags(self, listi):
+		print "removing conso flags"
+
+		retDict = {}
+
+		
+		print "semisort-----------------"
+		listi = sorted(listi.iteritems(), key=operator.itemgetter(1))
+		
+		for key in listi:
+			print key
+
+		print "endisort-----------------"
+		
+		print "removing items..."
+		
+		removeList = []
+		last = None
+		
+		for item in listi:
+			curr = item[1]
 	
-	def bollingerAnalysis(self, timeline, dictionary, frameSize, timeAxis, weight):
+			#index = item[1][0]
+			#sing = item[1][1]	
+				
+			#print "index: " + str(item[1][0])
+			#print "last: " + str(lastIndex)
+			#print "sign: " + str(item[1][1])
+			print "---"
+			print last
+			print curr
+			
+	
+			if last == None:
+			#	print "if..."
+				last = curr
+				lastDate = item[0]
+			#if the items are next to each other with the same sign
+			elif curr[0] - last[0] == 1 and last[1] == curr[1] and curr[2] > last[2]:
+			#	print "elif..."
+				#dostuff
+				
+				#curr Serverity is higher, throw out last
+				if curr[2] > last[2]:
+					print "the following item should be remoevd: " + str(lastDate)
+					removeList.append(lastDate)
+					
+					last = curr
+					lastDate = item[0]
+				else:
+					print "the following item should be remoevd: " + str(item[0])
+					removeList.append(item[0])
+					
+					last = (curr[0], last[1], last[2])
+					curr = last
+
+			else:
+			#	print "else..."
+				lastDate = item[0]
+				last = curr
+		
+		
+		retList = []
+		
+		for item in listi:
+			if item[0] not in removeList:
+				retList.append( (item[0], item[1][2]) )
+				
+		return retList
+#		return sorted(listi.iteritems(), key=operator.itemgetter(1))	
+
+
+	
+	def bollingerAnalysis(self, timeline, dictionary, frameSize, timeAxis):
 		timeline = timeline.getMaskedArray()
 
 		#avg = mov_average_expw(timeline, frameSize) # ! this function returns value for first n-1 iterations of the frame, std does not !
 		avg = mov_average(timeline, frameSize)
 		std = mov_std(timeline,frameSize)
 
+		print "std"
+		print std
+
 		lowerlim = avg-std*2
 		upperlim = avg+std*2
 		count = 0
+
+#ATH NOTA STAERRI TOLUR
+
+		print "framesize: " + str(frameSize)
+		print timeline		
+		
+		print upperlim
+		print avg
+		print lowerlim
 		
 		bandwidth_avg = (upperlim-lowerlim).mean()
 		
 		for index, item in enumerate(timeline):
 			bandwidth = (upperlim[index-1] - lowerlim[index-1])
 			
+#			print str(item) + " - " + str(avg[index]) + " / " + str(upperlim[index]) + " - " + str(avg[index])
 			percentb = abs((item - avg[index])/(upperlim[index] - avg[index]))
 			if (str(percentb) in emptySet):
 				percentb = 0
 				
-			if (bandwidth <= bandwidth_avg*0.2):
-				percentb = percentb*0.8
+			if (bandwidth <= bandwidth_avg*0.25):
+				percentb = percentb*0.6
 			#print str(timeAxis[index]) + " : " + str(percentb)
-			dictionary[timeAxis[index]] = percentb * dictionary[timeAxis[index]]
+
+			#dictionary[timeAxis[index]] = percentb * dictionary[timeAxis[index]]
+			
+			print "---------------" + str(percentb)
+			if item > avg[index]:
+				dictionary[timeAxis[index]] = (index, '+', percentb * dictionary[timeAxis[index]][2])
+			else:
+				dictionary[timeAxis[index]] = (index, '-', percentb * dictionary[timeAxis[index]][2])
+										
 		return dictionary
-		"""
-			try:
-				#bandwidth = (upperlim[index-1] - lowerlim[index-1])
-				
-				if (item < lowerlim[index]):
-					count+=1
-					severity = (item - lowerlim[index]) / (item - avg[index])*weight
-					print "Framesize " + str(frameSize) + " flagged with weighted severity " + str(severity)
-					if (bandwidth <= bandwidth_avg*0.5):
-						severity = severity*0.1
-						print "Bandwidth to low: severity bumped down to " + str(severity)
-					if timeAxis[index] in dictionary:
-						dictionary[timeAxis[index]] = severity + dictionary[timeAxis[index]] 
-					else:
-						dictionary[timeAxis[index]] = severity
-						
-				elif (item > upperlim[index]):
-					count+=1
-					severity = (item - upperlim[index]) / (item - avg[index])*weight
-					print "Framesize " + str(frameSize) + " flagged " + timeAxis[index] + " with weighted severity " + str(severity)
-					if (bandwidth <= bandwidth_avg*0.2):
-						severity = severity*0.1 #******************************************must check how severe this item is from the timeline's mean
-						print "Bandwidth to low: severity bumped down to " + str(severity)
-					if timeAxis[index] in dictionary:
-						print "Item found, adding severity"
-						dictionary[timeAxis[index]] = severity + dictionary[timeAxis[index]] 
-					else:
-						print "Item not found, new key created"
-						dictionary[timeAxis[index]] = severity
-			except Exception as inst:
-				print type(inst)     # the exception instance
-				print inst.args      # arguments stored in .args
-				print inst           # __str__ allows args to printed directly
-				
-		print "Framesize " + str(frameSize) + " flagged " + str(count) + " instances"
-		return dictionary
-	"""
+
+
 	def fourierAnalysis(self, timeline, timeAxis):
 		Y=sp.fft(timeline)
 		n=len(Y)
