@@ -14,10 +14,10 @@ rynir = Rynir()
 #time_series = "1eh3" #british fatalities in afghanistan
 #time_series = "1d8b|wzl=6" #crude oil
 #time_series = "18ax|l2g=1w:l2h=2:l2i=12" #avocado
-time_series = "1ctt|wtr=3t:wts=f:wtt=1" #age population brazil
+#time_series = "1ctt|wtr=3t:wts=f:wtt=1" #age population brazil
 #time_series = "1bdn|twc=6:twe=k" #elecricity generation
 #time_series = "17tl|kqb=3" #rising slope, not interesting
-#time_series = "1bcz|tuh=1o:tui=b:tuj=k" #oil import from iraq
+time_series = "1bcz|tuh=1o:tui=b:tuj=k" #oil import from iraq
 
 report = rynir.analyze(time_series)
 
@@ -41,7 +41,7 @@ fsp = fig.add_tsplot(111)
 
 
 #draw the series from the parser, solid line
-fsp.tsplot(series, '-')
+#fsp.tsplot(series, '-')
 """
 #draw moving average, framesize 5, dotted green line
 avg = mov_average(series, 13)
@@ -84,7 +84,7 @@ fsp.tsplot(avgexp, '--y')
 """
 
 #fig = plot.figure(1, figsize=(8,5))
-#ax = fig.add_subplot(111, autoscale_on=False)#, xlim=(-1,5), ylim=(-4,3))
+#ax = fig.add_subplot(111, autoscale_on=True)#, xlim=(-1,5), ylim=(-4,3))
 
 
 print series
@@ -92,17 +92,22 @@ print series
 for item in report[0]:
     for x in item.listOfFlags:
         print "-----Flag: " + str(x[0])
-          
-        fsp.annotate('arc', xy=(2006, 1),  xycoords='data',
-                xytext=(0.2, 0.5), textcoords='offset points',
-                arrowprops=dict(arrowstyle="->",
-                                connectionstyle="arc,angleA=0,armA=30,rad=10"),
-                )
+        print "--index: " + str(x[2])
+        print "place flag at : " + str(x[2]) + ", " + str(series[x[2]])
+
+
+        fsp.annotate(x[1], xy=(x[2], dset[1][x[2]]),
+                    xytext=(x[2]+5, dset[1][x[2]]+5), arrowprops=dict(facecolor='black', shrink=0.05),)
 
 
 
 
-  
+#fsp.annotate('raggi', xy=(50,20), xytext=(60, 20), arrowprops=dict(facecolor='black', shrink=0.05),)
+
+fsp.plot(dset[1].getMaskedArray())
+#fsp.tsplot(series, '-')
+
+
 plot.show()
 
 

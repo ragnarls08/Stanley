@@ -8,7 +8,7 @@ from scikits.timeseries.lib.moving_funcs import *
 import scipy as sp
 import operator
 
-emptySet = ['--', 'nan']
+emptySet = ['--', 'nan', 'inf']
 
 class MathMagic:	
 
@@ -48,20 +48,9 @@ class MathMagic:
 
 
 	def removeConsolidatingFlags(self, listi):
-		print "removing conso flags"
 
 		retDict = {}
-
-		
-		print "semisort-----------------"
-		listi = sorted(listi.iteritems(), key=operator.itemgetter(1))
-		
-		for key in listi:
-			print key
-
-		print "endisort-----------------"
-		
-		print "removing items..."
+		listi = sorted(listi.iteritems(), key=operator.itemgetter(1))	
 		
 		removeList = []
 		last = None
@@ -69,42 +58,23 @@ class MathMagic:
 		for item in listi:
 			curr = item[1]
 	
-			#index = item[1][0]
-			#sing = item[1][1]	
-				
-			#print "index: " + str(item[1][0])
-			#print "last: " + str(lastIndex)
-			#print "sign: " + str(item[1][1])
-			print "---"
-			print last
-			print curr
-			
-	
 			if last == None:
-			#	print "if..."
 				last = curr
 				lastDate = item[0]
 			#if the items are next to each other with the same sign
 			elif curr[0] - last[0] == 1 and last[1] == curr[1] and curr[2] > last[2]:
-			#	print "elif..."
-				#dostuff
-				
 				#curr Serverity is higher, throw out last
 				if curr[2] > last[2]:
 					print "the following item should be remoevd: " + str(lastDate)
-					removeList.append(lastDate)
-					
+					removeList.append(lastDate)		
 					last = curr
 					lastDate = item[0]
 				else:
 					print "the following item should be remoevd: " + str(item[0])
 					removeList.append(item[0])
-					
 					last = (curr[0], last[1], last[2])
 					curr = last
-
 			else:
-			#	print "else..."
 				lastDate = item[0]
 				last = curr
 		
@@ -113,13 +83,11 @@ class MathMagic:
 		
 		for item in listi:
 			if item[0] not in removeList:
-				retList.append( (item[0], item[1][2]) )
+				retList.append( (item[0], item[1][2], item[1][0]) )
 				
 		return retList
-#		return sorted(listi.iteritems(), key=operator.itemgetter(1))	
 
-
-	
+	#bollinger analasys function
 	def bollingerAnalysis(self, timeline, dictionary, frameSize, timeAxis):
 		timeline = timeline.getMaskedArray()
 
@@ -132,29 +100,30 @@ class MathMagic:
 		std = mov_std(timeline,frameSize)
 
 
-		print "std"
-		print std
+	#	print "std"
+	#	print std
 
-
+		#set the upper and lower bands for the bollinger analysis at K = 2
 		lowerlim = avg-std*2
 		upperlim = avg+std*2
 		count = 0
 
-#ATH NOTA STAERRI TOLUR
+#ATH NOTA STAERRI TOLUR TIL AÐ PROFA OVERFLOW
 
-		print "framesize: " + str(frameSize)
-		print timeline		
+#		print "framesize: " + str(frameSize)
+#		print timeline		
 		
-		print upperlim
-		print avg
-		print lowerlim
+#		print upperlim
+#		print avg
+#		print lowerlim
 		
 		bandwidth_avg = (upperlim-lowerlim).mean()
 		
-		for index, item in enumerate(timeline[:frameSize-1]):
+		#for index, item in enumerate(timeline[:frameSize-1]):
+		for index, item in enumerate(timeline):
 			bandwidth = (upperlim[index-1] - lowerlim[index-1])
 			
-#			print str(item) + " - " + str(avg[index]) + " / " + str(upperlim[index]) + " - " + str(avg[index])
+			print str(item) + " - " + str(avg[index]) + " / " + str(upperlim[index]) + " - " + str(avg[index])
 			percentb = abs((item - avg[index])/(upperlim[index] - avg[index]))
 			if (str(percentb) in emptySet):
 				percentb = 0
@@ -175,7 +144,7 @@ class MathMagic:
 
 		return dictionary
 
-
+	#fourier analysis function
 	def fourierAnalysis(self, timeline, timeAxis):
 		Y=sp.fft(timeline)
 		n=len(Y)
