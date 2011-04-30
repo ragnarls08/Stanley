@@ -123,12 +123,18 @@ class MathMagic:
 	def bollingerAnalysis(self, timeline, dictionary, frameSize, timeAxis):
 		timeline = timeline.getMaskedArray()
 
-		#avg = mov_average_expw(timeline, frameSize) # ! this function returns value for first n-1 iterations of the frame, std does not !
-		avg = mov_average(timeline, frameSize)
+		avg = mov_average_expw(timeline, frameSize) # ! this function returns value for first n-1 iterations of the frame, std does not !
+		#for x in range(0, frameSize-1):
+			#avg[x] = None
+		#avg = np.ma.masked_array([ np.NaN if type(item) == type(None) else item for item in self ])
+		#print avg
+		#avg = mov_average(timeline, frameSize)
 		std = mov_std(timeline,frameSize)
+
 
 		print "std"
 		print std
+
 
 		lowerlim = avg-std*2
 		upperlim = avg+std*2
@@ -145,7 +151,7 @@ class MathMagic:
 		
 		bandwidth_avg = (upperlim-lowerlim).mean()
 		
-		for index, item in enumerate(timeline):
+		for index, item in enumerate(timeline[:frameSize-1]):
 			bandwidth = (upperlim[index-1] - lowerlim[index-1])
 			
 #			print str(item) + " - " + str(avg[index]) + " / " + str(upperlim[index]) + " - " + str(avg[index])
@@ -153,6 +159,7 @@ class MathMagic:
 			if (str(percentb) in emptySet):
 				percentb = 0
 				
+
 			if (bandwidth <= bandwidth_avg*0.25):
 				percentb = percentb*0.6
 			#print str(timeAxis[index]) + " : " + str(percentb)
@@ -165,6 +172,7 @@ class MathMagic:
 			else:
 				dictionary[timeAxis[index]] = (index, '-', percentb * dictionary[timeAxis[index]][2])
 										
+
 		return dictionary
 
 
