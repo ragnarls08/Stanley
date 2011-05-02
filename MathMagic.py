@@ -51,23 +51,24 @@ class MathMagic:
 
 		retDict = {}
 		listi = sorted(listi.iteritems(), key=operator.itemgetter(1))	
-	
-        #if len(listi) < 2:
-         #return converted to flags   
+		
+		#if len(listi) < 2:
+		#return converted to flags   
 
-        consoList = []
-        last = listi[0][1]
+		consoList = []
+		last = listi[0][1]
 		retList = []
         
         
-		for item[1] in listi[1:]:
+		for item in listi[1:]:
+			curr = item[1]
 			#if the index differs by only 1 and the sign is the same
 			if curr[0]-last[0] == 1 and last[1] == curr[1]:
 				consoList.append(last)
 			else:
 				consoList.append(last)
 
-				maxItem = getMax(consoList, key=lambda x: x[1])
+				maxItem = max(consoList, key=lambda x: x[1])
 				retList.append( maxItem ) 
 				#clear list
 				consoList = []	
