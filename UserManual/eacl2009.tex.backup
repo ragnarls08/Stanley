@@ -20,7 +20,7 @@
 %\setlength\titlebox{6.5cm}    % You can expand the title box if you
 % really have to
 
-\title{Rýnir}
+\title{Rýnir - Notendahandbók}
 
 
 \date{}
@@ -34,7 +34,7 @@ Datamarket er gagnagátt sem veitir aðgengi að tölfræði og skipulögðum g�
 Tilgangur Rýnirs er að greina tiltekið safn af tímröðum og skila af sér flöggum sem segja til um áhugaverða atburði í tíma fyrir gefið safn.
  
 \section{Kröfur}
-Rýnir er skrifaður í Python 2.6 og styðst við eftirfaradi aðgerðarsöfn (e. libraries)\\
+Rýnir er skrifaður í Python 2.6 og styðst við eftirfaradi aðgerðasöfn (e. libraries)\\
 \renewcommand{\theenumi}{\roman{enumi}}
 \renewcommand{\labelenumi}{\theenumi}
 \begin{enumerate}
@@ -50,16 +50,13 @@ Rýnir er skrifaður í Python 2.6 og styðst við eftirfaradi aðgerðarsöfn (
 
 
 \subsection{Innsetning}
-No special oprerations are needed if all dependencies are fulfilled. Simply unzip the package in any directory.
-Engra sérstakara aðgerða er þörf ef allar kröfur eru uppfylltar. Afþjap
+Engra sérstakara aðgerða er þörf ef allar kröfur eru uppfylltar. Afþjappið skráarpakkanum á þeim stað sem hentar hverju sinni.
 \subsection{Stillingar}
-In the config file following parameters can be set;\\
-N: Determines the framesize or N-period of a simple moving average.\\
-K: Determines upper and lower bands at K times an N-period standard deviation, upper = $ K*\sigma$ and lower = $-(K*\sigma)$\\
-TOP: Determines how many flags are to be returned at most.
-
-\subsection{Viðbætur}
-
-To be added ;)
-
+Í stillingaskrá (e.config) er hægt að stilla eftirfarandi breytur;\\
+N: Ákveður rammastærð eða N-lotu einfalds fljótandi meðaltals (e. simple moving average).\\
+K: Ákveður efri og neðri mörk sem K sinnum N-lotu staðalfrávik þannig að efri mörk eru $ K*\sigma$ og neðri mörk $-(K*\sigma)$.\\
+TOP: Ákveður hversu mörgum flöggum er skilað. Skilar TOP áhugaverðustu flöggunum.\\
+FULL: Segir til um hvort skila eigi niðurstöðu fyrir alla tímalínuna eða einungis þeirri nýjustu.
+\subsection{Notkun}
+Einungis er ein aðgerð sem Rýnir framkvæmir. Hægt er að kalla á fallið analyze()
 \end{document}
