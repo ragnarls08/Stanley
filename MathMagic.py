@@ -27,7 +27,7 @@ class MathMagic:
 			dictionary = self.iterativeBollinger(timeline, timeAxis, dictionary)
 			
 			
-		listi = self.removeConsolidatingFlags(dictionary)
+		listi = self.consolidateFlags(dictionary)
 			
 		#return listi
 		#return sorted(listi.iteritems(), key=operator.itemgetter(1))
@@ -47,7 +47,7 @@ class MathMagic:
 		return retDict
 
 
-	def removeConsolidatingFlags(self, listi):
+	def consolidateFlags(self, listi):
 
 		retDict = {}
 		listi = sorted(listi.iteritems(), key=operator.itemgetter(1))	
@@ -90,18 +90,23 @@ class MathMagic:
 	#bollinger analysis function
 	def bollingerAnalysis(self, timeline, dictionary, frameSize, timeAxis):
 		timeline = timeline.getMaskedArray()
+		
+		try:
+			#avg = mov_average_expw(timeline, frameSize) # ! this function returns value for first n-1 iterations of the frame, std does not !
+			#for x in range(0, frameSize-1):
+				#avg[x] = None
+			#avg = np.ma.masked_array([ np.NaN if type(item) == type(None) else item for item in self ])
+			#print avg
+			avg = mov_average(timeline, frameSize)
+			std = mov_std(timeline,frameSize)
+		except NotImplementedError:
+			print '*********************************ERROR*************************'
+			return dictionary
 
-		avg = mov_average_expw(timeline, frameSize) # ! this function returns value for first n-1 iterations of the frame, std does not !
-		#for x in range(0, frameSize-1):
-			#avg[x] = None
-		#avg = np.ma.masked_array([ np.NaN if type(item) == type(None) else item for item in self ])
-		#print avg
-		#avg = mov_average(timeline, frameSize)
-		std = mov_std(timeline,frameSize)
-
-
-	#	print "std"
-	#	print std
+		print "\n\nstd"
+		print std
+		print "avg\n\n"
+		print avg
 
 		#set the upper and lower bands for the bollinger analysis at K = 2
 		lowerlim = avg-std*2
@@ -112,37 +117,45 @@ class MathMagic:
 
 #		print "framesize: " + str(frameSize)
 #		print timeline		
-		
+#		print '*******************'
 #		print upperlim
 #		print avg
 #		print lowerlim
+#		print '*******************'
 		
 		bandwidth_avg = (upperlim-lowerlim).mean()
 		
 		#for index, item in enumerate(timeline[:frameSize-1]):
+#		for index, item in enumerate(timeline[1:]):
 		for index, item in enumerate(timeline):
 			bandwidth = (upperlim[index-1] - lowerlim[index-1])
 			denominator = (upperlim[index] - avg[index])
 			
-			print str(item) + " - " + str(avg[index]) + " / " + str(upperlim[index]) + " - " + str(avg[index])
+#			print str(item) + " - " + str(avg[index]) + " / " + str(upperlim[index]) + " - " + str(avg[index])
 			
+			if str(item) in emptySet or str(upperlim[index]) in emptySet or str(lowerlim[index]) in emptySet or str(avg[index]) in emptySet or denominator == 0:
+				percentb = 0
+			else:
+				percentb = abs((item - avg[index])/denominator)
+				
+			"""
 			if denominator == 0:
 				percentb = 0
-				
-			percentb = abs((item - avg[index])/denominator)
+			else:	
+				percentb = abs((item - avg[index])/denominator)
 			
 			if (str(percentb) in emptySet):
 				percentb = 0
-				
+			"""
 
 			if (bandwidth <= bandwidth_avg*0.25):
 				#could use some more logic: if item is higher than some % of timeline's average
-				percentb = percentb*0.6
+				pass#percentb = percentb*0.6
 			#print str(timeAxis[index]) + " : " + str(percentb)
 
 			#dictionary[timeAxis[index]] = percentb * dictionary[timeAxis[index]]
 			
-			print "---------------" + str(percentb)
+			#print "---------------" + str(percentb)
 			if item > avg[index]:
 				dictionary[timeAxis[index]] = (index, '+', percentb * dictionary[timeAxis[index]][2])
 			else:
