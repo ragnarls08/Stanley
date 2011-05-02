@@ -69,7 +69,7 @@ class MathMagicTester(unittest.TestCase):
 		#check if flag has higher than one severity. severity should be calculated even though timeline has some illegal values
 		testResult = self.mathMagic.bollingerAnalysis(self.illegalValuesTimeline, dictionary, 2, timeAxis)
 		self.assertGreater(testResult[11], 1)
-		
+
 	def testRisingConsecutiveFlags(self):
 		dictionary = {0:(0, '+', 1.5), 1:(1, '+', 1.9), 2:(2, '+', 3), 3:(3, '+', 2.5), 4:(4, '+', 2), 5:(5, '+', 2)}
 		flags = self.mathMagic.consolidateFlags(dictionary)
@@ -79,6 +79,7 @@ class MathMagicTester(unittest.TestCase):
 		dictionary = {0:(0, '+', 1.5), 1:(1, '+', 1.9), 2:(2, '+', 3), 3:(4, '+', 2.5), 4:(5, '+', 2), 5:(6, '+', 2)}
 		flags = self.mathMagic.consolidateFlags(dictionary)
 		self.assertEqual(flags, [(2, 3, 2), (3, 2.5, 4)])
+
 	
 def suite():
 	suite = unittest.TestLoader().loadTestsFromTestCase(MathMagicTester)
