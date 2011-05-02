@@ -30,6 +30,15 @@ class DmGateway():
 			results = json.load( response )
 
 			return results
-		except urllib2.HTTPError, urllib2.URLError:
-			raise 
+		except urllib2.URLError:
+			raise ConnectionError('No connection')
+		except urllib2.HTTPError:
+			raise ConnectionError('404 : Not found')
+		#except urllib2.HTTPError, urllib2.URLError:
+			#raise ConnectionError(message)
 	
+class ConnectionError(Exception):
+	def __init__(self, value):
+		self.value = value
+	def __str__(self):
+		return repr(self.value)

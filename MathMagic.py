@@ -87,7 +87,7 @@ class MathMagic:
 				
 		return retList
 
-	#bollinger analasys function
+	#bollinger analysis function
 	def bollingerAnalysis(self, timeline, dictionary, frameSize, timeAxis):
 		timeline = timeline.getMaskedArray()
 
@@ -122,14 +122,21 @@ class MathMagic:
 		#for index, item in enumerate(timeline[:frameSize-1]):
 		for index, item in enumerate(timeline):
 			bandwidth = (upperlim[index-1] - lowerlim[index-1])
+			denominator = (upperlim[index] - avg[index])
 			
 			print str(item) + " - " + str(avg[index]) + " / " + str(upperlim[index]) + " - " + str(avg[index])
-			percentb = abs((item - avg[index])/(upperlim[index] - avg[index]))
+			
+			if denominator == 0:
+				percentb = 0
+				
+			percentb = abs((item - avg[index])/denominator)
+			
 			if (str(percentb) in emptySet):
 				percentb = 0
 				
 
 			if (bandwidth <= bandwidth_avg*0.25):
+				#could use some more logic: if item is higher than some % of timeline's average
 				percentb = percentb*0.6
 			#print str(timeAxis[index]) + " : " + str(percentb)
 
