@@ -38,9 +38,11 @@ fig = tplot.tsfigure()
 # 111 = width, height, subplots
 fsp = fig.add_tsplot(111)
 
-#draw the series from the parser, solid line
-fsp.tsplot(series, '-')
 
+
+#draw the series from the parser, solid line
+#fsp.tsplot(series, '-')
+"""
 #draw moving average, framesize 5, dotted green line
 avg = mov_average(series, 13)
 #avg9 = mov_average(series, 9)
@@ -79,8 +81,36 @@ fsp.tsplot(avgexp, '--y')
 
 #fsp.tsplot(fftSer, '--y')
 #print t
+"""
+
+#fig = plot.figure(1, figsize=(8,5))
+#ax = fig.add_subplot(111, autoscale_on=True)#, xlim=(-1,5), ylim=(-4,3))
+
+
+print series
+
+for item in report[0]:
+    for x in item.listOfFlags:
+        print "-----Flag: " + str(x[0])
+        print "--index: " + str(x[2])
+        print "place flag at : " + str(x[2]) + ", " + str(series[x[2]])
+
+
+        fsp.annotate(x[1], xy=(x[2], dset[1][x[2]]),
+                    xytext=(x[2]+5, dset[1][x[2]]+5), arrowprops=dict(facecolor='black', shrink=0.05),)
+
+
+
+
+#fsp.annotate('raggi', xy=(50,20), xytext=(60, 20), arrowprops=dict(facecolor='black', shrink=0.05),)
+
+fsp.plot(dset[1].getMaskedArray())
+#fsp.tsplot(series, '-')
+
 
 plot.show()
+
+
 
 
 

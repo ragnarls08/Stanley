@@ -1,6 +1,6 @@
 import unittest2 as unittest
 import urllib2	
-from DmGateway import DmGateway
+from DmGateway import *
 
 class DmGatewayTester(unittest.TestCase):
 	
@@ -9,9 +9,10 @@ class DmGatewayTester(unittest.TestCase):
 
 
 	def testConnection(self):
-		self.assertRaises(urllib2.HTTPError, self.gate.getDs, "", 0)
-		self.assertRaises(urllib2.HTTPError, self.gate.getDs, None, 0)
-
+		#self.assertRaises(urllib2.HTTPError, self.gate.getDs, "", 0)
+		#self.assertRaises(urllib2.HTTPError, self.gate.getDs, None, 0)
+		self.assertRaises(ConnectionError, self.gate.getDs, "", 0)
+		self.assertRaises(ConnectionError, self.gate.getDs, None, 0)
 
 # test below were used in unittest lib in python 2.7
 
