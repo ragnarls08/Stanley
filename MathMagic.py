@@ -51,40 +51,29 @@ class MathMagic:
 
 		retDict = {}
 		listi = sorted(listi.iteritems(), key=operator.itemgetter(1))	
-		
-		removeList = []
-		last = None
-		
-		for item in listi:
-			curr = item[1]
 	
-			if last == None:
-				last = curr
-				lastDate = item[0]
-			#if the items are next to each other with the same sign
-			elif curr[0] - last[0] == 1 and last[1] == curr[1] and curr[2] > last[2]:
-				#curr Serverity is higher, throw out last
-				if curr[2] > last[2]:
-					print "the following item should be remoevd: " + str(lastDate)
-					removeList.append(lastDate)		
-					last = curr
-					lastDate = item[0]
-				else:
-					print "the following item should be remoevd: " + str(item[0])
-					removeList.append(item[0])
-					last = (curr[0], last[1], last[2])
-					curr = last
-			else:
-				lastDate = item[0]
-				last = curr
-		
-		
+        #if len(listi) < 2:
+         #return converted to flags   
+
+        consoList = []
+        last = listi[0][1]
 		retList = []
-		
-		for item in listi:
-			if item[0] not in removeList:
-				retList.append( (item[0], item[1][2], item[1][0]) )
-				
+        
+        
+		for item[1] in listi[1:]:
+			#if the index differs by only 1 and the sign is the same
+			if curr[0]-last[0] == 1 and last[1] == curr[1]:
+				consoList.append(last)
+			else:
+				consoList.append(last)
+
+				maxItem = getMax(consoList, key=lambda x: x[1])
+				retList.append( maxItem ) 
+				#clear list
+				consoList = []	
+	
+			last = curr
+
 		return retList
 
 	#bollinger analysis function

@@ -70,12 +70,18 @@ class MathMagicTester(unittest.TestCase):
 		testResult = self.mathMagic.bollingerAnalysis(self.illegalValuesTimeline, dictionary, 2, timeAxis)
 		self.assertGreater(testResult[11], 1)
 		
+		
+		
+
 	def testRisingConsecutiveFlags(self):
+		print "\n\n\n\n#####################################asf23############################\n\n\n\n\n"
 		dictionary = {0:(0, '+', 1.5), 1:(1, '+', 1.9), 2:(2, '+', 3), 3:(3, '+', 2.5), 4:(4, '+', 2), 5:(5, '+', 2)}
 		flags = self.mathMagic.consolidateFlags(dictionary)
 		print flags
-		self.assertEqual(flags, [2, '+', 3])
+		self.assertEqual(flags, [2, 3, 2])
 		
+		print "\n\n\n\n###################################33adsf##############################\n\n\n\n\n"
+
 	
 def suite():
 	suite = unittest.TestLoader().loadTestsFromTestCase(MathMagicTester)
