@@ -56,25 +56,43 @@ class MathMagic:
 		#return converted to flags   
 
 		consoList = []
-		last = listi[0][1]
+		last = listi[0]
 		retList = []
         
         
-		for item in listi[1:]:
-			curr = item[1]
+		for index, curr in enumerate(listi[1:]):
+        
+			#special case at the end of the list
+			if index+1 == len(listi[1:]):
+				#dostuff
+				if curr[1][0]-last[1][0] == 1 and last[1][1] == curr[1][1]:
+				      consoList.append(last)
+				      consoList.append(curr)
+				      
+				      maxItem = max(consoList, key=lambda x: x[1][2])
+				      retList.append( (maxItem[0], maxItem[1][2], maxItem[1][0]) )
+				      
+				      consoList = []
+				else:
+				      consoList.append(last)
+				      
+				      maxItem = max(consoList, key=lambda x: x[1][2])
+				      retList.append( (maxItem[0], maxItem[1][2], maxItem[1][0]) )
+				      
+				      retList.append( (curr[0], curr[1][2], curr[1][0]) )  
 			#if the index differs by only 1 and the sign is the same
-			if curr[0]-last[0] == 1 and last[1] == curr[1]:
+			elif curr[1][0]-last[1][0] == 1 and last[1][1] == curr[1][1]:
 				consoList.append(last)
 			else:
 				consoList.append(last)
 
-				maxItem = max(consoList, key=lambda x: x[1])
-				retList.append( maxItem ) 
+				maxItem = max(consoList, key=lambda x: x[1][2])
+				retList.append( (maxItem[0], maxItem[1][2], maxItem[1][0]) )
 				#clear list
 				consoList = []	
 	
 			last = curr
-
+			
 		return retList
 
 	#bollinger analysis function
