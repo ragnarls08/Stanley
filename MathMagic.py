@@ -20,7 +20,7 @@ class MathMagic:
 		
 		if frameSize:
 			print "received frameSize"
-			dictionary = bollingerAnalysis(timeline, dictionary, frameSize, timeAxis, 1)
+			dictionary = bollingerAnalysis(timeline, dictionary, frameSize, timeAxis)
 		else:	
 			print "no framesize, iterating"
 			#kalla í fourier, ef það kemur rammastærð úr því þá kalla í BollingerFourier, annars iterativeBollinger

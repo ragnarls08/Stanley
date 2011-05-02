@@ -73,9 +73,12 @@ class MathMagicTester(unittest.TestCase):
 	def testRisingConsecutiveFlags(self):
 		dictionary = {0:(0, '+', 1.5), 1:(1, '+', 1.9), 2:(2, '+', 3), 3:(3, '+', 2.5), 4:(4, '+', 2), 5:(5, '+', 2)}
 		flags = self.mathMagic.consolidateFlags(dictionary)
-		print flags
-		self.assertEqual(flags, [2, '+', 3])
+		self.assertEqual(flags, [(2, 3, 2)])
 		
+	def testRisingNonConsecutiveFlags(self):
+		dictionary = {0:(0, '+', 1.5), 1:(1, '+', 1.9), 2:(2, '+', 3), 3:(4, '+', 2.5), 4:(5, '+', 2), 5:(6, '+', 2)}
+		flags = self.mathMagic.consolidateFlags(dictionary)
+		self.assertEqual(flags, [(2, 3, 2), (3, 2.5, 4)])
 	
 def suite():
 	suite = unittest.TestLoader().loadTestsFromTestCase(MathMagicTester)
