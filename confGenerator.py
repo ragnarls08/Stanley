@@ -18,6 +18,9 @@ config.set('BollingerVariables','Framesize2','9')
 config.set('BollingerVariables','Framesize1','7')
 config.set('BollingerVariables','K','2')
 
+config.add_section('Threads')
+config.set('Threads','NumberOfThreads','6')
+
 
 with open('config.cfg','wb') as conFile:
 	config.write(conFile)
