@@ -27,7 +27,7 @@ for x in report[0]:
 #debugging plot below, make sure parameters match the ones actually used
 gate = DmGateway()
 #gate = StaticGateway("staticDataSet.json")
-ps = Parser(gate)
+ps = Parser()
 
 dset = ps.parse(time_series)
 series = ts.time_series(dset[1].getMaskedArray(),

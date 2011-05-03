@@ -11,7 +11,6 @@ import operator
 emptySet = ['--', 'nan', 'inf']
 
 class MathMagic:	
-
 	def analyze(self, timeline, timeAxis, frameSize = None):
 		dictionary = {}
 		
@@ -32,7 +31,7 @@ class MathMagic:
 		#return listi
 		#return sorted(listi.iteritems(), key=operator.itemgetter(1))
 		return listi
-	
+
 	def iterativeBollinger(self, timeline, timeAxis, dictionary):
 		self.bollingerAnalysis(timeline,dictionary,9, timeAxis)
 		self.bollingerAnalysis(timeline,dictionary,13, timeAxis)
