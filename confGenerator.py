@@ -12,11 +12,13 @@ config.set('ReturnValues','ConsolidateFlags','TRUE')
 config.set('ReturnValues','LatestUpdateOnly','FALSE')
 
 config.add_section('BollingerVariables')
-config.set('BollingerVariables','Framesize4','20')
-config.set('BollingerVariables','Framesize3','11')
-config.set('BollingerVariables','Framesize2','9')
-config.set('BollingerVariables','Framesize1','7')
+config.set('BollingerVariables','Framesize3','20')
+config.set('BollingerVariables','Framesize2','13')
+config.set('BollingerVariables','Framesize1','9')
 config.set('BollingerVariables','K','2')
+
+config.add_section('Threads')
+config.set('Threads','NumberOfThreads','6')
 
 
 with open('config.cfg','wb') as conFile:

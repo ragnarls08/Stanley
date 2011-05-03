@@ -7,10 +7,22 @@ import scikits.timeseries.lib.plotlib as tplot
 from scikits.timeseries.lib.moving_funcs import *
 import scipy as sp
 import operator
+import ConfigParser
 
 emptySet = ['--', 'nan', 'inf']
 
-class MathMagic:	
+class MathMagic:
+
+	def __init__ (self):
+		self.config = ConfigParser.RawConfigParser()
+		self.config.read('config.cfg')
+		self.K = self.config.getfloat('BollingerVariables','k')
+		self.frame1 = self.config.getint('BollingerVariables','framesize1')
+		self.frame2 = self.config.getint('BollingerVariables','framesize2')
+		self.frame3 = self.config.getint('BollingerVariables','framesize3')
+		
+		
+		
 	def analyze(self, timeline, timeAxis, frameSize = None):
 		if len(timeline) < 7:
 			return []
@@ -36,9 +48,9 @@ class MathMagic:
 		return listi
 
 	def iterativeBollinger(self, timeline, timeAxis, dictionary):
-		self.bollingerAnalysis(timeline,dictionary,9, timeAxis)
-		self.bollingerAnalysis(timeline,dictionary,13, timeAxis)
-		self.bollingerAnalysis(timeline,dictionary,20, timeAxis)
+		self.bollingerAnalysis(timeline,dictionary,self.frame1, timeAxis)
+		self.bollingerAnalysis(timeline,dictionary,self.frame2, timeAxis)
+		self.bollingerAnalysis(timeline,dictionary,self.frame3, timeAxis)
 		
 		retDict = {}
 		
@@ -122,8 +134,8 @@ class MathMagic:
 		#print avg
 
 		#set the upper and lower bands for the bollinger analysis at K = 2
-		lowerlim = avg-std*2
-		upperlim = avg+std*2
+		lowerlim = avg-std*self.K
+		upperlim = avg+std*self.K
 		count = 0
 
 #ATH NOTA STAERRI TOLUR TIL AÐ PROFA OVERFLOW
