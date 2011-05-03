@@ -10,10 +10,12 @@ import ConfigParser
 class DmGateway():
 	
 	
-	def __init__(self, baseUrl="http://www.datamarket.com/api/v1/series.json?callback=" ):
+	def __init__(self):
 		self.config = ConfigParser.RawConfigParser()
 		self.config.read('config.cfg')
-	
+		
+		#BaseURL read from config
+		#TODO:	Still have to add key to URL
 		self.baseUrl = self.config.get('API','URL') #baseUrl
 		self.callUrl = ""		
 
