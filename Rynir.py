@@ -50,10 +50,14 @@ class ThreadHelper(threading.Thread):
 	def run(self):
 		while True:
 			print self
-			dataSetReport = self.handler.getReport(self.queue.get())
-		
-			self.lock.acquire()
-			self.report.append(dataSetReport)
-			self.lock.release()
-		
-			self.queue.task_done()
+			try:
+				dataSetReport = self.handler.getReport(self.queue.get())
+				
+				self.lock.acquire()
+				self.report.append(dataSetReport)
+				self.lock.release()
+			except:
+				#logga í skrá
+				pass
+			finally:
+				self.queue.task_done()
