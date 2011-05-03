@@ -12,6 +12,9 @@ emptySet = ['--', 'nan', 'inf']
 
 class MathMagic:	
 	def analyze(self, timeline, timeAxis, frameSize = None):
+		if len(timeline) < 7:
+			return []
+			
 		dictionary = {}
 		
 		for item in timeAxis:
