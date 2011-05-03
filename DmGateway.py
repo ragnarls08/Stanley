@@ -4,13 +4,17 @@ import urllib2
 import simplejson as json
 from DataSet import DataSet
 from TimeLine import TimeLine
-
+import ConfigParser
 
 
 class DmGateway():
-
+	
+	
 	def __init__(self, baseUrl="http://www.datamarket.com/api/v1/series.json?callback=" ):
-		self.baseUrl = baseUrl
+		self.config = ConfigParser.RawConfigParser()
+		self.config.read('config.cfg')
+	
+		self.baseUrl = self.config.get('API','URL') #baseUrl
 		self.callUrl = ""		
 
 	def getDs(self, dsId, maxResults=0):

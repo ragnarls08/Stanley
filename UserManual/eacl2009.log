@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.4.25)  26 APR 2011 20:20
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.4.25)  2 MAY 2011 15:58
 entering extended mode
  %&-line parsing enabled.
 **eacl2009.tex
@@ -323,38 +323,38 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
 LaTeX Warning: No \author given.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 37--40
+Underfull \hbox (badness 10000) in paragraph at lines 39--42
 
  []
 
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 41.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 43.
 (/usr/share/texmf-texlive/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 41.
+(Font)              <10.95> on input line 43.
 
-Underfull \hbox (badness 10000) in paragraph at lines 43--44
+Underfull \hbox (badness 10000) in paragraph at lines 45--46
 \T1/pcr/m/n/10.95 http : / / matplotlib . sourceforge .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--45
+Underfull \hbox (badness 10000) in paragraph at lines 46--47
 \T1/pcr/m/n/10.95 http : / / pytseries . sourceforge .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 45--46
+Underfull \hbox (badness 10000) in paragraph at lines 47--48
 \T1/pcr/m/n/10.95 http : / / pypi . python . org / pypi /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 46--47
+Underfull \hbox (badness 10000) in paragraph at lines 48--49
 \T1/pcr/m/n/10.95 http : / / pypi . python . org / pypi /
  []
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 52.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 54.
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
@@ -363,7 +363,7 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10.95> not available
 Here is how much of TeX's memory you used:
  1238 strings out of 495061
  13094 string characters out of 1182621
- 62666 words of memory out of 3000000
+ 63666 words of memory out of 3000000
  4429 multiletter control sequences out of 15000+50000
  23525 words of font info for 43 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
@@ -374,7 +374,7 @@ f-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fo
 nts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/type1/u
 rw/courier/ucrr8a.pfb></usr/share/texmf-texlive/fonts/type1/urw/times/utmb8a.pf
 b></usr/share/texmf-texlive/fonts/type1/urw/times/utmr8a.pfb>
-Output written on eacl2009.pdf (1 page, 66933 bytes).
+Output written on eacl2009.pdf (1 page, 68929 bytes).
 PDF statistics:
  31 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
