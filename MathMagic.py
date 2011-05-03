@@ -51,8 +51,11 @@ class MathMagic:
 		retDict = {}
 		listi = sorted(listi.iteritems(), key=operator.itemgetter(1))	
 		
-		#if len(listi) < 2:
+		if len(listi) == 1:
 		#return converted to flags   
+			return [(listi[0], listi[1][2], listi[1][0])]
+		elif len(listi) == 0:
+			return []
 
 		consoList = []
 		last = listi[0]
