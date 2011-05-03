@@ -18,10 +18,10 @@ class MathMagic:
 			dictionary[item] = (None, None, 1)
 		
 		if frameSize:
-			print "received frameSize"
+			#print "received frameSize"
 			dictionary = bollingerAnalysis(timeline, dictionary, frameSize, timeAxis)
 		else:	
-			print "no framesize, iterating"
+			#print "no framesize, iterating"
 			#kalla í fourier, ef það kemur rammastærð úr því þá kalla í BollingerFourier, annars iterativeBollinger
 			dictionary = self.iterativeBollinger(timeline, timeAxis, dictionary)
 			
@@ -107,13 +107,13 @@ class MathMagic:
 			avg = mov_average(timeline, frameSize)
 			std = mov_std(timeline,frameSize)
 		except NotImplementedError:
-			print '*********************************ERROR*************************'
+			#print '*********************************ERROR*************************'
 			return dictionary
 
-		print "\n\nstd"
-		print std
-		print "avg\n\n"
-		print avg
+		#print "\n\nstd"
+		#print std
+		#print "avg\n\n"
+		#print avg
 
 		#set the upper and lower bands for the bollinger analysis at K = 2
 		lowerlim = avg-std*2
