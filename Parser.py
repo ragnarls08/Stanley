@@ -4,11 +4,12 @@ import urllib2
 import simplejson as json
 from DataSet import DataSet
 from TimeLine import TimeLine
+from DmGateway import DmGateway
 
 class Parser:
 	
-	def __init__(self, gateway):
-		self.gate = gateway
+	def __init__(self):
+		self.gate = DmGateway()
 
 	#Parses an url into a DataSet:list of timelines
 	#Return: DataSet
