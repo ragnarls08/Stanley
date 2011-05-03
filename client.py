@@ -11,7 +11,7 @@ from DmGateway import DmGateway
 from Parser import Parser
 
 rynir = Rynir()
-time_series = "1eh3" #british fatalities in afghanistan
+#time_series = "1eh3" #british fatalities in afghanistan
 #time_series = "1d8b|wzl=6" #crude oil
 #time_series = "18ax|l2g=1w:l2h=2:l2i=12" #avocado
 #time_series = "1ctt|wtr=3t:wts=f:wtt=1" #age population brazil
@@ -19,11 +19,15 @@ time_series = "1eh3" #british fatalities in afghanistan
 #time_series = "17tl|kqb=3" #rising slope, not interesting
 #time_series = "1bcz|tuh=1o:tui=b:tuj=k" #oil import from iraq
 
-report = rynir.analyze(time_series)
+queryStringList = ["1eh3", "1d8b|wzl=6", "18ax|l2g=1w:l2h=2:l2i=12", "1ctt|wtr=3t:wts=f:wtt=1", "1bdn|twc=6:twe=k", "17tl|kqb=3", "1bcz|tuh=1o:tui=b:tuj=k"]
 
-for x in report[0]:
-	print x
+#report = rynir.analyze(time_series)
+report = rynir.analyze(queryStringList)
 
+for x in report:
+	for i in x:
+		print i
+"""
 #debugging plot below, make sure parameters match the ones actually used
 gate = DmGateway()
 #gate = StaticGateway("staticDataSet.json")
@@ -37,6 +41,35 @@ series = ts.time_series(dset[1].getMaskedArray(),
 fig = tplot.tsfigure()
 # 111 = width, height, subplots
 fsp = fig.add_tsplot(111)
+
+for item in report[0]:
+    for x in item.listOfFlags:
+        #print "-----Flag: " + str(x[0])
+        #print "--index: " + str(x[2])
+        #print "place flag at : " + str(x[2]) + ", " + str(series[x[2]])
+
+
+        fsp.annotate(x[1], xy=(x[2], dset[1][x[2]]),
+                    xytext=(x[2]+5, dset[1][x[2]]+5), arrowprops=dict(facecolor='black', shrink=0.05),)
+
+#fsp.annotate('raggi', xy=(50,20), xytext=(60, 20), arrowprops=dict(facecolor='black', shrink=0.05),)
+
+fsp.plot(dset[1].getMaskedArray())
+#fsp.tsplot(series, '-')
+
+
+#plot.show()
+plot.savefig('gunniAwesome')
+
+
+
+"""
+
+
+
+
+
+
 
 
 
@@ -86,42 +119,7 @@ fsp.tsplot(avgexp, '--y')
 #fig = plot.figure(1, figsize=(8,5))
 #ax = fig.add_subplot(111, autoscale_on=True)#, xlim=(-1,5), ylim=(-4,3))
 
-
-print series
-
-for item in report[0]:
-    for x in item.listOfFlags:
-        print "-----Flag: " + str(x[0])
-        print "--index: " + str(x[2])
-        print "place flag at : " + str(x[2]) + ", " + str(series[x[2]])
-
-
-        fsp.annotate(x[1], xy=(x[2], dset[1][x[2]]),
-                    xytext=(x[2]+5, dset[1][x[2]]+5), arrowprops=dict(facecolor='black', shrink=0.05),)
-
-
-
-
-#fsp.annotate('raggi', xy=(50,20), xytext=(60, 20), arrowprops=dict(facecolor='black', shrink=0.05),)
-
-fsp.plot(dset[1].getMaskedArray())
-#fsp.tsplot(series, '-')
-
-
-plot.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
+#print series
 
 
 
