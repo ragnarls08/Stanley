@@ -5,6 +5,8 @@ class TimeLine(list):
 	def __init__(self, title, cId, data=[]):
 		self.title = title
 		self.cId = cId
+		if type(data) != list:
+			data = [data]
 		super(TimeLine, self).extend( data )
 	
 	def __str__(self):
