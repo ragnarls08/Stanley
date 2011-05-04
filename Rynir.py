@@ -7,6 +7,8 @@ import Queue
 from QueryStringHandler import QueryStringHandler
 import ConfigParser
 
+import heapq
+
 class Rynir:
 	def __init__(self):
 		self.config = ConfigParser.RawConfigParser()
@@ -40,8 +42,58 @@ class Rynir:
 			print "Unexpected error:", sys.exc_info()[0]
 			raise
 			
+			
+		#TODO: config variable for top N
+		if True:	
+		  self.report = self.getTopResults(self.report, 100)
+		
+			
 		return self.report
-
+  
+	def getTopResults(self, report, N):
+		results = []
+		
+		for ds in report:
+		  for tl in ds:
+			for flag in tl.listOfFlags:
+			  print (tl.dsID, tl.tlID, flag)
+			  item = wrapFlag( (tl.dsID, tl.tlID, flag) )
+			  
+			  heapq.heappush(results, item )
+			  #heapq.heappush(results, (tl.dsID, tl.tlID, flag))
+	
+		print "\n\n"
+		print heapq.heappop(results).value
+		print heapq.heappop(results).value
+		print heapq.heappop(results).value
+		print heapq.heappop(results).value
+		print heapq.heappop(results).value
+		print heapq.heappop(results).value
+		print heapq.heappop(results).value
+		print heapq.heappop(results).value
+		print heapq.heappop(results).value
+		print heapq.heappop(results).value
+		print heapq.heappop(results).value
+		print heapq.heappop(results).value
+		print heapq.heappop(results).value
+		print heapq.heappop(results).value
+		print heapq.heappop(results).value
+		print heapq.heappop(results).value
+		print heapq.heappop(results).value
+		print heapq.heappop(results).value
+		print heapq.heappop(results).value
+		print heapq.heappop(results).value
+		print heapq.heappop(results).value
+		
+		
+def wrapFlag(value):
+    class Wrapper(object):
+        def __init__(self, value): self.value = value
+        def __cmp__(self, obj): 
+			return cmp(obj.value[2][1], self.value[2][1])
+        
+    return Wrapper(value)
+		
 
 class ThreadHelper(threading.Thread):
 	def __init__(self, queue, report, lock):
@@ -57,9 +109,10 @@ class ThreadHelper(threading.Thread):
 			try:
 				dataSetReport = self.handler.getReport(self.queue.get())
 				
-				self.lock.acquire()
-				self.report.append(dataSetReport)
-				self.lock.release()
+				if dataSetReport:
+				  self.lock.acquire()
+				  self.report.append(dataSetReport)
+				  self.lock.release()
 			except:
 				#logga í skrá
 				pass
