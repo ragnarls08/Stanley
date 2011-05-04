@@ -18,10 +18,8 @@ class Parser:
 
 		#TODO REFACTOR W/THROW EXCEPTION
 		if not job:
-			print "ble"
-			return None 
-		
-		#json object is within a list unwrap it
+			raise TypeError('Parser received illegal dataset ID')
+
 		job = job[0]
 	
 		#get data as a list of rows instead of columns	
