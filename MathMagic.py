@@ -30,7 +30,7 @@ class MathMagic:
 		if len(timeline) < 7:
 			return []
 			
-		listi = []
+		#listi = []
 		dictionary = {}
 		
 		#create an empty tuple to multiply the flag values with
@@ -47,7 +47,7 @@ class MathMagic:
 			
 		#TODO config variable for consolidate flags
 		#consolidates flags that are adjecent, picks the highest severity in each adjecent sequence
-		if true:#flag missing
+		if True:#flag missing
 		  listi = self.consolidateFlags(dictionary)
 		else:
 		  tempList = sorted(dictionary.iteritems(), key=operator.itemgetter(1))

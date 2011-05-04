@@ -29,7 +29,7 @@ class Parser:
 					job["columns"][0]["time_granularity"].encode('utf-8'))
 		
 
-		for col in range(0, len(colData ) ):
+		for col, item in enumerate(colData):
 			tl = TimeLine( job["columns"][col]["title"].encode('utf-8'),
 					job["columns"][col]["cid"].encode('utf-8'),
 					colData[col] )
