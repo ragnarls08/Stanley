@@ -20,31 +20,37 @@ class MathMagic:
 		self.frame1 = self.config.getint('BollingerVariables','framesize1')
 		self.frame2 = self.config.getint('BollingerVariables','framesize2')
 		self.frame3 = self.config.getint('BollingerVariables','framesize3')
+		#TODO: Eftir ad setja inn consolidate flags breytu
 		
 		
 		
 	def analyze(self, timeline, timeAxis, frameSize = None):
+	
+		#if timeline is too short to return no flags
 		if len(timeline) < 7:
 			return []
 			
+		
+			
 		dictionary = {}
 		
+		#create an empty tuple to multiply the flag values with
 		for item in timeAxis:
 			dictionary[item] = (None, None, 1)
 		
+		#if a specific framesize was requested use that, otherwise use itarative bollinger
 		if frameSize:
-			#print "received frameSize"
 			dictionary = bollingerAnalysis(timeline, dictionary, frameSize, timeAxis)
 		else:	
-			#print "no framesize, iterating"
 			#kalla í fourier, ef það kemur rammastærð úr því þá kalla í BollingerFourier, annars iterativeBollinger
 			dictionary = self.iterativeBollinger(timeline, timeAxis, dictionary)
 			
 			
+		#TODO config variable for consolidate flags
+		#consolidates flags that are adjecent, picks the highest severity in each adjecent sequence
 		listi = self.consolidateFlags(dictionary)
-			
-		#return listi
-		#return sorted(listi.iteritems(), key=operator.itemgetter(1))
+		#TODO if not consolidate reformat the flag list
+		
 		return listi
 
 	def iterativeBollinger(self, timeline, timeAxis, dictionary):
@@ -54,6 +60,8 @@ class MathMagic:
 		
 		retDict = {}
 		
+		#TODO config variable for filter
+		#filter out all flags with severity lower than filter.
 		for key in dictionary:
 			if dictionary[key][2] > 1:
 				retDict[key] = dictionary[key]
@@ -61,9 +69,11 @@ class MathMagic:
 		return retDict
 
 
+	#consolidates adjecent flags, picks the one with the highest severity in each adjecent group
 	def consolidateFlags(self, listi):
 
 		retDict = {}
+		#sort the list on index
 		listi = sorted(listi.iteritems(), key=operator.itemgetter(1))	
 		
 		if len(listi) == 1:
@@ -110,6 +120,10 @@ class MathMagic:
 	
 			last = curr
 			
+		print "\n\nFLAGGIES----------------------------\n"
+		print retList
+		print "\n\n"
+		
 		return retList
 
 	#bollinger analysis function

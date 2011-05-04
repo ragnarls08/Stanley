@@ -4,8 +4,7 @@ import urllib2
 import simplejson as json
 from DataSet import DataSet
 from TimeLine import TimeLine
-
-
+import ConfigParser
 
 class DmGateway():
 	def __init__(self):
@@ -15,7 +14,7 @@ class DmGateway():
 		#BaseURL read from config
 		#TODO:	Still have to add key to URL
 		self.baseUrl = self.config.get('API','URL') #baseUrl
-
+		self.DMkey = self.config.get('API','key')
 		self.callUrl = ""		
 
 	def getDs(self, dsId, maxResults=0):
@@ -23,6 +22,9 @@ class DmGateway():
 
 		if maxResults > 0:
 			self.callUrl += "&maxresults=" + str(maxResults)
+		
+		if len(self.DMkey) > 0:
+			self.callUrl += '&api_key=' + self.DMkey
 
 		return self.call()
 

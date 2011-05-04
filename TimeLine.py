@@ -5,15 +5,14 @@ class TimeLine(list):
 	def __init__(self, title, cId, data=[]):
 		self.title = title
 		self.cId = cId
-		if type(data) != list:
-			data = [data]
-		super(TimeLine, self).extend( data )
+		
+		super(TimeLine, self).extend( list(data) )
 	
 	def __str__(self):
 		return "\tTitle: " + self.title \
 				+ "\n\tcId: " + self.cId \
 				+ "\n\t[" + ", ".join( str(x) for x in self ) + "]" 
-
+	
 	def append(self, item):
 		super(TimeLine, self).append( item )			
 
