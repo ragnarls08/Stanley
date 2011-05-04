@@ -19,9 +19,5 @@ report = rynir.analyze(listOfDataSets[:10])
 
 
 for item in report:
-  if item is None:
-	pass
-  else:
-	print type(item)
 	for sub in item:
 	  print sub

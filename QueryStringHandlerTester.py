@@ -7,13 +7,13 @@ class QueryStringHandlerTester(unittest.TestCase):
 		self.handler = QueryStringHandler()
 
 	def testInvalidQueryString(self):
-		self.assertEqual(self.handler.getReport('gunniAwesome'), None)
+		self.assertEqual(self.handler.getReport('gunniAwesome'), [])
 	
 	def testLegalQueryString(self):
 		self.assertNotEqual(self.handler.getReport('1eh3'), None)
 	
 	def testNoneQueryString(self):
-		self.assertEqual(self.handler.getReport(None), None)
+		self.assertEqual(self.handler.getReport(None), [])
 
 		
 def suite():
