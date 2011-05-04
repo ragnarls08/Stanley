@@ -25,8 +25,11 @@ class MathMagic:
 		
 		
 	def analyze(self, timeline, timeAxis, frameSize = None):
+		
 		if len(timeline) < 7:
 			return []
+			
+		
 			
 		dictionary = {}
 		
@@ -111,6 +114,10 @@ class MathMagic:
 	
 			last = curr
 			
+		print "\n\nFLAGGIES----------------------------\n"
+		print retList
+		print "\n\n"
+		
 		return retList
 
 	#bollinger analysis function
