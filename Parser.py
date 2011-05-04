@@ -29,11 +29,16 @@ class Parser:
 					job["columns"][0]["time_granularity"].encode('utf-8'))
 		
 
-		for col in range(0, len(colData ) ):
-			tl = TimeLine( job["columns"][col]["title"].encode('utf-8'),
-					job["columns"][col]["cid"].encode('utf-8'),
-					colData[col] )
-			dataset.append(tl)
+		for col, item in enumerate(colData):
+			
+			#if type(colData[0]) != tuple:
+			 # raise TypeError('Data is not of type: Tuple')
+			  
+			#else:
+			  tl = TimeLine( job["columns"][col]["title"].encode('utf-8'),
+					  job["columns"][col]["cid"].encode('utf-8'),
+					  colData[col] )
+			  dataset.append(tl)
 		
 		return dataset				 
 			

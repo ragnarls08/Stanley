@@ -18,11 +18,14 @@ class MathMagic:
 		self.config = ConfigParser.RawConfigParser()
 		self.config.read('config.cfg')
 		self.K = self.config.getfloat('BollingerVariables','k')
-		self.frame1 = self.config.getint('BollingerVariables','framesize1')
-		self.frame2 = self.config.getint('BollingerVariables','framesize2')
-		self.frame3 = self.config.getint('BollingerVariables','framesize3')
+		#self.frame1 = self.config.getint('BollingerVariables','framesize1')
+		#self.frame2 = self.config.getint('BollingerVariables','framesize2')
+		#self.frame3 = self.config.getint('BollingerVariables','framesize3')
+		self.frame1 = 365
+		self.frame2 = 1095
+		self.frame3 = 1825
 		#TODO: Eftir ad setja inn consolidate flags breytu
-		
+		#TODO: filter breyta
 		
 		
 	def analyze(self, timeline, timeAxis, frameSize = None):
@@ -31,8 +34,10 @@ class MathMagic:
 		if len(timeline) < 7:
 			return []
 			
-		
+		#frameSize = self.fourierAnalysis(timeline, timeAxis)
 			
+		#listi = []
+		
 		dictionary = {}
 		
 		#create an empty tuple to multiply the flag values with
@@ -49,8 +54,14 @@ class MathMagic:
 			
 		#TODO config variable for consolidate flags
 		#consolidates flags that are adjecent, picks the highest severity in each adjecent sequence
-		listi = self.consolidateFlags(dictionary)
-		#TODO if not consolidate reformat the flag list
+		if True:#flag missing
+		  listi = self.consolidateFlags(dictionary)
+		else:
+		  tempList = sorted(dictionary.iteritems(), key=operator.itemgetter(1))
+		  for item in tempList:
+			listi.append( (item[0], item[1][2], item[1][0]) )
+			
+			
 		
 		return listi
 
@@ -70,63 +81,42 @@ class MathMagic:
 		return retDict
 
 
-	#consolidates adjecent flags, picks the one with the highest severity in each adjecent group
 	def consolidateFlags(self, listi):
-
-		retDict = {}
-		#sort the list on index
-		listi = sorted(listi.iteritems(), key=operator.itemgetter(1))	
-		
-		if len(listi) == 1:
-		#return converted to flags   
-			return [(listi[0], listi[1][2], listi[1][0])]
-		elif len(listi) == 0:
-			return []
-
-		consoList = []
-		last = listi[0]
 		retList = []
-        
-        
-		for index, curr in enumerate(listi[1:]):
-        
-			#special case at the end of the list
-			if index+1 == len(listi[1:]):
-				#dostuff
-				if curr[1][0]-last[1][0] == 1 and last[1][1] == curr[1][1]:
-				      consoList.append(last)
-				      consoList.append(curr)
-				      
-				      maxItem = max(consoList, key=lambda x: x[1][2])
-				      retList.append( (maxItem[0], maxItem[1][2], maxItem[1][0]) )
-				      
-				      consoList = []
-				else:
-				      consoList.append(last)
-				      
-				      maxItem = max(consoList, key=lambda x: x[1][2])
-				      retList.append( (maxItem[0], maxItem[1][2], maxItem[1][0]) )
-				      
-				      retList.append( (curr[0], curr[1][2], curr[1][0]) )  
-			#if the index differs by only 1 and the sign is the same
-			elif curr[1][0]-last[1][0] == 1 and last[1][1] == curr[1][1]:
-				consoList.append(last)
-			else:
-				consoList.append(last)
-
-				maxItem = max(consoList, key=lambda x: x[1][2])
-				retList.append( (maxItem[0], maxItem[1][2], maxItem[1][0]) )
-				#clear list
-				consoList = []	
-	
-			last = curr
+					
+		#sort items on severity 
+		listi = sorted(listi.iteritems(), key=operator.itemgetter(1))
 			
-		print "\n\nFLAGGIES----------------------------\n"
-		print retList
-		print "\n\n"
+		groups = []
+		currList = []
 		
+		for item in listi:
+		  #if list is not empty
+		  if currList:
+			#if current item is adjecent to the last item in the listi
+			if item[1][0] - currList[-1][1][0] == 1 and item[1][1] == currList[-1][1][1]:
+			  currList.append(item)
+			#else put the current list into the group lists and apend the current item to and empty list
+			else:
+			  groups.append(currList)
+			  currList = []
+			  currList.append(item)
+		  #if the list was not empty, append an item to it
+		  else:
+			currList.append(item)
+			
+		#if there is anything remaining append it to the groups list
+		if currList:
+		  groups.append(currList)
+			
+		#loop through groups, get the max item out of each grouping
+		for item in groups:
+		  maxItem = max(item, key=lambda x: x[1][2])
+		  retList.append( (maxItem[0], maxItem[1][2], maxItem[1][0]) )
+		  
 		return retList
-
+		
+		
 	#bollinger analysis function
 	def bollingerAnalysis(self, timeline, dictionary, frameSize, timeAxis):
 		timeline = timeline.getMaskedArray()
@@ -190,7 +180,7 @@ class MathMagic:
 
 			if (bandwidth <= bandwidth_avg*0.25):
 				#could use some more logic: if item is higher than some % of timeline's average
-				pass#percentb = percentb*0.6
+				percentb = percentb*0.6
 			#print str(timeAxis[index]) + " : " + str(percentb)
 
 			#dictionary[timeAxis[index]] = percentb * dictionary[timeAxis[index]]
@@ -206,13 +196,82 @@ class MathMagic:
 
 	#fourier analysis function
 	def fourierAnalysis(self, timeline, timeAxis):
-		Y=sp.fft(timeline)
-		n=len(Y)
-		power = abs(Y[1:(n/2)])**2
-		nyquist=1./2
-		freq=sp.array(range(n/2))/(n/2.0)*nyquist
-		period=1./freq
+		try:
+			periodSize = None
+			Y=sp.fft(timeline)
+			n=len(Y)
+			power = abs(Y[1:(n/2)])**2
+			nyquist=1./2
+			freq=sp.array(range(n/2))/(n/2.0)*nyquist
+			period=1./freq
+			
+			end = len(power)
+			
+			avg = np.mean(power[1:end])
+			#avg = np.mean(power)
+			print 'avg: ' + str(avg)
+			std = np.std(power[1:end])
+			#std = np.std(power)
+			print 'std: ' + str(std)
+			maxItem = max(power[1:end]-avg)
+			print maxItem
+			
+			index = np.where(power==maxItem)
+			
+			if (maxItem-avg)/std > 2:
+					periodSize = period[index[0][0]+1]
+		
+		except Exception as e:
+			print e
+			
+		finally:
+			print 'fourier says: '
+			print 'returning: ' + str(periodSize)
+			print 'fourier done'
+			plot.plot(period[1:len(period)], power)
+			plot.show()
+			return periodSize
+		
+		#plot.plot(period[1:len(period)], power)
+		#plot.show()
+	"""
+	def fourierAnalysis(self, timeline, timeAxis):
+		try:
+			Y=sp.fft(timeline)
+			n=len(Y)
+			power = abs(Y[1:(n/2)])**2
+			nyquist=1./2
+			freq=sp.array(range(n/2))/(n/2.0)*nyquist
+			period=1./freq
+			
+			end = len(power)
+			avg = np.mean(power[1:end])
+			std = np.std(power[1:end])
+			upperlim = avg+std
+			
+			newlist = power - avg
+			
+			for item in newlist:
+				print item/std > 2
+			print "***************************************************"
+			print max(newlist)/std > 2
+			print "***************************************************"
+			
+			#maxItem = max(abs(Y[1:len(Y)]))
+			maxItem = max(power[1:len(power)])
+			#maxItem = max(power)
+			index = np.where(power==maxItem)
+			print index
+		
+			print 'fourier says: '
+			print maxItem
+			print period[index[0][0]+1]
+			print period
+			print 'fourier done'
+		except Exception as e:
+			print e
 		
 		plot.plot(period[1:len(period)], power)
-		#plot.plot(Y)
+		plot.plot(Y)
 		plot.show()
+	"""

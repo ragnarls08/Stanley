@@ -11,12 +11,15 @@ from DmGateway import DmGateway
 from Parser import Parser
 
 rynir = Rynir()
+
 time_series = "yef"
+
 #time_series = "1eh3" #british fatalities in afghanistan
 #time_series = "1d8b|wzl=6" #crude oil
 #time_series = "18ax|l2g=1w:l2h=2:l2i=12" #avocado
 #time_series = "1ctt|wtr=3t:wts=f:wtt=1" #age population brazil
 #time_series = "1bdn|twc=6:twe=k" #elecricity generation
+#time_series = "w3x|6bx=3"
 #time_series = "17tl|kqb=3" #rising slope, not interesting
 #time_series = "1bcz|tuh=1o:tui=b:tuj=k" #oil import from iraq
 #time_series = "yef" #?
@@ -25,20 +28,22 @@ time_series = "yef"
 
 report = rynir.analyze(time_series)
 #report = rynir.analyze(queryStringList)
-"""
-for x in report:
-	for i in x:
-		print i
-"""		
-"""
+
+try:
+	for x in report:
+		for i in x:
+			print i
+except:
+	print 'wrong'
+	
 #debugging plot below, make sure parameters match the ones actually used
 gate = DmGateway()
 #gate = StaticGateway("staticDataSet.json")
 ps = Parser()
 
 dset = ps.parse(time_series)
-series = ts.time_series(dset[1].getMaskedArray(),
-						start_date=ts.Date(freq=dset.granularity, year=int(dset[0][0][0:4]), month=1))
+#series = ts.time_series(dset[1].getMaskedArray(),
+#						start_date=ts.Date(freq=dset.granularity, year=int(dset[0][0][0:4]), month=1))
 #print series.count
 
 fig = tplot.tsfigure()
@@ -61,12 +66,10 @@ fsp.plot(dset[1].getMaskedArray())
 #fsp.tsplot(series, '-')
 
 
-#plot.show()
-plot.savefig('gunniAwesome')
+plot.show()
+#plot.savefig('gunniAwesome')
 
 
-
-"""
 
 
 

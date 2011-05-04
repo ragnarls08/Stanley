@@ -25,5 +25,4 @@ class QueryStringHandler:
 			return datasetReport
 		except:
 			logging.error('Error in class QuerystringHandler')
-			return None
-
+			return []
