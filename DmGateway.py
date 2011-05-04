@@ -5,12 +5,18 @@ import simplejson as json
 from DataSet import DataSet
 from TimeLine import TimeLine
 import ConfigParser
+import logging,sys,traceback
 
 class DmGateway():
+	
 	def __init__(self):
-		self.config = ConfigParser.RawConfigParser()
-		self.config.read('config.cfg')
-		
+		try:
+			self.config = ConfigParser.RawConfigParser()
+			self.config.read('config.cfg')
+		except IOError as error:
+			logging.error(str(error))
+			raise IOError
+			
 		#BaseURL read from config
 		#TODO:	Still have to add key to URL
 		self.baseUrl = self.config.get('API','URL') #baseUrl
@@ -35,17 +41,15 @@ class DmGateway():
 			request = urllib2.Request( self.callUrl )
 			response = urllib2.urlopen( request )
 			results = json.load( response )
-
 			return results
-		except urllib2.URLError:
-			raise ConnectionError('No connection')
-		except urllib2.HTTPError:
-			raise ConnectionError('404 : Not found')
+			
+		except 	urllib2.URLError as error:	
+			logging.error(': %s,  when trying to open %s', str(error),self.callUrl	)
+			#logging.exeption('EXE : when trying to open %s',self.callUrl	)
+			#traceback.print_exc(limit=5,file=None)
+			#raise URLError	
+		
 		#except urllib2.HTTPError, urllib2.URLError:
 			#raise ConnectionError(message)
-	
-class ConnectionError(Exception):
-	def __init__(self, value):
-		self.value = value
-	def __str__(self):
-		return repr(self.value)
+		
+

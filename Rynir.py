@@ -6,8 +6,11 @@ import thread
 import Queue
 from QueryStringHandler import QueryStringHandler
 import ConfigParser
+import logging
 
 class Rynir:
+	logging.basicConfig(filename='logfile.log', format='%(asctime)s %(message)s', level=logging.DEBUG)
+	
 	def __init__(self):
 		self.config = ConfigParser.RawConfigParser()
 		self.config.read('config.cfg')
@@ -38,7 +41,7 @@ class Rynir:
 				
 		except:
 			print "Unexpected error:", sys.exc_info()[0]
-			raise
+			logging.error('Error in analyze')
 			
 		return self.report
 

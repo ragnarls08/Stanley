@@ -3,6 +3,7 @@
 from Parser import Parser
 from MathMagic import MathMagic
 from FlagObj import FlagObj
+import logging
 
 class QueryStringHandler:
 	def __init__(self):
@@ -23,5 +24,6 @@ class QueryStringHandler:
 			
 			return datasetReport
 		except:
+			logging.error('Error in class QuerystringHandler')
 			return None
 

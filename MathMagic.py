@@ -8,6 +8,7 @@ from scikits.timeseries.lib.moving_funcs import *
 import scipy as sp
 import operator
 import ConfigParser
+import logging
 
 emptySet = ['--', 'nan', 'inf']
 
@@ -138,8 +139,8 @@ class MathMagic:
 			#print avg
 			avg = mov_average(timeline, frameSize)
 			std = mov_std(timeline,frameSize)
-		except NotImplementedError:
-			#print '*********************************ERROR*************************'
+		except NotImplementedError as error:
+			logging.error('From bollingerAnalysis in MathMagic : %s', str(error))
 			return dictionary
 
 		#print "\n\nstd"
