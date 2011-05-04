@@ -18,8 +18,7 @@ class Parser:
 
 		#REFACTOR W/THROW EXCEPTION
 		if not job:
-			print "ble"
-			return None 
+			raise TypeError('Parser received illegal dataset ID')
 
 		job = job[0]
 	
