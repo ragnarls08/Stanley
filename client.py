@@ -12,7 +12,9 @@ from Parser import Parser
 
 rynir = Rynir()
 
-time_series = "yef"
+
+time_series = ["gunni_Awesom","leh3", "yef","1eh3"] # 1. er ologlegur, 2. ekki til, 3. of stor, 4 ok
+#time_series = "yef"
 
 #time_series = "1eh3" #british fatalities in afghanistan
 #time_series = "1d8b|wzl=6" #crude oil
@@ -28,7 +30,7 @@ time_series = "yef"
 
 report = rynir.analyze(time_series)
 #report = rynir.analyze(queryStringList)
-
+"""
 try:
 	for x in report:
 		for i in x:
@@ -81,6 +83,8 @@ plot.show()
 
 #draw the series from the parser, solid line
 #fsp.tsplot(series, '-')
+
+"""
 """
 #draw moving average, framesize 5, dotted green line
 avg = mov_average(series, 13)

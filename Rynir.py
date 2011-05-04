@@ -64,7 +64,7 @@ class Rynir:
 			  
 			  heapq.heappush(results, item )
 			  #heapq.heappush(results, (tl.dsID, tl.tlID, flag))
-	
+	"""
 		print "\n\n"
 		print heapq.heappop(results).value
 		print heapq.heappop(results).value
@@ -88,7 +88,7 @@ class Rynir:
 		print heapq.heappop(results).value
 		print heapq.heappop(results).value
 		
-		
+	"""	
 def wrapFlag(value):
     class Wrapper(object):
         def __init__(self, value): self.value = value
