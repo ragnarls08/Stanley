@@ -30,10 +30,15 @@ class Parser:
 		
 
 		for col, item in enumerate(colData):
-			tl = TimeLine( job["columns"][col]["title"].encode('utf-8'),
-					job["columns"][col]["cid"].encode('utf-8'),
-					colData[col] )
-			dataset.append(tl)
+			
+			#if type(colData[0]) != tuple:
+			 # raise TypeError('Data is not of type: Tuple')
+			  
+			#else:
+			  tl = TimeLine( job["columns"][col]["title"].encode('utf-8'),
+					  job["columns"][col]["cid"].encode('utf-8'),
+					  colData[col] )
+			  dataset.append(tl)
 		
 		return dataset				 
 			

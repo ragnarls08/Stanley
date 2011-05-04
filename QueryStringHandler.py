@@ -23,5 +23,5 @@ class QueryStringHandler:
 			
 			return datasetReport
 		except:
-			return None
+			return []
 
