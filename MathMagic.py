@@ -17,9 +17,12 @@ class MathMagic:
 		self.config = ConfigParser.RawConfigParser()
 		self.config.read('config.cfg')
 		self.K = self.config.getfloat('BollingerVariables','k')
-		self.frame1 = self.config.getint('BollingerVariables','framesize1')
-		self.frame2 = self.config.getint('BollingerVariables','framesize2')
-		self.frame3 = self.config.getint('BollingerVariables','framesize3')
+		#self.frame1 = self.config.getint('BollingerVariables','framesize1')
+		#self.frame2 = self.config.getint('BollingerVariables','framesize2')
+		#self.frame3 = self.config.getint('BollingerVariables','framesize3')
+		self.frame1 = 365
+		self.frame2 = 1095
+		self.frame3 = 1825
 		#TODO: Eftir ad setja inn consolidate flags breytu
 		
 		
@@ -30,7 +33,7 @@ class MathMagic:
 		if len(timeline) < 7:
 			return []
 			
-		
+		#frameSize = self.fourierAnalysis(timeline, timeAxis)
 			
 		dictionary = {}
 		
@@ -205,13 +208,82 @@ class MathMagic:
 
 	#fourier analysis function
 	def fourierAnalysis(self, timeline, timeAxis):
-		Y=sp.fft(timeline)
-		n=len(Y)
-		power = abs(Y[1:(n/2)])**2
-		nyquist=1./2
-		freq=sp.array(range(n/2))/(n/2.0)*nyquist
-		period=1./freq
+		try:
+			periodSize = None
+			Y=sp.fft(timeline)
+			n=len(Y)
+			power = abs(Y[1:(n/2)])**2
+			nyquist=1./2
+			freq=sp.array(range(n/2))/(n/2.0)*nyquist
+			period=1./freq
+			
+			end = len(power)
+			
+			avg = np.mean(power[1:end])
+			#avg = np.mean(power)
+			print 'avg: ' + str(avg)
+			std = np.std(power[1:end])
+			#std = np.std(power)
+			print 'std: ' + str(std)
+			maxItem = max(power[1:end]-avg)
+			print maxItem
+			
+			index = np.where(power==maxItem)
+			
+			if (maxItem-avg)/std > 2:
+					periodSize = period[index[0][0]+1]
+		
+		except Exception as e:
+			print e
+			
+		finally:
+			print 'fourier says: '
+			print 'returning: ' + str(periodSize)
+			print 'fourier done'
+			plot.plot(period[1:len(period)], power)
+			plot.show()
+			return periodSize
+		
+		#plot.plot(period[1:len(period)], power)
+		#plot.show()
+	"""
+	def fourierAnalysis(self, timeline, timeAxis):
+		try:
+			Y=sp.fft(timeline)
+			n=len(Y)
+			power = abs(Y[1:(n/2)])**2
+			nyquist=1./2
+			freq=sp.array(range(n/2))/(n/2.0)*nyquist
+			period=1./freq
+			
+			end = len(power)
+			avg = np.mean(power[1:end])
+			std = np.std(power[1:end])
+			upperlim = avg+std
+			
+			newlist = power - avg
+			
+			for item in newlist:
+				print item/std > 2
+			print "***************************************************"
+			print max(newlist)/std > 2
+			print "***************************************************"
+			
+			#maxItem = max(abs(Y[1:len(Y)]))
+			maxItem = max(power[1:len(power)])
+			#maxItem = max(power)
+			index = np.where(power==maxItem)
+			print index
+		
+			print 'fourier says: '
+			print maxItem
+			print period[index[0][0]+1]
+			print period
+			print 'fourier done'
+		except Exception as e:
+			print e
 		
 		plot.plot(period[1:len(period)], power)
-		#plot.plot(Y)
+		plot.plot(Y)
 		plot.show()
+	"""
