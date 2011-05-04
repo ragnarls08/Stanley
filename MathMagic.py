@@ -20,6 +20,7 @@ class MathMagic:
 		self.frame1 = self.config.getint('BollingerVariables','framesize1')
 		self.frame2 = self.config.getint('BollingerVariables','framesize2')
 		self.frame3 = self.config.getint('BollingerVariables','framesize3')
+		#TODO: Eftir ad setja inn consolidate flags breytu
 		
 		
 		
