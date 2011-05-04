@@ -173,7 +173,7 @@ class MathMagic:
 
 			if (bandwidth <= bandwidth_avg*0.25):
 				#could use some more logic: if item is higher than some % of timeline's average
-				pass#percentb = percentb*0.6
+				percentb = percentb*0.6
 			#print str(timeAxis[index]) + " : " + str(percentb)
 
 			#dictionary[timeAxis[index]] = percentb * dictionary[timeAxis[index]]

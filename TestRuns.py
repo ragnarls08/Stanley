@@ -11,13 +11,14 @@ for x in f:
 #print listOfDataSets[:10]
 #print listOfDataSets[:2]
 rynir = Rynir()
-report = rynir.analyze(listOfDataSets[:10])
+report = rynir.analyze(listOfDataSets[:100])
 
 #for x in report:
 #	for i in x:
 #		print i
 
-
+"""
 for item in report:
 	for sub in item:
 	  print sub
+	  """
