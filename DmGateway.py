@@ -10,18 +10,21 @@ import logging,sys,traceback
 class DmGateway():
 	
 	def __init__(self):
-		try:
-			self.config = ConfigParser.RawConfigParser()
-			self.config.read('config.cfg')
-		except IOError as error:
-			logging.error(str(error))
-			raise IOError
+		
+		self.config = ConfigParser.RawConfigParser()
+		self.config.read('config.cfg')
+		
+		self.callUrl = ""
 			
 		#BaseURL read from config
 		#TODO:	Still have to add key to URL
-		self.baseUrl = self.config.get('API','URL') #baseUrl
-		self.DMkey = self.config.get('API','key')
-		self.callUrl = ""		
+		try:
+			self.baseUrl = self.config.get('API','URL') #baseUrl
+			self.DMkey = self.config.get('API','key')
+		except ConfigParser.NoSectionError, e:
+			logging.error(e)
+		except ConfigParser.Error, e:
+			logging.error(e)	
 
 	def getDs(self, dsId, maxResults=0):
 		self.callUrl = self.baseUrl + "&ds=" + str(dsId)
@@ -42,14 +45,12 @@ class DmGateway():
 			response = urllib2.urlopen( request )
 			results = json.load( response )
 			return results
-			
-		except 	urllib2.URLError as error:	
-			logging.error(': %s,  when trying to open %s', str(error),self.callUrl	)
-			#logging.exeption('EXE : when trying to open %s',self.callUrl	)
-			#traceback.print_exc(limit=5,file=None)
-			#raise URLError	
-		
-		#except urllib2.HTTPError, urllib2.URLError:
-			#raise ConnectionError(message)
+		except 	urllib2.HTTPError, e:
+			logging.warning(' %s,  when trying to open %s', e , self.callUrl	)	
+		except 	urllib2.URLError, e:
+			logging.error(' %s,  when trying to open %s', e , self.callUrl	)			
+		#except 	Exception, e: 
+		#	logging.error('===UNKNOWN EXCEPTION=== : %s,  when trying to open %s', e , self.callUrl	)
+
 		
 

@@ -23,6 +23,6 @@ class QueryStringHandler:
 				datasetReport.append(timelineFlagList)
 			
 			return datasetReport
-		except:
-			logging.error('Error in class QuerystringHandler')
+		except Exception, e:
+			logging.error(e)
 			return []

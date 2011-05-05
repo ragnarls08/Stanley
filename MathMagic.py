@@ -17,7 +17,13 @@ class MathMagic:
 	def __init__ (self):
 		self.config = ConfigParser.RawConfigParser()
 		self.config.read('config.cfg')
-		self.K = self.config.getfloat('BollingerVariables','k')
+		try:
+			self.K = self.config.getfloat('BollingerVariables','k')
+		except ConfigParser.NoSectionError, e:
+			logging.error(e)
+		except ConfigParser.Error, e:
+			logging.error(e)	
+		
 		#self.frame1 = self.config.getint('BollingerVariables','framesize1')
 		#self.frame2 = self.config.getint('BollingerVariables','framesize2')
 		#self.frame3 = self.config.getint('BollingerVariables','framesize3')
@@ -221,8 +227,8 @@ class MathMagic:
 			if (maxItem-avg)/std > 2:
 					periodSize = period[index[0][0]+1]
 		
-		except Exception as e:
-			print e
+		except Exception, e:
+			loggeing.error(e)
 			
 		finally:
 			print 'fourier says: '
