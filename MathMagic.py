@@ -24,12 +24,12 @@ class MathMagic:
 		except ConfigParser.Error, e:
 			logging.error(e)	
 		
-		#self.frame1 = self.config.getint('BollingerVariables','framesize1')
-		#self.frame2 = self.config.getint('BollingerVariables','framesize2')
-		#self.frame3 = self.config.getint('BollingerVariables','framesize3')
-		self.frame1 = 365
-		self.frame2 = 1095
-		self.frame3 = 1825
+		self.frame1 = self.config.getint('BollingerVariables','framesize1')
+		self.frame2 = self.config.getint('BollingerVariables','framesize2')
+		self.frame3 = self.config.getint('BollingerVariables','framesize3')
+		#self.frame1 = 365
+		#self.frame2 = 1095
+		#self.frame3 = 1825
 		#TODO: Eftir ad setja inn consolidate flags breytu
 		#TODO: filter breyta
 		

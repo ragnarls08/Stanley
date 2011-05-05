@@ -30,14 +30,14 @@ time_series = ["gunni_Awesom","leh3", "yef","1eh3"] # 1. er ologlegur, 2. ekki t
 
 report = rynir.analyze(time_series)
 #report = rynir.analyze(queryStringList)
-"""
+
 try:
 	for x in report:
 		for i in x:
 			print i
 except:
 	print 'wrong'
-	
+"""	
 #debugging plot below, make sure parameters match the ones actually used
 gate = DmGateway()
 #gate = StaticGateway("staticDataSet.json")

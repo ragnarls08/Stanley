@@ -51,7 +51,7 @@ class Rynir:
 			
 			
 		#TODO: config variable for top N
-		if True:	
+		if False:	
 		  self.report = self.getTopResults(self.report, 100)
 		
 			
