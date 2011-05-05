@@ -3,6 +3,7 @@
 from Parser import Parser
 from MathMagic import MathMagic
 from FlagObj import FlagObj
+import logging
 
 class QueryStringHandler:
 	def __init__(self):
@@ -22,6 +23,6 @@ class QueryStringHandler:
 				datasetReport.append(timelineFlagList)
 			
 			return datasetReport
-		except:
+		except Exception, e:
+			logging.error(e)
 			return []
-

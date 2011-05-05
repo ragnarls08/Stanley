@@ -5,17 +5,26 @@ import simplejson as json
 from DataSet import DataSet
 from TimeLine import TimeLine
 import ConfigParser
+import logging,sys,traceback
 
 class DmGateway():
+	
 	def __init__(self):
+		
 		self.config = ConfigParser.RawConfigParser()
 		self.config.read('config.cfg')
 		
+		self.callUrl = ""
+			
 		#BaseURL read from config
 		#TODO:	Still have to add key to URL
-		self.baseUrl = self.config.get('API','URL') #baseUrl
-		self.DMkey = self.config.get('API','key')
-		self.callUrl = ""		
+		try:
+			self.baseUrl = self.config.get('API','URL') #baseUrl
+			self.DMkey = self.config.get('API','key')
+		except ConfigParser.NoSectionError, e:
+			logging.error(e)
+		except ConfigParser.Error, e:
+			logging.error(e)	
 
 	def getDs(self, dsId, maxResults=0):
 		self.callUrl = self.baseUrl + "&ds=" + str(dsId)
@@ -35,17 +44,13 @@ class DmGateway():
 			request = urllib2.Request( self.callUrl )
 			response = urllib2.urlopen( request )
 			results = json.load( response )
-
 			return results
-		except urllib2.URLError:
-			raise ConnectionError('No connection')
-		except urllib2.HTTPError:
-			raise ConnectionError('404 : Not found')
-		#except urllib2.HTTPError, urllib2.URLError:
-			#raise ConnectionError(message)
-	
-class ConnectionError(Exception):
-	def __init__(self, value):
-		self.value = value
-	def __str__(self):
-		return repr(self.value)
+		except 	urllib2.HTTPError, e:
+			logging.warning(' %s,  when trying to open %s', e , self.callUrl	)	
+		except 	urllib2.URLError, e:
+			logging.error(' %s,  when trying to open %s', e , self.callUrl	)			
+		#except 	Exception, e: 
+		#	logging.error('===UNKNOWN EXCEPTION=== : %s,  when trying to open %s', e , self.callUrl	)
+
+		
+
