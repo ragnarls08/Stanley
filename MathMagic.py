@@ -27,7 +27,7 @@ class MathMagic:
 	def analyze(self, timeline, timeAxis, frameSize = None):
 	
 		#if timeline is too short to return no flags
-		if len(timeline) < 7:
+		if len(timeline) < 7 or len(timeline) > 130:
 			return []
 			
 		#listi = []
