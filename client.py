@@ -13,10 +13,10 @@ from Parser import Parser
 rynir = Rynir()
 
 
-time_series = ["gunni_Awesom","leh3", "yef","1eh3"] # 1. er ologlegur, 2. ekki til, 3. of stor, 4 ok
+#time_series = ["gunni_Awesom","leh3", "yef","1eh3"] # 1. er ologlegur, 2. ekki til, 3. of stor, 4 ok
 #time_series = "yef"
 
-#time_series = "1eh3" #british fatalities in afghanistan
+time_series = "1eh3" #british fatalities in afghanistan
 #time_series = "1d8b|wzl=6" #crude oil
 #time_series = "18ax|l2g=1w:l2h=2:l2i=12" #avocado
 #time_series = "1ctt|wtr=3t:wts=f:wtt=1" #age population brazil
@@ -37,13 +37,14 @@ try:
 			print i
 except:
 	print 'wrong'
-"""	
+
 #debugging plot below, make sure parameters match the ones actually used
 gate = DmGateway()
 #gate = StaticGateway("staticDataSet.json")
 ps = Parser()
 
 dset = ps.parse(time_series)
+"""
 #series = ts.time_series(dset[1].getMaskedArray(),
 #						start_date=ts.Date(freq=dset.granularity, year=int(dset[0][0][0:4]), month=1))
 #print series.count
@@ -130,6 +131,56 @@ fsp.tsplot(avgexp, '--y')
 #ax = fig.add_subplot(111, autoscale_on=True)#, xlim=(-1,5), ylim=(-4,3))
 
 #print series
+
+
+"""
+
+from scipy import linspace, polyval, polyfit, sqrt, stats, randn
+from pylab import plot, title, show , legend
+
+
+print dset
+
+
+n=50
+t=linspace(-5,5,n)
+
+a=0.8
+b=-4
+
+x=polyval([a,b],dset[1]4)
+xn=x+randn(n)
+
+(ar,br)=polyfit(t,xn,1)
+xr=polyval([ar,br],t)
+
+err=sqrt(sum((xr-xn)**2)/n)
+
+
+
+print('Linear regression using polyfit')
+print('parameters: a=%.2f b=%.2f \nregression: a=%.2f b=%.2f, ms error= %.3f' % (a,b,ar,br,err))
+
+#matplotlib ploting
+title('Linear Regression Example')
+plot(t,x,'g.--')
+plot(t,xn,'k.')
+plot(t,xr,'r.-')
+legend(['original','plus noise', 'regression'])
+
+show()
+
+
+#Linear regression using stats.linregress
+(a_s,b_s,r,tt,stderr)=stats.linregress(t,xn)
+print('Linear regression using stats.linregress')
+print('parameters: a=%.2f b=%.2f \nregression: a=%.2f b=%.2f, std error= %.3f' % (a,b,a_s,b_s,stderr))
+
+
+
+
+
+"""
 
 
 
