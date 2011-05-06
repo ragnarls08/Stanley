@@ -37,9 +37,13 @@ class MathMagic:
 	def analyze(self, timeline, timeAxis, frameSize = None):
 	
 		#if timeline is too short to return no flags
-		if len(timeline) < 7 or len(timeline) > 130:
+		if len(timeline) < 7: 
+			logging.info('SSSSSShort')
 			return []
-			
+		if len(timeline) > 500:
+			logging.info('LLLLLLong')
+			return []
+		logging.info('OOOOOOk')		
 		#frameSize = self.fourierAnalysis(timeline, timeAxis)
 			
 		#listi = []
@@ -48,7 +52,7 @@ class MathMagic:
 		
 		#create an empty tuple to multiply the flag values with
 		for item in timeAxis:
-			dictionary[item] = (None, None, 1)
+			dictionary[item] = (None, None, 1,len(timeline))
 		
 		#if a specific framesize was requested use that, otherwise use itarative bollinger
 		if frameSize:
@@ -118,7 +122,7 @@ class MathMagic:
 		#loop through groups, get the max item out of each grouping
 		for item in groups:
 		  maxItem = max(item, key=lambda x: x[1][2])
-		  retList.append( (maxItem[0], maxItem[1][2], maxItem[1][0]) )
+		  retList.append( (maxItem[0], maxItem[1][2], maxItem[1][0], maxItem[1][3]) )
 		  
 		return retList
 		
@@ -193,9 +197,9 @@ class MathMagic:
 			
 			#print "---------------" + str(percentb)
 			if item > avg[index]:
-				dictionary[timeAxis[index]] = (index, '+', percentb * dictionary[timeAxis[index]][2])
+				dictionary[timeAxis[index]] = (index, '+', percentb * dictionary[timeAxis[index]][2],len(timeline))
 			else:
-				dictionary[timeAxis[index]] = (index, '-', percentb * dictionary[timeAxis[index]][2])
+				dictionary[timeAxis[index]] = (index, '-', percentb * dictionary[timeAxis[index]][2],len(timeline))
 										
 
 		return dictionary
