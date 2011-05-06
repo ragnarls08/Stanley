@@ -11,7 +11,7 @@ import logging
 import heapq
 
 class Rynir:
-	logging.basicConfig(filename='logfile.log', format='%(levelname)s : %(asctime)s, File: %(filename)s Function: %(funcName)s, %(threadName)s %(message)s ', level=logging.WARNING)
+	logging.basicConfig(filename='logfile.log', filemode='w',format='%(levelname)s : %(asctime)s, File: %(filename)s Function: %(funcName)s, %(threadName)s %(message)s ', level=logging.INFO)
 	
 	def __init__(self):
 		self.config = ConfigParser.RawConfigParser()
@@ -51,7 +51,7 @@ class Rynir:
 			
 			
 		#TODO: config variable for top N
-		if False:	
+		if True:	
 		  self.report = self.getTopResults(self.report, 100)
 		
 			
@@ -68,7 +68,7 @@ class Rynir:
 			  
 			  heapq.heappush(results, item )
 			  #heapq.heappush(results, (tl.dsID, tl.tlID, flag))
-	"""
+	
 		print "\n\n"
 		print heapq.heappop(results).value
 		print heapq.heappop(results).value
@@ -92,7 +92,7 @@ class Rynir:
 		print heapq.heappop(results).value
 		print heapq.heappop(results).value
 		
-	"""	
+		
 def wrapFlag(value):
     class Wrapper(object):
         def __init__(self, value): self.value = value

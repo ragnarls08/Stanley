@@ -24,5 +24,5 @@ class QueryStringHandler:
 			
 			return datasetReport
 		except Exception, e:
-			logging.error(e)
+			#logging.error(e)
 			return []
