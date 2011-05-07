@@ -11,18 +11,19 @@ import logging
 import heapq
 
 class Rynir:
-	logging.basicConfig(filename='logfile.log', filemode='w',format='%(levelname)s : %(asctime)s, File: %(filename)s Function: %(funcName)s, %(threadName)s %(message)s ', level=logging.INFO)
+	FORMAT = '%(levelname)s : %(asctime)s, File: %(filename)s Function: %(funcName)s, %(threadName)s %(message)s '
+	logging.basicConfig(filename='logfile.log',filemode='w',format=FORMAT,level=logging.INFO)
 	
 	def __init__(self):
 		self.config = ConfigParser.RawConfigParser()
 		self.config.read('config.cfg')
 		try:
 			self.numberOfThreads = self.config.getint('Threads','numberofthreads')
+			self.topN = self.config.getint('ReturnOptions','topn')
 		except ConfigParser.NoSectionError, e:
 			logging.error(e)
 		except ConfigParser.Error, e:
 			logging.error(e)	
-	
 		
 		#self.handler = QueryStringHandler()
 		self.queue = Queue.Queue()
@@ -49,69 +50,40 @@ class Rynir:
 		except Exception, e:
 			logging.error(e)
 			
-			
-		#TODO: config variable for top N
-		if True:	
-		  self.report = self.getTopResults(self.report, 100)
+		#if topN is set to 0, a list of all flags is returnd
+		
+		
+		if self.topN > 0:	
+		  self.report = self.getTopResults(self.report)
 		
 			
 		return self.report
-  
-	def getTopResults(self, report, N):
-		"""
-		for ds in report:
-		  for tl in ds:
-			print tl
-		"""
-		print report[0][0]
-		
-		report.sort(key=lambda x: x[0])
-		
-	"""
-	def getTopResults(self, report, N):
-		results = []
-		
-		for ds in report:
-		  for tl in ds:
-			for flag in tl.listOfFlags:
-			  print (tl.dsID, tl.tlID, flag)
-			  item = wrapFlag( (tl.dsID, tl.tlID, flag) )
-			  
-			  heapq.heappush(results, item )
-			  #heapq.heappush(results, (tl.dsID, tl.tlID, flag))
+
+	#param: a report, list of flags that include value of intrest
+	#return: a list of the top N most intresting flags
+	def getTopResults(self, report):
 	
-		print "\n\n"
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-	
-	"""
+		#sort the list of flags for each timeline
+		for ds in report:
+		  for flagObject in ds:
+			#x[1] is the index of the severity in the flag tuple
+			flagObject.listOfFlags.sort(key=lambda x: x[1])
+			flagObject.listOfFlags.reverse()		
 		
-def wrapFlag(value):
-    class Wrapper(object):
-        def __init__(self, value): self.value = value
-        def __cmp__(self, obj): 
-			return cmp(obj.value[2][1], self.value[2][1])
-        
-    return Wrapper(value)
+		#sort the timelines within a dataset
+		for ds in report:
+		  ds.sort(key=lambda x: x.listOfFlags[0][1] if x.listOfFlags[0] else 0)
+		  ds.reverse()
+
+		#sort the datasets in the report
+		report.sort(key=lambda x: x[0].listOfFlags[0][1])
+		report.reverse()
+	
+		#ath format a outputi
+		return [item[0] for item in report]
+			
+	
+		
 		
 
 class ThreadHelper(threading.Thread):

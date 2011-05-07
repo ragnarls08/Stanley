@@ -7,18 +7,21 @@ config.set('API','key','')
 config.set('API','URL','http://www.datamarket.com/api/v1/series.json?callback=')
 
 config.add_section('ReturnValues')	
-config.set('ReturnValues','Filter','1')
-config.set('ReturnValues','ConsolidateFlags','TRUE')
-config.set('ReturnValues','LatestUpdateOnly','FALSE')
+config.set('ReturnValues','filter','1')
+config.set('ReturnValues','consolidateflags','TRUE')
+config.set('ReturnValues','latestupdateonly','FALSE')
 
 config.add_section('BollingerVariables')
-config.set('BollingerVariables','Framesize3','20')
-config.set('BollingerVariables','Framesize2','13')
-config.set('BollingerVariables','Framesize1','9')
-config.set('BollingerVariables','K','2')
+config.set('BollingerVariables','framesize3','20')
+config.set('BollingerVariables','framesize2','13')
+config.set('BollingerVariables','framesize1','9')
+config.set('BollingerVariables','k','2')
 
 config.add_section('Threads')
-config.set('Threads','NumberOfThreads','6')
+config.set('Threads','numberofthreads','6')
+
+config.add_section('ReturnOptions')
+config.set('ReturnOptions','topn','20')
 
 
 with open('config.cfg','wb') as conFile:
