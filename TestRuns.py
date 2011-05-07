@@ -15,7 +15,7 @@ for x in f:
 #print listOfDataSets[:10]
 #print listOfDataSets[:2]
 rynir = Rynir()
-report = rynir.analyze(listOfDataSets[:50])
+report = rynir.analyze(listOfDataSets[:5])
 
 #for x in report:
 #	for i in x:

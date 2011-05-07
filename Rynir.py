@@ -58,6 +58,17 @@ class Rynir:
 		return self.report
   
 	def getTopResults(self, report, N):
+		"""
+		for ds in report:
+		  for tl in ds:
+			print tl
+		"""
+		print report[0][0]
+		
+		report.sort(key=lambda x: x[0])
+		
+	"""
+	def getTopResults(self, report, N):
 		results = []
 		
 		for ds in report:
@@ -91,7 +102,8 @@ class Rynir:
 		print heapq.heappop(results).value
 		print heapq.heappop(results).value
 		print heapq.heappop(results).value
-		
+	
+	"""
 		
 def wrapFlag(value):
     class Wrapper(object):
