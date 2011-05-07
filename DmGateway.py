@@ -26,6 +26,9 @@ class DmGateway():
 		except ConfigParser.Error, e:
 			logging.error(e)	
 
+	#Constructs the URI for the dataset
+	#param: datasetId and maxResults, initalized as 0
+	#return: calls self.call()
 	def getDs(self, dsId, maxResults=0):
 		self.callUrl = self.baseUrl + "&ds=" + str(dsId)
 
