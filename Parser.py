@@ -12,6 +12,7 @@ class Parser:
 		self.gate = DmGateway()
 
 	#Parses an url into a DataSet:list of timelines
+	#Param: datasetId and maxResults, default set to 0
 	#Return: DataSet
 	def parse(self, dsId, maxResults=0):
 		job = self.gate.getDs(dsId, maxResults)
