@@ -26,6 +26,8 @@ class QueryStringHandler:
 			
 			return datasetReport
 			#TODO Specify exceptions
+		except TypeError, e:
+			logging.error(e)
 		except Exception, e:
 			#logging.error(e)
 			return []
