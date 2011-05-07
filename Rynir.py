@@ -11,18 +11,19 @@ import logging
 import heapq
 
 class Rynir:
-	logging.basicConfig(filename='logfile.log', filemode='w',format='%(levelname)s : %(asctime)s, File: %(filename)s Function: %(funcName)s, %(threadName)s %(message)s ', level=logging.INFO)
+	FORMAT = '%(levelname)s : %(asctime)s, File: %(filename)s Function: %(funcName)s, %(threadName)s %(message)s '
+	logging.basicConfig(filename='logfile.log',filemode='w',format=FORMAT,level=logging.INFO)
 	
 	def __init__(self):
 		self.config = ConfigParser.RawConfigParser()
 		self.config.read('config.cfg')
 		try:
 			self.numberOfThreads = self.config.getint('Threads','numberofthreads')
+			self.topN = self.config.getint('ReturnOptions','topn')
 		except ConfigParser.NoSectionError, e:
 			logging.error(e)
 		except ConfigParser.Error, e:
 			logging.error(e)	
-	
 		
 		#self.handler = QueryStringHandler()
 		self.queue = Queue.Queue()
@@ -49,21 +50,22 @@ class Rynir:
 		except Exception, e:
 			logging.error(e)
 			
-			
-		#TODO: config variable for top N
-		if True:	
-		  self.report = self.getTopResults(self.report, 100)
+		#if topN is set to 0, a list of all flags is returnd
+		if self.topN > 0:	
+		  self.report = self.getTopResults(self.report)
 		
 			
 		return self.report
-  
-	def getTopResults(self, report, N):
+	
+	#param: a report, list of flags that include value of intrest
+	#return: a list of the top N most intresting flags
+	def getTopResults(self, report, N = self.topN):
 		results = []
 		
 		for ds in report:
 		  for tl in ds:
 			for flag in tl.listOfFlags:
-			  print (tl.dsID, tl.tlID, flag)
+			  #print (tl.dsID, tl.tlID, flag)
 			  item = wrapFlag( (tl.dsID, tl.tlID, flag) )
 			  
 			  heapq.heappush(results, item )
