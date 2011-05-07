@@ -59,7 +59,7 @@ class Rynir:
 	
 	#param: a report, list of flags that include value of intrest
 	#return: a list of the top N most intresting flags
-	def getTopResults(self, report, N = self.topN):
+	def getTopResults(self, report):
 		results = []
 		
 		for ds in report:
