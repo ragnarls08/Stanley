@@ -21,8 +21,9 @@ class QueryStringHandler:
 			
 			for timeline in dset[1:]:
 				listOfFlags = self.mathMagic.analyze(timeline, timeAxis)
-				timelineFlagList = FlagObj(dset.dsId, dset.title, timeline.cId, timeline.title, listOfFlags)
-				datasetReport.append(timelineFlagList)
+				if listOfFlags:
+				  timelineFlagList = FlagObj(dset.dsId, dset.title, timeline.cId, timeline.title, listOfFlags)
+				  datasetReport.append(timelineFlagList)
 			
 			return datasetReport
 			#TODO Specify exceptions
