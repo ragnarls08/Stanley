@@ -18,5 +18,6 @@ rynir = Rynir()
 report = rynir.analyze(listOfDataSets[0:100])
 
 for ds in report:
-  print ds
+  for fo in ds:
+  	print fo
 

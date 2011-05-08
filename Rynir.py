@@ -12,7 +12,7 @@ import heapq
 
 class Rynir:
 	FORMAT = '%(levelname)s : %(asctime)s, File: %(filename)s Function: %(funcName)s, %(threadName)s %(message)s '
-	logging.basicConfig(filename='logfile.log',filemode='w',format=FORMAT,level=logging.INFO)
+	logging.basicConfig(filename='logfile.log',filemode='w',format=FORMAT,level=logging.ERROR)
 	
 	def __init__(self):
 		self.config = ConfigParser.RawConfigParser()
@@ -105,6 +105,10 @@ class ThreadHelper(threading.Thread):
 				  self.lock.acquire()
 				  self.report.append(dataSetReport)
 				  self.lock.release()
+			except Queue.Empty, e:
+				logging.error(e)
+			except Thread.error, e:
+				logging.error(e) 
 			except:
 				logging.error('Error in def run() in ThreadHelper')
 				pass
