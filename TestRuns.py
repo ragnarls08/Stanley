@@ -18,4 +18,6 @@ rynir = Rynir()
 report = rynir.analyze(t)
 
 for ds in report:
-  print ds
+  for fo in ds:
+  	print fo
+
