@@ -15,9 +15,15 @@ for x in f:
 
 
 rynir = Rynir()
-report = rynir.analyze(listOfDataSets[0:100])
+#report = rynir.analyze(listOfDataSets[0:10])
+report = rynir.analyze("12sr")
+
+"""
+for ds in report:
+  
+  	print ds
+"""
 
 for ds in report:
   for fo in ds:
-  	print fo
-
+	print fo

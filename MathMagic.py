@@ -36,14 +36,18 @@ class MathMagic:
 		
 	def analyze(self, timeline, timeAxis, frameSize = None):
 	
+		
 		#if timeline is too short to return no flags
 		if len(timeline) < 7: 
 			logging.info('SSSSSShort')
+		
 			return []
 		if len(timeline) > 500:
 			logging.info('LLLLLLong')
+		
 			return []
 		logging.info('OOOOOOk')		
+		
 		#frameSize = self.fourierAnalysis(timeline, timeAxis)
 			
 		#listi = []
@@ -61,7 +65,8 @@ class MathMagic:
 			#kalla í fourier, ef það kemur rammastærð úr því þá kalla í BollingerFourier, annars iterativeBollinger
 			dictionary = self.iterativeBollinger(timeline, timeAxis, dictionary)
 			
-			
+		
+		
 		#TODO config variable for consolidate flags
 		#consolidates flags that are adjecent, picks the highest severity in each adjecent sequence
 		if True:#flag missing
@@ -70,6 +75,7 @@ class MathMagic:
 		  tempList = sorted(dictionary.iteritems(), key=operator.itemgetter(1))
 		  for item in tempList:
 			listi.append( (item[0], item[1][2], item[1][0]) )
+			
 			
 			
 		
@@ -86,8 +92,10 @@ class MathMagic:
 		#filter out all flags with severity lower than filter.
 		for key in dictionary:
 			if dictionary[key][2] > 1:
+				
 				retDict[key] = dictionary[key]
 
+		
 		return retDict
 
 
@@ -124,6 +132,7 @@ class MathMagic:
 		  maxItem = max(item, key=lambda x: x[1][2])
 		  retList.append( (maxItem[0], maxItem[1][2], maxItem[1][0], maxItem[1][3]) )
 		  
+		  
 		return retList
 		
 		
@@ -138,7 +147,8 @@ class MathMagic:
 			#avg = np.ma.masked_array([ np.NaN if type(item) == type(None) else item for item in self ])
 			#print avg
 			avg = mov_average(timeline, frameSize)
-			std = mov_std(timeline,frameSize)
+			std = mov_std(timeline,frameSize)		
+			
 		except NotImplementedError as error:
 			logging.error('From bollingerAnalysis in MathMagic : %s', str(error))
 			return dictionary
@@ -154,6 +164,7 @@ class MathMagic:
 		count = 0
 
 #ATH NOTA STAERRI TOLUR TIL AÐ PROFA OVERFLOW
+		
 
 #		print "framesize: " + str(frameSize)
 #		print timeline		
@@ -174,7 +185,7 @@ class MathMagic:
 #			print str(item) + " - " + str(avg[index]) + " / " + str(upperlim[index]) + " - " + str(avg[index])
 			
 			if str(item) in emptySet or str(upperlim[index]) in emptySet or str(lowerlim[index]) in emptySet or str(avg[index]) in emptySet or denominator == 0:
-				percentb = 0
+				percentb = 1
 			else:
 				percentb = abs((item - avg[index])/denominator)
 				
@@ -196,11 +207,19 @@ class MathMagic:
 			#dictionary[timeAxis[index]] = percentb * dictionary[timeAxis[index]]
 			
 			#print "---------------" + str(percentb)
+			
+				
+			
 			if item > avg[index]:
 				dictionary[timeAxis[index]] = (index, '+', percentb * dictionary[timeAxis[index]][2],len(timeline))
 			else:
 				dictionary[timeAxis[index]] = (index, '-', percentb * dictionary[timeAxis[index]][2],len(timeline))
-										
+						
+						
+			#for key in dictionary:
+			#  print dictionary[key]
+			  
+			#print "\n\n"
 
 		return dictionary
 

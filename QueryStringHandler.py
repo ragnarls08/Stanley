@@ -20,15 +20,18 @@ class QueryStringHandler:
 			timeAxis = dset[0]
 			
 			for timeline in dset[1:]:
+				
 				listOfFlags = self.mathMagic.analyze(timeline, timeAxis)
+				
 				if listOfFlags:
 				  timelineFlagList = FlagObj(dset.dsId, dset.title, timeline.cId, timeline.title, listOfFlags)
 				  datasetReport.append(timelineFlagList)
+
 			
 			return datasetReport
 			#TODO Specify exceptions
 		except TypeError, e:
 			logging.error(e)
 		except Exception, e:
-			#logging.error(e)
+			logging.error(e)
 			return []
