@@ -13,11 +13,17 @@ for x in f:
 #for x in range(100):
 #	randList.append(listOfDataSets[0:100])#random.randint(0,11780)
 
-t=['12sr']
 rynir = Rynir()
-report = rynir.analyze(t)
+
+#report = rynir.analyze(listOfDataSets[0:10])
+report = rynir.analyze("12sr")
+
+"""
+for ds in report:
+  
+  	print ds
+"""
 
 for ds in report:
   for fo in ds:
-  	print fo
-
+	print fo

@@ -12,7 +12,7 @@ import heapq
 
 class Rynir:
 	FORMAT = '%(levelname)s : %(asctime)s, File: %(filename)s Function: %(funcName)s, %(threadName)s %(message)s '
-	logging.basicConfig(filename='logfile.log',filemode='w',format=FORMAT,level=logging.ERROR)
+	logging.basicConfig(filename='logfile.log',filemode='w',format=FORMAT,level=logging.DEBUG)
 	
 	def __init__(self):
 		self.config = ConfigParser.RawConfigParser()
@@ -52,10 +52,10 @@ class Rynir:
 			
 		#if topN is set to 0, a list of all flags is returnd
 		
-		
+		"""
 		if self.topN > 0:	
 		  self.report = self.getTopResults(self.report)
-		
+		"""
 			
 		return self.report
 
