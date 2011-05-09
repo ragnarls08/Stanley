@@ -51,57 +51,40 @@ class Rynir:
 			logging.error(e)
 			
 		#if topN is set to 0, a list of all flags is returnd
+		
+		
 		if self.topN > 0:	
 		  self.report = self.getTopResults(self.report)
 		
 			
 		return self.report
-	
+
 	#param: a report, list of flags that include value of intrest
 	#return: a list of the top N most intresting flags
-	def getTopResults(self, report, N = self.topN):
+	def getTopResults(self, report):
 		results = []
-		
-		for ds in report:
-		  for tl in ds:
-			for flag in tl.listOfFlags:
-			  #print (tl.dsID, tl.tlID, flag)
-			  item = wrapFlag( (tl.dsID, tl.tlID, flag) )
-			  
-			  heapq.heappush(results, item )
-			  #heapq.heappush(results, (tl.dsID, tl.tlID, flag))
 	
-		print "\n\n"
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
-		print heapq.heappop(results).value
+		#sort the list of flags for each timeline
+		for ds in report:
+		  for flagObject in ds:
+			#x[1] is the index of the severity in the flag tuple
+			flagObject.listOfFlags.sort(key=lambda x: x[1])
+			flagObject.listOfFlags.reverse()		
 		
+		#sort the timelines within a dataset
+		for ds in report:
+		  ds.sort(key=lambda x: x.listOfFlags[0][1] if x.listOfFlags[0] else 0)
+		  ds.reverse()
+
+		#sort the datasets in the report
+		report.sort(key=lambda x: x[0].listOfFlags[0][1])
+		report.reverse()
+	
+		#ath format a outputi
+		return [item[0] for item in report]
+			
+	
 		
-def wrapFlag(value):
-    class Wrapper(object):
-        def __init__(self, value): self.value = value
-        def __cmp__(self, obj): 
-			return cmp(obj.value[2][1], self.value[2][1])
-        
-    return Wrapper(value)
 		
 
 class ThreadHelper(threading.Thread):
