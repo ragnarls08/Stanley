@@ -19,11 +19,14 @@ report = rynir.analyze(listOfDataSets[5000:6000])
 #report = rynir.analyze("12sr|e7l=3p")
 #report = rynir.analyze("12sr")
 
+#report = rynir.analyze("178g|ikm=40")
+
+
 for ds in report:
   
   	print ds
 
-
 #for ds in report:
   #for fo in ds:
 	#print fo
+

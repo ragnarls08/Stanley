@@ -52,7 +52,7 @@ class Rynir:
 		
 		if self.topN > 0:	
 		  self.report = self.getTopResults(self.report)
-			
+		
 		return self.report
 
 	#param: a report, list of flags that include value of intrest
@@ -96,7 +96,7 @@ class ThreadHelper(threading.Thread):
 			print self
 			try:
 				dataSetReport = self.handler.getReport(self.queue.get())
-				
+				print self.queue._qsize()
 				if dataSetReport:
 				  self.lock.acquire()
 				  self.report.append(dataSetReport)
