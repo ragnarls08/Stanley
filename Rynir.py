@@ -25,7 +25,6 @@ class Rynir:
 		except ConfigParser.Error, e:
 			logging.error(e)	
 		
-		#self.handler = QueryStringHandler()
 		self.queue = Queue.Queue()
 		self.report = []
 		self.lock = thread.allocate_lock()
@@ -39,7 +38,6 @@ class Rynir:
 		try:
 			for item in queryStringList:
 				self.queue.put(item)
-				#report.append(self.handler.getReport(item))
 			
 			for i in range(self.numberOfThreads):
 				thread = ThreadHelper(self.queue, self.report, self.lock)
@@ -52,10 +50,8 @@ class Rynir:
 			
 		#if topN is set to 0, a list of all flags is returnd
 		
-		"""
 		if self.topN > 0:	
 		  self.report = self.getTopResults(self.report)
-		"""
 			
 		return self.report
 

@@ -17,7 +17,6 @@ class Parser:
 	def parse(self, dsId, maxResults=0):
 		job = self.gate.getDs(dsId, maxResults)
 
-		#TODO REFACTOR W/THROW EXCEPTION
 		if not job:
 			raise TypeError('Parser received illegal dataset ID')
 
