@@ -95,8 +95,8 @@ unnið er með JSON skrár. Einnig settum við upp grunn að kerfinu sem gat só
 upp með og urðum að færa hluta úr sögum yfir í næsta sprett.
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.72\textwidth]{Sprettur1_Burndown.png}
-  \caption{Sprettur 1 Burndown}
+  \includegraphics[width=0.72\textwidth]{Sprettur3_Burndown.png}
+  \caption{Sprettur 1 Burndown RÖNG MYND}
 \end{figure}
 
 \subsection{Sprettur 2}
@@ -159,16 +159,16 @@ niðurstöður úr þeim yfirfarnar. Fínstillingar á reikniritum í kjölfar p
 
 \begin{figure}[H]
  \centering
- \includegraphics[width=0.72\textwidth]{Sprettur7_Burndown.png}
- \caption{Sprettur 7 Burndown}
+ \includegraphics[width=0.72\textwidth]{Sprettur3_Burndown.png}
+ \caption{Sprettur 7 Burndown RÖNG MYND}
 \end{figure}
 
 \subsection{Sprettur 8}
 Skýrslugerð í aðalatriði í lokasprett. Lokafrágangur á kóða. Læddum inn einni bætingu á reikniaðferðum og prófuðum uppá nýtt.
 \begin{figure}[H]
  \centering
- \includegraphics[width=0.72\textwidth]{Sprettur8_Burndown.png}
- \caption{Sprettur 8 Burndown}
+ \includegraphics[width=0.72\textwidth]{Sprettur3_Burndown.png}
+ \caption{Sprettur 8 Burndown RÖNG MYND}
 \end{figure}
 
 
@@ -178,7 +178,7 @@ Skýrslugerð í aðalatriði í lokasprett. Lokafrágangur á kóða. Læddum i
 
 
 
-
+\newpage
 
 
 \section{TækniSkýrsla}
@@ -212,6 +212,7 @@ skilar grafi á mynd~\ref{fig:fouriergraph}.
 
 
 \subsection{Hlaupandi meðaltal (HM)}
+\label{sec:running_average}
 Í tölfræði er hlaupandi meðaltal, einnig kallað
 fljótandi meðaltal, notað til greiningar á gagnamengi. 
 Er það gert með því að mynda röð meðaltala úr
@@ -223,10 +224,13 @@ talna úr sæti $0,1,\dots,N-1$. Þá er ramminn færður
 fram um eitt sæti og meðaltal fundið af tölum í sætum
 $1,2,\dots,N$. 
 Þessi aðgerðarröð er endurtekin yfir alla talnaröðina,
-$Z-N$ sinnum.  \\
+$Z-N$ sinnum.  
 
-$HM = \frac{x+(x+1)+\dots+(x+(N-1))}{N}$
-\\
+\begin{center}
+  $HM = \frac{x+(x+1)+\dots+(x+(N-1))}{N}$ 
+\end{center}
+
+
 Línan sem tengir svo saman öll meðaltölin er hið
 fljótandi meðaltal þar sem hver punktur á línunni
 samsvarar 
@@ -234,6 +238,7 @@ meðaltali viðkomandi hlutmengis í heildarmengi ganganna
 sem verið er að meta. 
  
 \subsection{Vegið hlaupandi meðaltal (VHM)}
+\label{sec:weighted_running_average}
 Hlaupandi meðaltal getur einnig notað ójöfn gildi fyrir
 hvert stak á línunni.
 Þá er um vegið meðaltal að ræða og er meðaltalinu gefin
@@ -243,40 +248,44 @@ staðsett.
 gildana í tilteknum ramma er svo deilt með summu allra
 mergfeldanna. 
 Ef um ramma af stærð 10 er að ræða og gildin eru
-margfölduð eftir sætisröð, þá fæst: \\
-$VHM =
-\frac{x+2(x+1)+3(x+2)+\dots+(10(N-1))}{1+2+\dots+10}$
-\subsection{Bollinger bands}
-\label{sec:third}
-Bollinger bönd eru upprunalega þróuð sem greiningartól
-á þróun verðbréfaverða. 
-Tilgangur þeirra er að veita viðeigandi skilgreiningu
-háum og lágum gildum. Einnig hefur þessari aðferð verið
-beitt á ýmis önnur
-vandamál með misgóðum niðurstöðum. \\
-Bollinger bönd samanstanda af
-\begin{itemize}
-  \item Miðband, $N-lotu$ einfalt hlaupandi meðaltal.
-  \item Efra band, $N-lotu$ staðalfrávik margfaldað með
-$K$, fyrir ofan miðbandið ($HM + K\sigma$).
-  \item Neðra band, $N-lotu$ staðalfrávik margfaldað
-með $K$, fyrir neðan miðbandið ($HM -
-K\sigma$).%\\\\\\\\\\\\\\\\\
-\end{itemize}
+margfölduð eftir sætisröð, þá fæst eftirfarandi formúla. 
+\begin{center}
+  $VHM = \frac{x+2(x+1)+3(x+2)+\dots+(10(N-1))}{1+2+\dots+10}$ 
+\end{center}
 
-\begin{wrapfigure}{l}{6cm}
+
+\subsection{Bollinger bands}
+\label{sec:bollinger_bands}
+
+\begin{wrapfigure}{r}{7cm}
 %\begin{figure}
  \begin{center}
- \includegraphics[width=.45\textwidth]{Bollinger.png}
- \caption{Rauðu strikalínurnar sýna Bollinger böndin}
+  \includegraphics[width=.58\textwidth]{Bollinger.png} 
+  \caption{Bollinger bönd merkt með Rauðum strikalínum} 
   \end{center}
 %\end{figure}
 \end{wrapfigure}
-\hfill
-\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+Bollinger bönd eru upprunalega þróuð sem greiningartól
+á þróun verðbréfaverða. 
+Tilgangur þeirra er að veita viðeigandi skilgreiningu háum og lágum gildum. Einnig hefur þessari 
+aðferð verið beitt á ýmis önnur vandamál með misgóðum niðurstöðum. \\
+\hfil \\
+\hfil \\
+\hfil \\
+Bollinger bönd samanstanda af:
+\begin{itemize}
+  \item Miðband, $N-lotu$ einfalt hlaupandi meðaltal.
+  \item Efra band, $N-lotu$ staðalfrávik margfaldað með $K$, fyrir ofan miðbandið ($HM + K\sigma$).
+  \item Neðra band, $N-lotu$ staðalfrávik margfaldað með $K$, fyrir neðan miðbandið ($HM -K\sigma$).
+\end{itemize}
+
+
 Bollinger bönd nýtast því vel til greininga hvar í
 tímalínu óeðlileg hækkun eða lækkun á sér stað.
-\\
+
+
+
 \subsubsection{Okkar útfærsla á Bollinger}
 Útfærslan okkar byggist á því að ítra í gegnum
 mismunandi stórar rammastærðir fyrir hverja tímalínu.
@@ -289,7 +298,11 @@ punkturinn er fyrir utan
 efri mörk Bollinger bandsins, tölugildi á bilinu 1-0 ef
 punkturinn liggur á milli þeirra og neikvæða tölu ef
 hann er undir þeim.
-$\%b={(last-lowerBB)}{(upperBB-lowerBB)}$
+
+\begin{center}
+  $\%b={(last-lowerBB)}{(upperBB-lowerBB)}$
+\end{center}
+
 Við notum breytta útgáfu af formúlunni sem hundsar
 hvort við erum fyrir ofan eða neðan böndin og gefur
 einfaldlega gildi á bilinu
@@ -297,8 +310,11 @@ einfaldlega gildi á bilinu
 gildi yfir einum ef punkturinn er fyrir utan. Haldið er
 utan um hvort punkturinn 
 lá fyrir ofan eða neðan í flagginu sjálfu.
-$\%b=\frac{abs((item - avg[index])}{(upperlim[index] -
-avg[index]))}$
+
+\begin{center}
+  $\%b=\frac{abs((item - avg[index])}{(upperlim[index] - avg[index]))}$
+\end{center}
+
 Hver rammastærð margfaldar sína útkomu úr formúlunni
 við gildið sem punkturinn hefur fyrir.
 Þannig gefum við punktum sem líta út fyrir að vera
