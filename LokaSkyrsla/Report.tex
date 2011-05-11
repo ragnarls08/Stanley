@@ -7,6 +7,7 @@
 \usepackage{subfig}
 \usepackage{float}
 \usepackage{todonotes}
+\usepackage{color}
 
 %Leitað er af myndum í eftirfarandi möppum
 \graphicspath{{./technical/}{./sprettir/}}
@@ -251,31 +252,21 @@ staðsett.
 gildana í tilteknum ramma er svo deilt með summu allra
 mergfeldanna. 
 Ef um ramma af stærð 10 er að ræða og gildin eru
-margfölduð eftir sætisröð, þá fæst eftirfarandi formúla. 
+margfölduð eftir sætisröð, þá fæst meðaltalið með eftirfarandi aðferð. 
 \begin{center}
   $VHM = \frac{x+2(x+1)+3(x+2)+\dots+(10(N-1))}{1+2+\dots+10}$ 
 \end{center}
 
 
-\subsection{Bollinger bands}
+\subsection{Bollinger bönd}
 \label{sec:bollinger_bands}
 
-\begin{wrapfigure}{r}{7cm}
-%\begin{figure}
- \begin{center}
-  \includegraphics[width=.58\textwidth]{Bollinger.png} 
-  \caption{Bollinger bönd merkt með Rauðum strikalínum} 
-  \end{center}
-%\end{figure}
-\end{wrapfigure}
 
 Bollinger bönd eru upprunalega þróuð sem greiningartól
 á þróun verðbréfaverða. 
 Tilgangur þeirra er að veita viðeigandi skilgreiningu háum og lágum gildum. Einnig hefur þessari 
 aðferð verið beitt á ýmis önnur vandamál með misgóðum niðurstöðum. \\
-\hfil \\
-\hfil \\
-\hfil \\
+
 Bollinger bönd samanstanda af:
 \begin{itemize}
   \item Miðband, $N-lotu$ einfalt hlaupandi meðaltal.
@@ -283,43 +274,47 @@ Bollinger bönd samanstanda af:
   \item Neðra band, $N-lotu$ staðalfrávik margfaldað með $K$, fyrir neðan miðbandið ($HM -K\sigma$).
 \end{itemize}
 
+%\begin{wrapfigure}{r}{7cm}
+\begin{figure}][H]
+ \begin{center}
+  \includegraphics[width=.58\textwidth]{Bollinger.png} 
+  \caption{Bollinger bönd merkt með Rauðum strikalínum} 
+  \end{center}
+\end{figure}
+%\end{wrapfigure}
 
-Bollinger bönd nýtast því vel til greininga hvar í
+
+Bollinger bönd nýtast því vel til greininga á því hvar í
 tímalínu óeðlileg hækkun eða lækkun á sér stað.
 
 
 
-\subsubsection{Okkar útfærsla á Bollinger}
-Útfærslan okkar byggist á því að ítra í gegnum
-mismunandi stórar rammastærðir fyrir hverja tímalínu.
-Hver rammastærð gefur hverjum punkti einkunn út frá því
-hvar punkturinn er staddur með tilliti til Bollinger
-bandanna.
-Til þess ákváðum við að nota breytta útgáfu af því sem
-kallast $\%b$ sem gefur punkti gildi yfir 1 ef
-punkturinn er fyrir utan 
-efri mörk Bollinger bandsins, tölugildi á bilinu 1-0 ef
-punkturinn liggur á milli þeirra og neikvæða tölu ef
-hann er undir þeim.
 
-\begin{center}
-  $\%b={(last-lowerBB)}{(upperBB-lowerBB)}$
-\end{center}
 
-Við notum breytta útgáfu af formúlunni sem hundsar
-hvort við erum fyrir ofan eða neðan böndin og gefur
-einfaldlega gildi á bilinu
-0-1 ef punkturinn liggur á milli bandanna en annars
-gildi yfir einum ef punkturinn er fyrir utan. Haldið er
-utan um hvort punkturinn 
-lá fyrir ofan eða neðan í flagginu sjálfu.
+
+\section{útfærsla á Rýni}
+\label{sec:implementation}
+
+
+\subsection{vantar titil}
+\label{sec:imp_our}
+
+Útfærslan okkar byggist á því að ítra mismunandi stórar rammastærðir fyrir hverja tímalínu.
+Allir púnktar í tímalínunni fá einkunn frá hverri rammastærð fyrir sig. 
+Til þses að gefa púnkti einkunn notum við okkar eigin útgáfu af því sem kallast $\%b$. 
+Útgáfan okkar gefur púnkti tölugildi á bilinu 0-1 ef hann er á milli Bollinger bandanna.
+Ef púnkturinn liggur utan þeirra fær hann tölugildi sem samsvarar hlutfallslegri fjarlægð hans frá meðaltali rammans, 
+sú tala er alltaf hærri en einn.
 
 \begin{center}
   $\%b=\frac{abs((item - avg[index])}{(upperlim[index] - avg[index]))}$
 \end{center}
 
+{
+  \color{red}
 Hver rammastærð margfaldar sína útkomu úr formúlunni
 við gildið sem punkturinn hefur fyrir.
+}
 Þannig gefum við punktum sem líta út fyrir að vera
 snörp hækkun í litlum ramma lækkað vægi þegar hann
 lendir innan bandanna í stærri ramma
@@ -341,10 +336,14 @@ fyrir þetta er notast við
 einfalda athugun sem skoðar hvort bandbreiddin fyrir
 viðkomandi punkt er óeðlilega þröng miðað við
 meðalbandbreidd tímalínunnar.
-Ef svo er er punktinum gefið lægra gildi. Þegar þetta
-er skrifað er notast við fasta margföldun en hugmyndir
+Ef svo er er punktinum gefið lægra gildi. 
+
+{
+  \color{red}
+Þegar þetta er skrifað er notast við fasta margföldun en hugmyndir
 eru uppi um að lækka 
 gildið útfrá meðaltali gilda í tímalínunni.
+}
 
 Að lokum hreinsum við flögg sem liggja hlið við hlið,
 liggja sömu megin Bollinger bandanna og innihalda
@@ -354,11 +353,23 @@ sér, en ekki punkta innan hækkunaninnar.
 
 
 
+\subsection{Niðurstaða}
+Á vissum tímapúnktu í verkefninu varð okkur ljóst að Bollinger bönd hentuðu
+mjög vel fyrir mest af því sem við óskuðum að kerfið skyldi gera.
+Því var sett aukin áhersla á að prófa mismunandi útfærslur Bollinger banda og dregið
+úr prófunum annarra aðferða.
 
 
 
 
 
+
+
+
+\hfil \\
+\hfil \\
+\hfil \\
+\hfil \\
 
 
 
@@ -368,8 +379,10 @@ Upprunalega var kerfið okkar hugsa þannig að það myndi athuga hvort ný gö
 
 Datamarket mun geta nýtt kerfið okkar bæði til að finna áhugaverðust atburðina út úr tilteknum hópi gagnasetta sem og keyrt það á nýjustu uppfærslurnar.
 
+{
+  \color{red}
 TAKA ÚT Markmiðið með þessu verkefni er að greina þessi tilvik sjálfkrafa þannig að hægt sé að beina athygli notenda DataMarket að þeim. Þannig mætti t.d. hugsa sér að dregnir yrðu fram á forsíðu DataMarket tenglar á þróun sem kerfið telur um markverða atburði að ræða.
-
+}
 
 
 
