@@ -2,10 +2,10 @@
 \usepackage[icelandic]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{graphicx}
-\usepackage{wrapfig}
+
+
 \usepackage{subfig}
-\usepackage{float}
+
 \usepackage{todonotes}
 \usepackage{color}
 
@@ -204,12 +204,8 @@ rafmagnsnotkun í ótilgreindu landi.
 
 \begin{figure}[H]
   \centering
-   
-\subfloat[Tímalína]{\label{fig:rafmagnsnotkun}\includegraphics[
-width=0.42\textwidth]{Rafmagnsnotkun}}                    
-   
-\subfloat[Tíðnirit]{\label{fig:fouriergraph}\includegraphics[
-width=0.42\textwidth]{Fourier}} 
+  \subfloat[Tímalína]{\label{fig:rafmagnsnotkun}\includegraphics[width=0.42\textwidth]{Rafmagnsnotkun}}                    
+  \subfloat[Tíðnirit]{\label{fig:fouriergraph}\includegraphics[width=0.42\textwidth]{Fourier}} 
   \caption{Fourier Transformations}
   \label{fig:fourier}
 \end{figure}
@@ -285,11 +281,10 @@ Bollinger bönd samanstanda af:
 \end{itemize}
 
 %\begin{wrapfigure}{r}{7cm}
-\begin{figure}][H]
- \begin{center}
+\begin{figure}[H]
+  \centering
   \includegraphics[width=.58\textwidth]{Bollinger.png} 
   \caption{Bollinger bönd merkt með Rauðum strikalínum} 
-  \end{center}
 \end{figure}
 %\end{wrapfigure}
 
@@ -302,18 +297,35 @@ tímalínu óeðlileg hækkun eða lækkun á sér stað.
 
 
 
-\section{útfærsla á Rýni}
+\section{Rýnir}
 \label{sec:implementation}
 
+\subsection{Klasarit}
+%\label{sec:class_diagram}
 
-\subsection{vantar titil}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.58\textwidth]{rynir_class_diagram.png} 
+  \caption{Klasarit} 
+\end{figure}
+
+\subsection{Flæðirit}
+%\label{sec:flow_chart}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.58\textwidth]{rynir_sequence-2.png} 
+  \caption{Flæðirit} 
+\end{figure}
+
+\subsection{Útfærsla}
 \label{sec:imp_our}
 
 Útfærslan okkar byggist á því að ítra mismunandi stórar rammastærðir fyrir hverja tímalínu.
-Allir púnktar í tímalínunni fá einkunn frá hverri rammastærð fyrir sig. 
-Til þses að gefa púnkti einkunn notum við okkar eigin útgáfu af því sem kallast $\%b$. 
-Útgáfan okkar gefur púnkti tölugildi á bilinu 0-1 ef hann er á milli Bollinger bandanna.
-Ef púnkturinn liggur utan þeirra fær hann tölugildi sem samsvarar hlutfallslegri fjarlægð hans frá meðaltali rammans, 
+Allir punktar í tímalínunni fá einkunn frá hverri rammastærð fyrir sig. 
+Til þess að gefa punkti einkunn notum við okkar eigin útgáfu af því sem kallast $\%b$. 
+Útgáfan okkar gefur punkti tölugildi á bilinu 0-1 ef hann er á milli Bollinger bandanna.
+Ef punkturinn liggur utan þeirra fær hann tölugildi sem samsvarar hlutfallslegri fjarlægð hans frá meðaltali rammans, 
 sú tala er alltaf hærri en einn.
 
 \begin{center}
