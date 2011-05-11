@@ -2,10 +2,10 @@
 \usepackage[icelandic]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{graphicx}
-\usepackage{wrapfig}
+
+
 \usepackage{subfig}
-\usepackage{float}
+
 \usepackage{todonotes}
 \usepackage{color}
 
@@ -88,7 +88,7 @@ tilefni til.
 \section{Framvinda}
 \subsection{Sprettir}
 Verkefnið okkar var þannig lagt upp af DataMarket, að þeir vildu í fyrsta lagi fá heilstætt kerfi sem skilaði niðurstöðum. 
-Þær niðurstöður þyrftu þó ekki að verja mjög marktækar og byggja á flóknum reikniaðferðum. Því næst áttum við að þróa reikniaðferðirnar eins 
+Þær niðurstöður þyrftu þó ekki að vera mjög marktækar og byggja á flóknum reikniaðferðum. Því næst áttum við að þróa reikniaðferðirnar eins 
 mikið og mögulegt væri, á þeim tíma sem við höfðum. Þetta verkefni var því mjög opið og ljóst að mikilvægt væri 
 af okkar hálfu að halda góðri yfirsýn allan tímann, svo að ekki yrði farið lengra í bætingum en svo að það myndi nást að fullklára þær 
 aðferðir sem við ætluðum að hafa í kerfinu, í tæka tíð. Því lögðum við upp með að vinna verkið í tveimur fösum. Áætlunin var þannig að skipuleggja
@@ -100,7 +100,7 @@ Sprettur 0 var settur upp sem undirbúnings sprettur. Ekki voru sögur eins og �
 skipuleggja verkáætlun, gerðum áhættugreiningu og unnum að ýmsum öðrum undirbúiningi.
 \subsubsection{Sprettur 1}
 Í fyrsta spretti fórum við í að kynna okkur tæknileg atriði sem við ætluðum að nota.
-Flest þekktum við, en höfðum ekki unnið með það í Python áður. Þetta voru hlutir eins og prófandrifin þróun, REST-ful þróun og hvernig 
+Flest þekktum við, en höfðum ekki unnið með í Python áður. Þetta voru hlutir eins og prófandrifin þróun, REST-ful þróun og hvernig 
 unnið er með JSON skrár. Einnig settum við upp grunn að kerfinu sem gat sótt gögn frá DataMarket. Náðum ekki alveg að kára það sem við lögðum 
 upp með og urðum að færa hluta úr sögum yfir í næsta sprett.
 \begin{figure}[H]
@@ -112,7 +112,7 @@ upp með og urðum að færa hluta úr sögum yfir í næsta sprett.
 \subsubsection{Sprettur 2}
 Í spretti 2 fundum við áhugaverð gögn hjá Datamarket settum upp staðbunda gátt(e.service stub),svo að það myndi ekki hindra okkur í þróun ef 
 aðgangur að gagnagrunni Datamarket væri ekki til staðar. Þetta var hluti af okkar áhættugreiningu (VÍSUN í KAFLA). 
-Þá bjugum við til fyrstu reikniaðferðirnar, meðaltal miðgildi og staðalfrávik, og létum kerfið sækja gögn og skila niðurstöðum.
+Þá bjugum við til fyrstu reikniaðferðirnar, meðaltal, miðgildi og staðalfrávik, og létum kerfið sækja gögn og skila niðurstöðum.
 Þá áttum við fundi með sérfræðingum á sviði stærðfræði og tölfræði, til að ýta úr vör hugmyndavinnu fyrir seinni fasa.
 \begin{figure}[H]
  \centering
@@ -203,13 +203,9 @@ rafmagnsnotkun í ótilgreindu landi.
 
 
 \begin{figure}[H]
-  \centering
-   
-\subfloat[Tímalína]{\label{fig:rafmagnsnotkun}\includegraphics[
-width=0.42\textwidth]{Rafmagnsnotkun}}                    
-   
-\subfloat[Tíðnirit]{\label{fig:fouriergraph}\includegraphics[
-width=0.42\textwidth]{Fourier}} 
+  \centering 
+  \subfloat[Tímalína]{\label{fig:rafmagnsnotkun}\includegraphics[width=0.42\textwidth]{Rafmagnsnotkun}}                    
+  \subfloat[Tíðnirit]{\label{fig:fouriergraph}\includegraphics[width=0.42\textwidth]{Fourier}} 
   \caption{Fourier Transformations}
   \label{fig:fourier}
 \end{figure}
@@ -285,7 +281,7 @@ Bollinger bönd samanstanda af:
 \end{itemize}
 
 %\begin{wrapfigure}{r}{7cm}
-\begin{figure}][H]
+\begin{figure}[H]
  \begin{center}
   \includegraphics[width=.58\textwidth]{Bollinger.png} 
   \caption{Bollinger bönd merkt með Rauðum strikalínum} 
