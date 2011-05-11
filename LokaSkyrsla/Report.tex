@@ -11,6 +11,7 @@
 %Leitað er af myndum í eftirfarandi möppum
 \graphicspath{{./technical/}{./sprettir/}}
 \linespread{1.5}
+\setcounter{tocdepth}{2}
 
 \usepackage{graphicx}
 \usepackage{wrapfig}
@@ -39,6 +40,7 @@ gert meira en unnið eingöngu með nýjustu uppfærslurnar
 og varð því kerfið okkar yfirgripsmeira ein upprunalega
 var hugsað.
 
+\newpage
 \section{Lýsing verkefnis}
 Sú þjónusta sem Datamarket veitir er að taka sama töluleg gögn frá opinberum stofnunum og einkaaðilum og gerir þau aðgengileg á einum stað sem og birta þau á auðskiljanlegan máta. Gagnsafn Datamarket er gríðarstórt og fer ört vaxandi. Frá og með 25. janúar 2011 samanstóð það af meira en 13.000 gagnasettum sem innihélt næstum 100 milljón tímalínur. Það gefur augaleið að það er ógerlegt að fara handvirkt í gegnum þetta magn af gögnum til að finna áhugaverða atburði því ætti kerfið okkar að vera kærkomin viðbót við kerfi Datamarket.
 
@@ -76,7 +78,8 @@ tilefni til.
 
 \newpage
 
-\section{Sprettir}
+\section{Framvinda}
+\subsection{Sprettir}
 Verkefnið okkar var þannig lagt upp af DataMarket, að þeir vildu í fyrsta lagi fá heilstætt kerfi sem skilaði niðurstöðum. 
 Þær niðurstöður þyrftu þó ekki að verja mjög marktækar og byggja á flóknum reikniaðferðum. Því næst áttum við að þróa reikniaðferðirnar eins 
 mikið og mögulegt væri, á þeim tíma sem við höfðum. Þetta verkefni var því mjög opið og ljóst að mikilvægt væri 
@@ -85,21 +88,21 @@ aðferðir sem við ætluðum að hafa í kerfinu, í tæka tíð. Því lögðu
 einungis fyrri fasan í upphafi. Byrja að kynna okkur meðfram þeim fasa hvað við gætum mögulega gert í seinni fasanum, en taka ekki ákvarðanir 
 um hvað yrði gert fyrr en í upphafi seinnifasa.
 
-\subsection{Sprettur 0}
+\subsubsection{Sprettur 0}
 Sprettur 0 var settur upp sem undirbúnings sprettur. Ekki voru sögur eins og í hefbundnum spretti, heldur notuðum við þennan tíma til að 
 skipuleggja verkáætlun, gerðum áhættugreiningu og unnum að ýmsum öðrum undirbúiningi.
-\subsection{Sprettur 1}
+\subsubsection{Sprettur 1}
 Í fyrsta spretti fórum við í að kynna okkur tæknileg atriði sem við ætluðum að nota.
 Flest þekktum við, en höfðum ekki unnið með það í Python áður. Þetta voru hlutir eins og prófandrifin þróun, REST-ful þróun og hvernig 
 unnið er með JSON skrár. Einnig settum við upp grunn að kerfinu sem gat sótt gögn frá DataMarket. Náðum ekki alveg að kára það sem við lögðum 
 upp með og urðum að færa hluta úr sögum yfir í næsta sprett.
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.72\textwidth]{Sprettur3_Burndown.png}
-  \caption{Sprettur 1 Burndown RÖNG MYND}
+  \includegraphics[width=0.72\textwidth]{Sprettur1_Burndown.png}
+  \caption{Sprettur 1 Burndown}
 \end{figure}
 
-\subsection{Sprettur 2}
+\subsubsection{Sprettur 2}
 Í spretti 2 fundum við áhugaverð gögn hjá Datamarket settum upp staðbunda gátt(e.service stub),svo að það myndi ekki hindra okkur í þróun ef 
 aðgangur að gagnagrunni Datamarket væri ekki til staðar. Þetta var hluti af okkar áhættugreiningu (VÍSUN í KAFLA). 
 Þá bjugum við til fyrstu reikniaðferðirnar, meðaltal miðgildi og staðalfrávik, og létum kerfið sækja gögn og skila niðurstöðum.
@@ -109,16 +112,16 @@ aðgangur að gagnagrunni Datamarket væri ekki til staðar. Þetta var hluti af
  \includegraphics[width=0.72\textwidth]{Sprettur2_Burndown.png}
  \caption{Sprettur 2 Burndown}
 \end{figure}
-\subsection{Sprettur 3}
+\subsubsection{Sprettur 3}
 Þegar hér var komið við sögu vorum við farnir að finna ákveðinn takt í áætlanagerð og sáum betur hvað við gátum gert ráð fyrir að klára mikið 
 í einum sprett. Setum upp aðgerðarsöfn(e. libraries) sem voru til þess fallin að aðstoða okkur við útreikninga. Það tók þó umtalsvert meiri tíma en við gerðum
 ráð fyrir. Þá bættum við staðbundnu gáttina og kynntum okkur aðgerðarsöfnin.
 \begin{figure}[H]
  \centering
- \includegraphics[width=0.72\textwidth]{Sprettur3Burndown.png}
+ \includegraphics[width=0.72\textwidth]{Sprettur3_Burndown.png}
  \caption{Sprettur 3 Burndown}
 \end{figure}
-\subsection{Sprettur 4}
+\subsubsection{Sprettur 4}
 Spretturinn fór í að setja upp framenda á kerfið og forma skýrsluna sem það skilar af sér. Þegar við vorum svo farnir að nota aðgerðarsöfnin 
 kom á daginn að einföldu aðferðirnar okkar voru mun betri en vonir stóðu til. Einnig komumst við að því að það hafa aðrir beitt þessum aðferðum 
 og kallast þær Bollinger bönd ( SJÁ KAFLA UM BOLLINGER BÖND ). 
@@ -131,7 +134,7 @@ Við gátum nú sýnt þeim hjá Datamarket niðurstöður úr kerfinu okkar og 
  \caption{Sprettur 4 Burndown}
 \end{figure}
 
-\subsection{Sprettur 5}
+\subsubsection{Sprettur 5}
 Síðasti sprettur í fasa 1. Funduðum með DataMarket og ákváðum endanlegt form á flöggum sem er skilað. Gengum frá lausum endum, og kóði yfirfarinn 
 (e. refactor) og útgáfa 1.0 varð til. Hugmyndavinna fyrir fasa 2 komin á fullt.
 
@@ -141,7 +144,7 @@ Síðasti sprettur í fasa 1. Funduðum með DataMarket og ákváðum endanlegt 
  \caption{Sprettur 5 Burndown}
 \end{figure}
 
-\subsection{Sprettur 6}
+\subsubsection{Sprettur 6}
 Við höfðum sankað að okkur mikið af upplýsingum og höfðum ákveðnar hugmyndir um hvað okkur langaði að gera. Það krafðist þess hinsvegar að við 
 þurftum að framkvæma prófanir til að sjá hvað myndi henta okkar kerfi best. Því skipulögðum við sprettinn létt og bættum í hann þegar líða tók á. 
 Fljótlega komumst við þó að niðurstöðum um hvaða útfærslur við vildum nota ( SJÁ TÆKNIKAFLA ). Vinna við lokaskýrslu hófst. Í lok sprettsins 
@@ -153,17 +156,17 @@ vorum við komnir með verulega bættar reikniaðgeðir frá því sem var.
  \caption{Sprettur 6 Burndown}
 \end{figure}
 
-\subsection{Sprettur 7}
+\subsubsection{Sprettur 7}
 Byrjað á lokafrágangi. Allar keyrslustillingar lesnar úr skrá og villumeðhöndlun yfirfarin. Sett upp log kerfi. Álagsprófanir framkvæmdar og 
 niðurstöður úr þeim yfirfarnar. Fínstillingar á reikniritum í kjölfar prófanna og villur lagfærðar. 
 
 \begin{figure}[H]
  \centering
- \includegraphics[width=0.72\textwidth]{Sprettur3_Burndown.png}
- \caption{Sprettur 7 Burndown RÖNG MYND}
+ \includegraphics[width=0.72\textwidth]{Sprettur7_Burndown.png}
+ \caption{Sprettur 7 Burndown}
 \end{figure}
 
-\subsection{Sprettur 8}
+\subsubsection{Sprettur 8}
 Skýrslugerð í aðalatriði í lokasprett. Lokafrágangur á kóða. Læddum inn einni bætingu á reikniaðferðum og prófuðum uppá nýtt.
 \begin{figure}[H]
  \centering
