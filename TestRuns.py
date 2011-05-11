@@ -15,7 +15,7 @@ for x in f:
 
 rynir = Rynir()
 
-report = rynir.analyze(listOfDataSets[5000:6000])
+report = rynir.analyze(listOfDataSets[5000:5010])
 #report = rynir.analyze("12sr|e7l=3p")
 #report = rynir.analyze("12sr")
 
