@@ -24,13 +24,9 @@
 \section{Inngangur}
 
 Verkefnið snérist um að búa til kerfi sem greinir
-breytingar á gagnasettum í kerfum DataMarket og flagga
+breytingar á gagnasettum í kerfum Datamarket og flagga
 frávik frá eðlilegri þróun tiltekinnar tímalínu, sem
 gætu bent til þess að um áhugaverðan atburð sé að ræða.
-
-Fyrirhugað er að kerfið okkar verði keyrt innan kerfis
-Datamarket og er hugsa þannig að hægt sé að keyra það á
-gögnin þeirra hvenær sem er.
 
 Upprunalega var kerfið okkar hugsa þannig að það myndi
 athuga hvort ný gögn sem væri verið að bæta við
@@ -41,13 +37,9 @@ og varð því kerfið okkar yfirgripsmeira ein upprunalega
 var hugsað.
 
 \section{Lýsing verkefnis}
-Sú þjónusta sem Datamarket veitir er að taka sama töluleg gögn frá opinberum stofnunum og einkaaðilum og gerir þau aðgengileg á einum stað sem og birta þau á auðskiljanlegan máta. Gagnsafn Datamarket er gríðarstórt og fer ört vaxandi. Frá og með 25. janúar 2011 samanstóð það af meira en 13.000 gagnasettum sem innihélt næstum 100 milljón tímalínur. Það gefur augaleið að það er ógerlegt að fara handvirkt í gegnum þetta magn af gögnum til að finna áhugaverða atburði því ætti kerfið okkar að vera kærkomin viðbót við kerfi Datamarket.
+Sú þjónusta sem Datamarket veitir er að taka sama töluleg gögn frá opinberum stofnunum og einkaaðilum og gerir þau aðgengileg á einum stað sem og birta þau á auðskiljanlegan máta. 
 
-Hvert gagnasett hjá DataMarket inniheldur tímaraðir sem
-sýna þróun tölulegra stærða yfir tíma. Á hverjum degi
-eru tugir, eða jafnvel hundruð slíkra gagnasetta
-uppfærð í kerfinu. Hvert gagnasett inniheldur svo að
-lágmarki eina, en allt að nokkurþúsund tímaraðir. Sú
+Hvert gagnasett hjá DataMarket inniheldur tímaraðir sem sýna þróun tölulegra stærða yfir tíma. Á hverjum degi eru tugir, eða jafnvel hundruð slíkra gagnasetta uppfærð í kerfinu. Hvert gagnasett inniheldur svo að lágmarki eina, en allt að nokkurþúsund tímaraðir. Sú
 þróun sem ein tímaröð sýnir getur verið allt frá vel
 þekktum stærðum, s.s. verðbólgu, atvinnuleysi eða
 hitastigi í Reykjavík, til mjög sérhæfðra eða jafnvel
@@ -60,22 +52,73 @@ umsvifalaust. En mjög markverð, áhugaverð eða jafnvel
 varasöm þróun getur líka birst í stærðum sem fáir
 fylgjast með og enginn tekur etv. eftir.
 
+Gagnsafn Datamarket er gríðarstórt og fer ört vaxandi. Frá og með 25. janúar 2011 samanstóð það af meira en 13.000 gagnasettum sem innihélt næstum 100 milljón tímalínur. Það gefur augaleið að það er ógerlegt að fara handvirkt í gegnum þetta magn af gögnum til að finna áhugaverða atburði því ætti kerfið okkar að vera kærkomin viðbót við kerfi Datamarket.
+
 Markmiðið með þessu verkefni er að greina þessi tilvik
 sjálfkrafa þannig að hægt sé að beina athygli notenda
 DataMarket að þeim. Þannig mætti t.d. hugsa sér að
 dregnir yrðu fram á forsíðu DataMarket tenglar á þróun
 sem kerfið telur um markverða atburði að ræða.
 
-Verkefnið snýst s.s. um að útbúa aðferðafræði sem er
-líkleg til að grípa tilvik af þesu tagi. Tiltölulega
-auðvelt er að útbúa mjög gróf algrím sem myndu grípa
-mörg tilvik, en líklega einnig leiða af sér töluvert
-magn “false positives”. Hugsunin er að byrja á að útbúa
-slíka einfalda frumgerð og endurbæta svo aðferðafræðina
-eftir því sem reynsla, hugmyndaauðgi og tími gefa
-tilefni til.
+Verkefnið snérist s.s. um að útbúa aðferðafræði til að grípa tilvik af þesu tagi. Það sem að Datamarket bað um í upphafi var að við myndum byrja á að útbúa kerfi sem myndi greina meira en minna af áhugaverðum gögnum, jafnvel þú það myndi mögulega innihalda mikið af ómarktökum niðurstöðum (e. false positives). Við byrjuðum á að útbúa slíka einfalda frumgerð og endurbættum svo aðferðafræðina eftir því sem leið á.
+
+Fyrirhugað er að kerfið okkar verði keyrt innan kerfis Datamarket og er hugsa þannig að hægt sé að keyra það á gögnin þeirra hvenær sem er.
 
 \newpage
+
+\section{Verkskipulag}
+
+\subsection{Tímaskipulag}
+
+Eitt af því fyrsta sem við gerðum þegar við byrjuðum að vinna að verkefninu var að ákveða hvenær vikunar við myndum vinna að verkefninu. Þetta var mjög mikilvægt vegna þess að meðlimir hópsins voru í ýmsum áföngum í skólanum, einnig voru þrír af fjórum meðlimum hópsins dæmatíma kennarar í skólanum stóran hluta verkefnistímans. 
+Viku skipulagið leit svona út:
+
+\vspace{5 mm}
+\begin{tabular}{| l | l |}
+\hline
+  mánudagar & 12 - 3 \\
+  \hline
+  Þriðjudagar & 9 - 17 \\
+  \hline
+  Miðvikudagar & ekkert unnið sökum anna \\
+  \hline
+  Fimmtudagar & 12 - 4 \\
+  \hline
+  Föstudagar & 9 - 12\\
+\hline
+\end{tabular}
+\vspace{5 mm}
+
+Farið var eftir þessu skipulagi á meðan kennsla stóð yfir í skólanum alls átta vikur (frá 30. janúar til 28. mars). 18 tímar í viku, alls 144 tímar á mann miðað við átta vikum.
+Eftir þessar átta vikur kom prófatími í háskólanum og lá því vinna í verkefninu niðri. 
+Að loknum prófum voru þrjár vikur sem meðlimir hópsins gátu einbeitt sér alfarið að verkefninu. Sett var upp áætlun um að vinna í átta tíma á dag, sjö daga vikunnar. Gerðum við því ráð fyrir að vinna 168 tíma á mann. 
+Samtals hljómaði áætlunin uppá 312 tíma fyrir hvern meðlim hópsins. Inni í áætluninn voru ekki tímarnir sem voru settir í undirbúning verkefnisins, þ.e. þegar við vorum að funda með Hjálmari Gíslasyni hjá Datamarket og að setja saman lýsingu verkefnisins haustið 2010.
+
+\subsection{Aðferðafræði}
+
+Við áttuðum okkur á því strax þegar við byrjuðum að skipuleggja okkur að þar sem verkefnið fæli í sér töluverðar rannsóknir, þ.e. að finna út hvaða reiknirit og reiknilíkön væru hentugust til að fá kerfið okkar til að virka eins og skildi sem og prófanir á þeim, þá þyrftum við að hafa mikið og gott skipulag. Þetta skipulag fengum við með því að notast Scrum aðferðafræðina þar sem að hún bíður uppá að við gátum verið fljótir að bregðast við þegar e-ð var ekki að ganga sem sem og tryggt að við færum ekki of langt frá upprunalega markmiði verkefnisins. 
+Eins og kom fram að ofan þá byrjuðum við á því að útbúa einfalda frumgerð sem gæfi okkur niðurstöður og síðan myndum við vinna í að betrumbæta það. Útfrá því var verkefninu skipt upp í tvo fasa, fyrri fasinn var frumgerðarfasinn, sem stóð yfir fyrstu átta vikurnar og síðan seinni fasann sem voru seinusta þrjár vikurnar. Alls brutum við tímabilið niður í átta spretti, í fasa eitt voru fjóra tveggja vikna sprettir, síðan settum við inn einn fjögra vikna sprett sem innihélt prófvikurnar. Síðan var settur sprettur á hverja af seinustu þrem vikunum.
+Haldið var utan um alla skjölun s.s. kröfulista, framvindurit (e. burndown) og dagbækur hópmeðlima. Notast var við Scrum vegg þar sem að sögur og verkefni tengd þeim voru hengd upp til að fá yfirsýn yfir framvindu sprettanna. Gaf það góða raun þar sem að það var ávalt í augsýn og hélt mönnum við efnið.
+
+\subsection{Hlutverkaskipting}
+
+Meðlimir hópsins tóku að sér hlutverk eins og mælt er með innan Scrum. Hlutverkin voru eftirfarandi:
+
+\vspace{5 mm}
+\begin{tabular}{| l | l |}
+\hline
+Titill & Nafn \\
+\hline
+Scrum master & Þórður Bjarki Arnarson\\
+\hline
+Fulltrúi verkkaupa* & Arnór Barkarson \\
+\hline
+Forritarar & Allir \\
+\hline
+\end{tabular}
+\vspace{5 mm}
+
+*Taka ber fram að ástæðan fyrir þessum titili var að eiginlegur verkkaupi verkefnisins var Hjálmar Gíslason ein þar sem að það þótti ekki ástæða fyrir hann að vera taka beinan þátt í verkefninu, allavegana í fyrri fasa verkefnisins, þá tók Arnór að sér að vera fulltrúi hans.
 
 \section{Sprettir}
 Verkefnið okkar var þannig lagt upp af DataMarket, að þeir vildu í fyrsta lagi fá heilstætt kerfi sem skilaði niðurstöðum. 
