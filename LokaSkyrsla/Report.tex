@@ -18,6 +18,11 @@
 \usepackage{wrapfig}
 \usepackage{float}
 \usepackage{verbatim}
+\usepackage[none]{hyphenat}
+
+
+
+
 
 \begin{document}
 
@@ -25,7 +30,8 @@
 \newpage
 
 \section{Inngangur}
-Skýrlsa þessi er um lokaverkefniverkefni í Tölvunarfræði við Háskólann í Reykjavík, 
+Skýrlsa þessi er um lokaverkefniverkefni í Tölvunarfræði við Háskólann í
+Reykjavík, 
 sem unnið var í samvinnu við DataMarket.
 
 Verkefnið snérist um að búa til kerfi sem greinir
@@ -33,7 +39,8 @@ breytingar á tímalínum í gagnasafni Datamarket,
 sem gætu bent til þess að um markverða eða áhugaverða þróun sé að ræða.
 
 Í skýrslunni er náin lýsing á verkefninu og hvernig vekráætlun var háttað.
-Einnig greinum við frá þeim reikniaðferðum sem skoðaðar voru með tilliti til 		\todo{stendur greinum 2x}
+Einnig greinum við frá þeim reikniaðferðum sem skoðaðar voru með tilliti til 	
+\todo{stendur greinum 2x}
 lausnar verkefnisins og greinum frá niðurstöðum okkar. Þá 
 verður farið yfir atriði sem skoða mætti við nánari þróun kerfisins.
 Að lokum er yfirlit yfir framvindu verksins.
@@ -47,9 +54,12 @@ af meira en 13.000 gagnasettum sem innihélt næstum 100 milljón tímalínur og
 fer það ört vaxandi.
 
 
-Hvert gagnasett hjá DataMarket inniheldur tímaraðir sem sýna þróun tölulegra stærða yfir tíma. 
-Á hverjum degi eru tugir, eða jafnvel hundruð slíkra gagnasetta uppfærð í kerfinu. 
-Hvert gagnasett inniheldur að lágmarki eina, en allt að nokkurþúsund tímaraðir. Sú		\todo{nokkurþúsund, tvo orð?}
+Hvert gagnasett hjá DataMarket inniheldur tímaraðir sem sýna þróun tölulegra
+stærða yfir tíma. 
+Á hverjum degi eru tugir, eða jafnvel hundruð slíkra gagnasetta uppfærð í
+kerfinu. 
+Hvert gagnasett inniheldur að lágmarki eina, en allt að nokkurþúsund tímaraðir.
+Sú		\todo{nokkurþúsund, tvo orð?}
 þróun sem ein tímaröð sýnir getur verið allt frá vel
 þekktum stærðum, s.s. verðbólgu, atvinnuleysi eða
 hitastigi í Reykjavík, til mjög sérhæfðra eða jafnvel
@@ -59,7 +69,8 @@ leðurvara frá Brasilíu!
 Mikið er fylgst með algengustu stærðum og
 stórvægilegar breytingar í þeim rata iðulega í fréttir	
 umsvifalaust. En mjög markverð, áhugaverð eða jafnvel
-varasöm þróun getur líka birst í stærðum sem fáir		\todo{er rett að tala um stærðir, gögn?}
+varasöm þróun getur líka birst í stærðum sem fáir		\todo{er rett að
+tala um stærðir, gögn?}
 fylgjast með og enginn tekur etv. eftir. 
 
 Þar sem óhagkvæmt er að fara handvirkt í gegnum þetta mikið magn af gögnum, 
@@ -73,9 +84,12 @@ eingöngu með nýjustu uppfærslurnar og varð því kerfið okkar yfirgripsmei
 upprunalega stóð til.
 
 Óskir Datamarket voru að fyrst yrði útbúið einfalt kerfi 
-sem myndi greina meira en minna af áhugaverðum gögnum, jafnvel þó það myndi mögulega 
-innihalda mikið af ómarktækum niðurstöðum (e. false positives). Það var hugsað sem 
-grunnur sem hægt væri að byggja á. Því næst átti að þróa og greina aðferðir við að 
+sem myndi greina meira en minna af áhugaverðum gögnum, jafnvel þó það myndi
+mögulega 
+innihalda mikið af ómarktækum niðurstöðum (e. false positives). Það var hugsað
+sem 
+grunnur sem hægt væri að byggja á. Því næst átti að þróa og greina aðferðir við
+að 
 bæta niðurstöðurnar. 
 
 Fyrirhugað er að kerfið verði keyrt innan kerfis Datamarket.
@@ -143,7 +157,11 @@ yfir framvindu sprettanna. Gaf það góða raun þar sem að það var ávalt �
 
 \subsection{Tímaskipulag}
 
-Eitt af því fyrsta sem við gerðum þegar við byrjuðum að vinna að verkefninu var að ákveða hvenær vikunar við myndum vinna að verkefninu. Þetta var mjög mikilvægt vegna þess að meðlimir hópsins voru í ýmsum áföngum í skólanum, einnig voru þrír af fjórum meðlimum hópsins dæmatíma kennarar í skólanum stóran hluta verkefnistímans. 
+Eitt af því fyrsta sem við gerðum þegar við byrjuðum að vinna að verkefninu var
+að ákveða hvenær vikunar við myndum vinna að verkefninu. Þetta var mjög
+mikilvægt vegna þess að meðlimir hópsins voru í ýmsum áföngum í skólanum, einnig
+voru þrír af fjórum meðlimum hópsins dæmatíma kennarar í skólanum stóran hluta
+verkefnistímans. 
 Viku skipulagið leit svona út:
 
 \vspace{5 mm}
@@ -162,23 +180,58 @@ Viku skipulagið leit svona út:
 \end{tabular}
 \vspace{5 mm}
 
-Farið var eftir þessu skipulagi á meðan kennsla stóð yfir í skólanum alls átta vikur (frá 30. janúar til 28. mars). 18 tímar í viku, alls 144 tímar á mann miðað við átta vikum.
-Eftir þessar átta vikur kom prófatími í háskólanum og lá því vinna í verkefninu niðri. 
-Að loknum prófum voru þrjár vikur sem meðlimir hópsins gátu einbeitt sér alfarið að verkefninu. Sett var upp áætlun um að vinna í átta tíma á dag, sjö daga vikunnar. Gerðum við því ráð fyrir að vinna 168 tíma á mann. 
-Samtals hljómaði áætlunin uppá 312 tíma fyrir hvern meðlim hópsins. Inni í áætluninn voru ekki tímarnir sem voru settir í undirbúning verkefnisins, þ.e. þegar við vorum að funda með Hjálmari Gíslasyni hjá Datamarket og að setja saman lýsingu verkefnisins haustið 2010.
+Farið var eftir þessu skipulagi á meðan kennsla stóð yfir í skólanum alls átta
+vikur (frá 30. janúar til 28. mars). 18 tímar í viku, alls 144 tímar á mann
+miðað við átta vikum.
+Eftir þessar átta vikur kom prófatími í háskólanum og lá því vinna í verkefninu
+niðri. 
+Að loknum prófum voru þrjár vikur sem meðlimir hópsins gátu einbeitt sér alfarið
+að verkefninu. Sett var upp áætlun um að vinna í átta tíma á dag, sjö daga
+vikunnar. Gerðum við því ráð fyrir að vinna 168 tíma á mann. 
+Samtals hljómaði áætlunin uppá 312 tíma fyrir hvern meðlim hópsins. Inni í
+áætluninn voru ekki tímarnir sem voru settir í undirbúning verkefnisins, þ.e.
+þegar við vorum að funda með Hjálmari Gíslasyni hjá Datamarket og að setja saman
+lýsingu verkefnisins haustið 2010.
 
+\subsection{Aðferðafræði}
 
-
+Við áttuðum okkur á því strax þegar við byrjuðum að skipuleggja okkur að þar sem
+verkefnið fæli í sér töluverðar rannsóknir, þ.e. að finna út hvaða reiknirit og
+reiknilíkön væru hentugust til að fá kerfið okkar til að virka eins og skildi
+sem og prófanir á þeim, þá þyrftum við að hafa mikið og gott skipulag. Þetta
+skipulag fengum við með því að notast Scrum aðferðafræðina þar sem að hún bíður
+uppá að við gátum verið fljótir að bregðast við þegar e-ð var ekki að ganga sem
+sem og tryggt að við færum ekki of langt frá upprunalega markmiði verkefnisins. 
+Eins og kom fram að ofan þá byrjuðum við á því að útbúa einfalda frumgerð sem
+gæfi okkur niðurstöður og síðan myndum við vinna í að betrumbæta það. Útfrá því
+var verkefninu skipt upp í tvo fasa, fyrri fasinn var frumgerðarfasinn, sem stóð
+yfir fyrstu átta vikurnar og síðan seinni fasann sem voru seinusta þrjár
+vikurnar. Alls brutum við tímabilið niður í átta spretti, í fasa eitt voru fjóra
+tveggja vikna sprettir, síðan settum við inn einn fjögra vikna sprett sem
+innihélt prófvikurnar. Síðan var settur sprettur á hverja af seinustu þrem
+vikunum.
+Haldið var utan um alla skjölun s.s. kröfulista, framvindurit (e. burndown) og
+dagbækur hópmeðlima. Notast var við Scrum vegg þar sem að sögur og verkefni
+tengd þeim voru hengd upp til að fá yfirsýn yfir framvindu sprettanna. Gaf það
+góða raun þar sem að það var ávalt í augsýn og hélt mönnum við efnið.
 
 \newpage
 
 
 \section{Rannsóknir}
 \label{sec:research}
-\todo[inline]{skrifa stuttann inngang að Tækniskýrslu hluta}
+Til að kynna okkur mögulegar aðferðir sem gætu nýst við greiningu á gögnum
+höfðum við samband við kennara og prófessora innan skólans. Henning Úlfarsson
+varð fyrstur fyrir valinu og á fundi með honum kviknuðu flestar þær hugmyndir sem eru
+í notkun í kerfinu í dag. Einnig áttum við fund með Bjarna Halldórssyni sem
+kynnti fyrir okkur flóknari hugtök og benti okkur á ýmis hliðstæð verkefni.
+Magnús Már Halldórsson og Sæmundur E. Þorsteinsson ráðlögðu okkur svo frekar í
+öðrum reikniritum sem talað er um í Kafla 7.
+
+
 
 \subsection{Bollinger bönd}
-\label{sec:bollinger_bands}
+\label{sec:research_bollinger_bands}
 
 Bollinger bönd eru upprunalega þróuð sem greiningartól
 á þróun verðbréfaverða. 
@@ -192,9 +245,12 @@ Bollinger bönd samanstanda af:
 
 
 \begin{itemize}
-  \item Miðband, $N-lotu$ einfalt hlaupandi meðaltal\footnote[1]{Útskýringu á hlaupandi meðaltali er að finna í tækniskýrslu á meðfylgjandi geisladisk.}.
-  \item Efra band, $N-lotu$ staðalfrávik margfaldað með $K$, fyrir ofan miðbandið ($HM + K\sigma$).
-  \item Neðra band, $N-lotu$ staðalfrávik margfaldað með $K$, fyrir neðan miðbandið ($HM -K\sigma$).
+  \item Miðband, $N-lotu$ einfalt hlaupandi meðaltal\footnote[1]{Útskýringu á
+hlaupandi meðaltali er að finna í tækniskýrslu á meðfylgjandi geisladisk.}.
+  \item Efra band, $N-lotu$ staðalfrávik margfaldað með $K$, fyrir ofan
+miðbandið ($HM + K\sigma$).
+  \item Neðra band, $N-lotu$ staðalfrávik margfaldað með $K$, fyrir neðan
+miðbandið ($HM -K\sigma$).
 \end{itemize}
 
 
@@ -221,132 +277,108 @@ tímalínu óeðlileg hækkun eða lækkun á sér stað.
 \subsection{Fourier transformations} 
 
 Fourier umbreytingar eru stærðfræðilegar aðgerðir
-sem brjóta merki niður í tíðnir þess, slíkt gátum við nýtt okkur með því að láta
-umbreyta tímalínu í tíðnir. 
+
+sem brjóta merki niður í tíðnir þess, hægt væri að umbreyta tímalínu í tíðnir. 
 Ef ákveðin tíðni er mjög áberandi í tíðniritinu, þá er að öllum líkindum
-endurteknging með þeirri tíðni í tímalínunni. 
+endurtekning með þeirri tíðni í tímalínunni. 
+
 Sem dæmi um slíkt er tímalínan á mynd~\ref{fig:rafmagnsnotkun} sem sýnir
 rafmagnsnotkun í ótilgreindu landi.
 
 
 \begin{figure}[H]
   \centering 
-  \subfloat[Tímalína]{\label{fig:rafmagnsnotkun}\includegraphics[width=0.42\textwidth]{Rafmagnsnotkun}}                    
-  \subfloat[Tíðnirit]{\label{fig:fouriergraph}\includegraphics[width=0.42\textwidth]{Fourier}} 
+ 
+\subfloat[Tímalína]{\label{fig:rafmagnsnotkun}\includegraphics[width=0.42\textwidth]{Rafmagnsnotkun}}                    
+ 
+\subfloat[Tíðnirit]{\label{fig:fouriergraph}\includegraphics[width=0.42\textwidth]{Fourier}} 
   \caption{Fourier Transformations}
   \label{fig:fourier}
 \end{figure}
 
 Það má sjá að tímalínan hefur ákveðnar endurtekningar,
-nánar til tekið þá er mikil notkun á veturna en lítil á sumrin.
+
+nánar tiltekið þá er mikil notkun á veturna en lítil á sumrin.
 Þessa föstu sveiflu í tímalínunni greinir Fourier og skilar grafi á mynd~\ref{fig:fouriergraph}. 
+
 Úr því er síðan hægt að greina að endurtekning á sér stað með 12 staka
 millibili.
 
 \subsection{Niðurstaða rannsókna}
+Á vissum tímapunkti í verkefninu varð okkur ljóst að Bollinger bönd hentuðu
+mjög vel fyrir mest af því sem við óskuðum að kerfið skyldi gera.
+Því var sett aukin áhersla á að prófa mismunandi útfærslur Bollinger banda og
+dregið úr prófunum annarra aðferða.
 
+Hinsvegar eru annmarkar á þessari aðferð.
+
+Sem dæmi má nefna línur sem innihalda mikinn fjölda punkta.
+Líta má á þær tímalínur af \ilqq hærri\irqq \hspace{1pt} upplausn en þær sem innihalda fáa punkta. Í
+þeim getur kerfið okkar verið að flagga punkta sem vissulega eru mjög
+áhugaverðir séu þeir skoðaðir í því samhengi sem kerfið okkar sér þá þ.e. innan
+rammans. Sé ramminn lítill er hægt að bera það saman við að kerfið sé að skoða
+tímalínuna úr lítilli fjarlægð. Aftur á móti sé sama tímalína skoðuð úr meiri
+fjarlægð getur línan virst svo gott sem flöt og því í heildina ansi óáhugaverð.
+
+Í öðru dæmi væri hægt að hugsa sér tímalínu sem hækkar töluvert upp í ákveðinn
+hápunkt og taki svo að lækka aftur niður í fyrri gildi. Gerist þetta með nógu
+litlum breytingum á milli punkta er ólíklegt að kerfið okkar sjái nokkuð
+athugavert við þetta þó að mögulega hafi eitthvað merkilegt átt sér stað. 
+
+Í þessum tilvikum þyrfti að skoða tímalínurnar í öðru samhengi: út frá því hvort
+það eigi sér stað breyting í hinu almenna ferli tímalínunnar. Bollinger böndin
+eru ekki mjög gagnleg til þess þar sem að útkoman byggir að miklu leiti á hvaða
+rammastærð er notuð en við höfum ekki fundið neina aðferð sem gagnast við að
+finna hentuga rammastærð út frá gögnum í tímalínunni.
+
+Fjallað verður um aðferðir sem gagnast við að skoða þessa eiginleika í kafla~\ref{sec:future}
 
 \section{Útfærsla}
 \label{sec:imp_our}
 
-Á vissum tímapúnktu í verkefninu varð okkur ljóst að Bollinger bönd hentuðu
-mjög vel fyrir mest af því sem við óskuðum að kerfið skyldi gera.
-Því var sett aukin áhersla á að prófa mismunandi útfærslur Bollinger banda og
-dregið
-úr prófunum annarra aðferða.
+Reikniritið í Rýni byggir grunn sinn á Bollinger böndum eins og áður hefur komið fram.
+Þar sem erfitt eða ómögulegt reynist að áætla rammastærðir sjálfvirkt þá notast Rýnir við nokkrar mismunandi
+rammastærðir og ítrar í gegnum þær. Hver ítrun gefur öllum punktum í tímalínu ákveðið meðaltals vægi, til að reikna
+vægi punkts notum við okkar eigin útgáfu af formúlu sem kallast 
+$\%b$\footnote[1]{Útskýringu á upprunalegu $\%b$ formúlunni er að finna í tækniskyrslu á meðfylgjandi geisladisk}. 
+\\ \hfil
+\\ \hfil
+Okkar breytta útgáfa virkar sem svo:
+\begin{itemize}
+  \item Punktar innan bandanna fá einkunn á bilinu 0-1
+  \item Punktar utan bandanna fá einkunn sem samsvarar hlutfallslegri fjarlægð frá meðaltali rammans, >1
+\end{itemize}
 
-Útfærslan okkar byggist á því að ítra mismunandi stórar rammastærðir fyrir
-hverja tímalínu.
-Allir punktar í tímalínunni fá einkunn frá hverri rammastærð fyrir sig. 
 
-Til þess að gefa punkti einkunn notum við okkar eigin útgáfu af því sem kallast $\%b$\footnote[1]{Útskýringu á upprunalegu $\%b$ formúlunni er að finna í tækniskyrslu á meðfylgjandi geisladisk}. 
-Útgáfan okkar gefur púnkti tölugildi á bilinu 0-1 ef hann er á milli Bollinger bandanna.
-Ef púnkturinn liggur utan þeirra fær hann tölugildi sem samsvarar hlutfallslegri fjarlægð hans frá meðaltali rammans, 
-sú tala er alltaf hærri en einn.
+Hér fyrir neðan er síðan formúlan okkar:
+
 
 \begin{center}
   $\%b=\frac{abs((item - avg[index])}{(upperlim[index] - avg[index]))}$
 \end{center}
 
 
-Hver rammastærð leggur sína einkunn við það sem fyrir stendur, hlutfallslega miðað við fjölda ítranna.
+Hver rammastærð leggur sína einkunn við það sem fyrir stendur, hlutfallslega
+miðað við fjölda ítranna.
 
-Þegar litlar breytingar í tímalínu áttu sér stað yfir langt tímabil áttu Bollinger böndin til með að 
-þrengjast í við mikið. Það gerði það að verkum að smávægilegar breytingar eftir rólegt tímabil fengu
-óeðlilega hátt gildi. Til að koma í veg fyrir það er bandbreiddin púnktsins borin saman við meðalbandbreidd
-tímalínunnar, ef bandbreidd púnktins er margfalt þrengri en meðalbandbreiddin þá er púnktinum gefin lægri einkunn. 
+Þegar litlar breytingar í tímalínu áttu sér stað yfir langt tímabil áttu
+Bollinger böndin til með að 
+þrengjast í við mikið. Það gerði það að verkum að smávægilegar breytingar eftir
+rólegt tímabil fengu
+óeðlilega hátt gildi. Til að koma í veg fyrir það er bandbreiddin púnktsins
+borin saman við meðalbandbreidd
+tímalínunnar, ef bandbreidd púnktins er margfalt þrengri en meðalbandbreiddin þá
+er púnktinum gefin lægri einkunn. 
 
-Algengt er að ef tímalína rís eða fellur hratt, þá eru margir púnktar í röð taldir áhugaverðir, sem er mjög eðlilegt.
-Kerfið býður þó upp á þann möguleika að skila einungis áhugaverðasta púnktinum úr röð samliggjandi púnkta.
-
-
-%visað í tækniskyrslu í staðinn
-\begin{comment}
-
-\subsection{Hlaupandi meðaltal (HM)}
-\label{sec:running_average}
-Í tölfræði er hlaupandi meðaltal, einnig kallað
-fljótandi meðaltal, notað til greiningar á gagnamengi. 
-Er það gert með því að mynda röð meðaltala úr
-mismunandi hlutmengjum heildarmengisins.
-Ef gefin er röð $Z$ talna og ákveðin stærð ramma
-(hlutmengis) er $N$, þá er fljótandi meðaltal fundið
-með því að fyrst reikna meðaltal 
-talna úr sæti $0,1,\dots,N-1$. Þá er ramminn færður
-fram um eitt sæti og meðaltal fundið af tölum í sætum
-$1,2,\dots,N$. 
-Þessi aðgerðarröð er endurtekin yfir alla talnaröðina,
-$Z-N$ sinnum.  
-
-\begin{center}
-  $HM = \frac{x+(x+1)+\dots+(x+(N-1))}{N}$ 
-\end{center}
-
-
-Línan sem tengir svo saman öll meðaltölin er hið
-fljótandi meðaltal þar sem hver punktur á línunni
-samsvarar 
-meðaltali viðkomandi hlutmengis í heildarmengi ganganna
-sem verið er að meta. 
- 
-\subsection{Vegið hlaupandi meðaltal (VHM)}
-\label{sec:weighted_running_average}
-Hlaupandi meðaltal getur einnig notað ójöfn gildi fyrir
-hvert stak á línunni.
-Þá er um vegið meðaltal að ræða og er meðaltalinu gefin
-einhver margfeldisáhrif eftir því hvar á línunni það er
-staðsett. 
-Það vægi breytist línulega. Summu margfeldi allra
-gildana í tilteknum ramma er svo deilt með summu allra
-mergfeldanna. 
-Ef um ramma af stærð 10 er að ræða og gildin eru
-margfölduð eftir sætisröð, þá fæst meðaltalið með eftirfarandi aðferð. 
-\begin{center}
-  $VHM = \frac{x+2(x+1)+3(x+2)+\dots+(10(N-1))}{1+2+\dots+10}$ 
-\end{center}
-
-\end{comment}
-
+Algengt er að ef tímalína rís eða fellur hratt, þá eru margir púnktar í röð
+taldir áhugaverðir, sem er mjög eðlilegt.
+Kerfið býður þó upp á þann möguleika að skila einungis áhugaverðasta púnktinum
+úr röð samliggjandi púnkta.
 
 
 
 
 \section{Rýnir}
-\label{sec:implementation}
-
-
-
-\subsection{Klasarit}
-\label{sec:class_diagram}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=.75\textwidth]{rynir_class_diagram.png} 
-  \caption{Klasarit} 
-\end{figure}
-
-\todo[inline]{vantar útskýringu á klasariti}
-
 \subsection{Flæðirit}
 \label{sec:flow_chart}
 
@@ -367,34 +399,16 @@ til greiningar sem skilar frá sér lista af flöggum fyrir tímalínuna (TLRepo
 QueryStringHandler tekur saman niðurstöðurnar úr hverri tímalínu og skilar
 sameinaðri niðurstöðu fyrir allt gagnasettið (DSReport).
 
+Að neðan má svo sjá klasarit fyrir Rýnir
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.75\textwidth]{rynir_class_diagram.png} 
+  \caption{Klasarit} 
+\end{figure}
 
 \section{Horft til framtíðar}
-Út frá niðurstöðu okkar prófana eru þeir punktar sem kerfið metur
-áhugaverða vissulega áhugaverðir en það er þar með ekki sagt að
-sú aðferð sem við völdum virki á allar tegundir tímalína. 
-
-Sem dæmi má nefna línur sem innihalda mikinn fjölda punkta.
-Líta má á þær tímalínur af 'hærri' upplausn en þær sem innihalda fáa punkta. Í
-þeim getur kerfið okkar verið að flagga punkta sem vissulega eru mjög
-áhugaverðir séu þeir skoðaðir í því samhengi sem kerfið okkar sér þá þ.e. innan
-rammans. Sé ramminn lítill er hægt að bera það saman við að kerfið sé að skoða
-tímalínuna úr lítilli fjarlægð. Aftur á móti sé sama tímalína skoðuð úr meiri
-fjarlægð getur línan virst svo gott sem flöt og því í heildina ansi óáhugaverð.
-
-Í öðru dæmi væri hægt að hugsa sér tímalínu sem hækkar töluvert upp í ákveðinn
-hápunkt og taki svo að lækka aftur niður í fyrri gildi. Gerist þetta með nógu
-litlum breytingum á milli punkta er ólíklegt að kerfið okkar sjái nokkuð
-athugavert við þetta þó að mögulega hafi eitthvað merkilegt átt sér stað. 
-
-Í þessum tilvikum þyrfti að skoða tímalínurnar í öðru samhengi: út frá því hvort
-það eigi sér stað breyting í hinu almenna ferli tímalínunnar. Bollinger böndin
-eru ekki mjög gagnleg til þess þar sem að útkoman byggir að miklu leiti á hvaða
-rammastærð er notuð en við höfum ekki fundið neina aðferð sem gagnast við að
-finna hentuga rammastærð út frá gögnum í tímalínunni.
-
-Fjallað verður um aðferðir sem gagnast við að skoða þessa eiginleika í kaflanum
-'Horft til Framtíðar'
+\label{sec:future}
 
 \subsection{Linear Regression}
 Í þessari aðferð má hugsa sér að reynt sé að draga eins fáar beinar línur í
@@ -418,12 +432,18 @@ hreinlega vanti eitt árið.
 
 \section{Framvinda}
 \subsection{Sprettir}
-Verkefnið okkar var þannig lagt upp af DataMarket, að þeir vildu í fyrsta lagi fá heilstætt kerfi sem skilaði niðurstöðum. 
-Þær niðurstöður þyrftu þó ekki að vera mjög marktækar og byggja á flóknum reikniaðferðum. Því næst áttum við að þróa reikniaðferðirnar eins 
-mikið og mögulegt væri, á þeim tíma sem við höfðum. Þetta verkefni var því mjög opið og ljóst að mikilvægt væri 
-af okkar hálfu að halda góðri yfirsýn allan tímann, svo að ekki yrði farið lengra í bætingum en svo að það myndi nást að fullklára þær 
-aðferðir sem við ætluðum að hafa í kerfinu, í tæka tíð. Því lögðum við upp með að vinna verkið í tveimur fösum. Áætlunin var þannig að skipuleggja
-einungis fyrri fasan í upphafi. Byrja að kynna okkur meðfram þeim fasa hvað við gætum mögulega gert í seinni fasanum, en taka ekki ákvarðanir 
+Verkefnið okkar var þannig lagt upp af DataMarket, að þeir vildu í fyrsta lagi
+fá heilstætt kerfi sem skilaði niðurstöðum. 
+Þær niðurstöður þyrftu þó ekki að vera mjög marktækar og byggja á flóknum
+reikniaðferðum. Því næst áttum við að þróa reikniaðferðirnar eins 
+mikið og mögulegt væri, á þeim tíma sem við höfðum. Þetta verkefni var því mjög
+opið og ljóst að mikilvægt væri 
+af okkar hálfu að halda góðri yfirsýn allan tímann, svo að ekki yrði farið
+lengra í bætingum en svo að það myndi nást að fullklára þær 
+aðferðir sem við ætluðum að hafa í kerfinu, í tæka tíð. Því lögðum við upp með
+að vinna verkið í tveimur fösum. Áætlunin var þannig að skipuleggja
+einungis fyrri fasan í upphafi. Byrja að kynna okkur meðfram þeim fasa hvað við
+gætum mögulega gert í seinni fasanum, en taka ekki ákvarðanir 
 um hvað yrði gert fyrr en í upphafi seinnifasa.
 
 \subsubsection{Sprettur 0}
@@ -432,9 +452,12 @@ hefbundnum spretti, heldur notuðum við þennan tíma til að
 skipuleggja verkáætlun, gerðum áhættugreiningu og unnum að ýmsum öðrum
 undirbúiningi.
 \subsubsection{Sprettur 1}
-Í fyrsta spretti fórum við í að kynna okkur tæknileg atriði sem við ætluðum að nota.
-Flest þekktum við, en höfðum ekki unnið með í Python áður. Þetta voru hlutir eins og prófandrifin þróun, REST-ful þróun og hvernig 
-unnið er með JSON skrár. Einnig settum við upp grunn að kerfinu sem gat sótt gögn frá DataMarket. Náðum ekki alveg að kára það sem við lögðum 
+Í fyrsta spretti fórum við í að kynna okkur tæknileg atriði sem við ætluðum að
+nota.
+Flest þekktum við, en höfðum ekki unnið með í Python áður. Þetta voru hlutir
+eins og prófandrifin þróun, REST-ful þróun og hvernig 
+unnið er með JSON skrár. Einnig settum við upp grunn að kerfinu sem gat sótt
+gögn frá DataMarket. Náðum ekki alveg að kára það sem við lögðum 
 upp með og urðum að færa hluta úr sögum yfir í næsta sprett.
 \begin{figure}[H]
   \centering
@@ -443,10 +466,14 @@ upp með og urðum að færa hluta úr sögum yfir í næsta sprett.
 \end{figure}
 
 \subsubsection{Sprettur 2}
-Í spretti 2 fundum við áhugaverð gögn hjá Datamarket settum upp staðbunda gátt(e.service stub),svo að það myndi ekki hindra okkur í þróun ef 
-aðgangur að gagnagrunni Datamarket væri ekki til staðar. Þetta var hluti af okkar áhættugreiningu (VÍSUN í KAFLA). 
-Þá bjugum við til fyrstu reikniaðferðirnar, meðaltal, miðgildi og staðalfrávik, og létum kerfið sækja gögn og skila niðurstöðum.
-Þá áttum við fundi með sérfræðingum á sviði stærðfræði og tölfræði, til að ýta úr vör hugmyndavinnu fyrir seinni fasa.
+Í spretti 2 fundum við áhugaverð gögn hjá Datamarket settum upp staðbunda
+gátt(e.service stub),svo að það myndi ekki hindra okkur í þróun ef 
+aðgangur að gagnagrunni Datamarket væri ekki til staðar. Þetta var hluti af
+okkar áhættugreiningu (VÍSUN í KAFLA). 
+Þá bjugum við til fyrstu reikniaðferðirnar, meðaltal, miðgildi og staðalfrávik,
+og létum kerfið sækja gögn og skila niðurstöðum.
+Þá áttum við fundi með sérfræðingum á sviði stærðfræði og tölfræði, til að ýta
+úr vör hugmyndavinnu fyrir seinni fasa.
 \begin{figure}[H]
  \centering
  \includegraphics[width=0.72\textwidth]{Sprettur2_Burndown.png}

@@ -29,9 +29,8 @@ class MathMagic:
 		self.frame2 = self.config.getint('BollingerVariables','framesize2')
 		self.frame3 = self.config.getint('BollingerVariables','framesize3')
 
-		
-		#self.consoFlags = self.config.getboolean('ReturnValues','consolidateflags')
-		#self.filter = self.config.getfloat('ReturnValues','filter')
+		#TODO: Eftir ad setja inn consolidate flags breytu
+		#TODO: filter breyta
 		
 		
 	def analyze(self, timeline, timeAxis, frameSize = None):

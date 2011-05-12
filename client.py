@@ -15,9 +15,9 @@ rynir = Rynir()
 
 #time_series = ["gunni_Awesom","leh3", "yef","1eh3"] # 1. er ologlegur, 2. ekki til, 3. of stor, 4 ok
 #time_series = "yef"
-
-
-time_series = "1eh3" #british fatalities in afghanistan
+time_series = 'yfu|6zj=1'
+#time_series = 'x7p|61x=2'
+#time_series = "1eh3" #british fatalities in afghanistan
 #time_series = "1d8b|wzl=6" #crude oil
 #time_series = "18ax|l2g=1w:l2h=2:l2i=12" #avocado
 #time_series = "1ctt|wtr=3t:wts=f:wtt=1" #age population brazil
@@ -29,7 +29,7 @@ time_series = "1eh3" #british fatalities in afghanistan
 
 #queryStringList = ["1eh3", "1d8b|wzl=6", "18ax|l2g=1w:l2h=2:l2i=12", "1ctt|wtr=3t:wts=f:wtt=1", "1bdn|twc=6:twe=k", "17tl|kqb=3", "1bcz|tuh=1o:tui=b:tuj=k", "1968"]
 
-report = rynir.analyze(time_series)
+#report = rynir.analyze(time_series)
 #report = rynir.analyze(queryStringList)
 
 try:
@@ -45,33 +45,44 @@ gate = DmGateway()
 ps = Parser()
 
 dset = ps.parse(time_series)
-"""
-#series = ts.time_series(dset[1].getMaskedArray(),
-#						start_date=ts.Date(freq=dset.granularity, year=int(dset[0][0][0:4]), month=1))
+
+print dset.granularity
+
+series = ts.time_series(dset[1].getMaskedArray(),
+						start_date=ts.Date(freq='year', year=1, month=1))
 #print series.count
 
 fig = tplot.tsfigure()
 # 111 = width, height, subplots
 fsp = fig.add_tsplot(111)
+fsp.tsplot(series, '-')
+avg = mov_average(series, 50)
+std = mov_std(series, 50)
 
-for item in report[0]:
-    for x in item.listOfFlags:
-        #print "-----Flag: " + str(x[0])
-        #print "--index: " + str(x[2])
-        #print "place flag at : " + str(x[2]) + ", " + str(series[x[2]])
+lowerlim = avg+std*2
+upperlim = avg-std*2
 
 
-        fsp.annotate(x[1], xy=(x[2], dset[1][x[2]]),
-                    xytext=(x[2]+5, dset[1][x[2]]+5), arrowprops=dict(facecolor='black', shrink=0.05),)
+fsp.tsplot(lowerlim, '-r')
+fsp.tsplot(upperlim, '-r')
+#for item in report[0]:
+    #for x in item.listOfFlags:
+        ##print "-----Flag: " + str(x[0])
+        ##print "--index: " + str(x[2])
+        ##print "place flag at : " + str(x[2]) + ", " + str(series[x[2]])
+
+
+        #fsp.annotate(x[1], xy=(x[2], dset[1][x[2]]),
+                    #xytext=(x[2]+5, dset[1][x[2]]+5), arrowprops=dict(facecolor='black', shrink=0.05),)
 
 #fsp.annotate('raggi', xy=(50,20), xytext=(60, 20), arrowprops=dict(facecolor='black', shrink=0.05),)
 
-fsp.plot(dset[1].getMaskedArray())
+#fsp.plot(dset[1].getMaskedArray())
 #fsp.tsplot(series, '-')
 
 
 plot.show()
-#plot.savefig('gunniAwesome')
+#plot.savefig('Utlan Glitnis - bond')
 
 
 
@@ -86,7 +97,7 @@ plot.show()
 #draw the series from the parser, solid line
 #fsp.tsplot(series, '-')
 
-"""
+
 """
 #draw moving average, framesize 5, dotted green line
 avg = mov_average(series, 13)
