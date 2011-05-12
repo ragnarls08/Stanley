@@ -250,6 +250,47 @@ bætingu á reikniaðferðum og prófuðum uppá nýtt.
 
 \todo[inline]{skrifa stuttann inngang að Tækniskýrslu hluta}
 
+\subsection{Bollinger bönd}
+\label{sec:bollinger_bands}
+
+Bollinger bönd eru upprunalega þróuð sem greiningartól
+á þróun verðbréfaverða. 
+Tilgangur þeirra er að veita viðeigandi skilgreiningu háum og lágum gildum.
+Einnig hefur þessari 
+aðferð verið beitt á ýmis önnur vandamál með misgóðum niðurstöðum. \\
+
+Bollinger bönd samanstanda af:
+
+
+
+
+\begin{itemize}
+  \item Miðband, $N-lotu$ einfalt hlaupandi meðaltal\footnote[1]{Útskýringu á hlaupandi meðaltali er að finna í tækniskýrslu á meðfylgjandi geisladisk.}.
+  \item Efra band, $N-lotu$ staðalfrávik margfaldað með $K$, fyrir ofan miðbandið ($HM + K\sigma$).
+  \item Neðra band, $N-lotu$ staðalfrávik margfaldað með $K$, fyrir neðan miðbandið ($HM -K\sigma$).
+\end{itemize}
+
+
+
+
+
+
+
+%\begin{wrapfigure}{r}{7cm}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.58\textwidth]{Bollinger.png} 
+  \caption{Bollinger bönd merkt með Rauðum strikalínum} 
+\end{figure}
+%\end{wrapfigure}
+
+
+Bollinger bönd nýtast því vel til greininga á því hvar í
+tímalínu óeðlileg hækkun eða lækkun á sér stað.
+
+
+
+
 \subsection{Fourier transformations} 
 
 Fourier umbreytingar eru stærðfræðilegar aðgerðir
@@ -322,40 +363,6 @@ margfölduð eftir sætisröð, þá fæst meðaltalið með eftirfarandi aðfer
 \end{center}
 
 \end{comment}
-
-
-\subsection{Bollinger bönd}
-\label{sec:bollinger_bands}
-
-
-Bollinger bönd eru upprunalega þróuð sem greiningartól
-á þróun verðbréfaverða. 
-Tilgangur þeirra er að veita viðeigandi skilgreiningu háum og lágum gildum.
-Einnig hefur þessari 
-aðferð verið beitt á ýmis önnur vandamál með misgóðum niðurstöðum. \\
-
-Bollinger bönd samanstanda af:
-\begin{itemize}
-  \item Miðband, $N-lotu$ einfalt hlaupandi meðaltal\footnote[1]{Útskýringu á hlaupandi meðaltali er að finna í tækniskýrslu á meðfylgjandi geisladisk.}.
-  \item Efra band, $N-lotu$ staðalfrávik margfaldað með $K$, fyrir ofan
-miðbandið ($HM + K\sigma$).
-  \item Neðra band, $N-lotu$ staðalfrávik margfaldað með $K$, fyrir neðan
-miðbandið ($HM -K\sigma$).
-\end{itemize}
-
-
-%\begin{wrapfigure}{r}{7cm}
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=.58\textwidth]{Bollinger.png} 
-  \caption{Bollinger bönd merkt með Rauðum strikalínum} 
-\end{figure}
-%\end{wrapfigure}
-
-
-Bollinger bönd nýtast því vel til greininga á því hvar í
-tímalínu óeðlileg hækkun eða lækkun á sér stað.
-
 
 
 
