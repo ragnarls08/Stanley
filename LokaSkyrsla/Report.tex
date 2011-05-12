@@ -17,6 +17,7 @@
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{float}
+\usepackage{verbatim}
 
 \begin{document}
 
@@ -274,15 +275,14 @@ rafmagnsnotkun í ótilgreindu landi.
 \end{figure}
 
 Það má sjá að tímalínan hefur ákveðnar endurtekningar,
-nánar til tekið þá er mikil notkun á veturna en lítil á
-sumrin.
-Þessa föstu sveiflu í tímalínunni greinir Fourier og
-skilar grafi á mynd~\ref{fig:fouriergraph}. 
+nánar til tekið þá er mikil notkun á veturna en lítil á sumrin.
+Þessa föstu sveiflu í tímalínunni greinir Fourier og skilar grafi á mynd~\ref{fig:fouriergraph}. 
 Úr því er síðan hægt að greina að endurtekning á sér stað með 12 staka
 millibili.
 
 
-
+%visað í tækniskyrslu í staðinn
+\begin{comment}
 
 \subsection{Hlaupandi meðaltal (HM)}
 \label{sec:running_average}
@@ -326,6 +326,8 @@ margfölduð eftir sætisröð, þá fæst meðaltalið með eftirfarandi aðfer
   $VHM = \frac{x+2(x+1)+3(x+2)+\dots+(10(N-1))}{1+2+\dots+10}$ 
 \end{center}
 
+\end{comment}
+
 
 \subsection{Bollinger bönd}
 \label{sec:bollinger_bands}
@@ -339,12 +341,13 @@ aðferð verið beitt á ýmis önnur vandamál með misgóðum niðurstöðum. 
 
 Bollinger bönd samanstanda af:
 \begin{itemize}
-  \item Miðband, $N-lotu$ einfalt hlaupandi meðaltal.
+  \item Miðband, $N-lotu$ einfalt hlaupandi meðaltal\footnote[1]{Útskýringu á hlaupandi meðaltali er að finna í tækniskýrslu á meðfylgjandi geisladisk.}.
   \item Efra band, $N-lotu$ staðalfrávik margfaldað með $K$, fyrir ofan
 miðbandið ($HM + K\sigma$).
   \item Neðra band, $N-lotu$ staðalfrávik margfaldað með $K$, fyrir neðan
 miðbandið ($HM -K\sigma$).
 \end{itemize}
+
 
 %\begin{wrapfigure}{r}{7cm}
 \begin{figure}[H]
@@ -375,6 +378,8 @@ tímalínu óeðlileg hækkun eða lækkun á sér stað.
   \caption{Klasarit} 
 \end{figure}
 
+\todo[inline]{vantar útskýringu á klasariti}
+
 \subsection{Flæðirit}
 \label{sec:flow_chart}
 
@@ -402,7 +407,7 @@ sameinaðri niðurstöðu fyrir allt gagnasettið (DSReport).
 hverja tímalínu.
 Allir punktar í tímalínunni fá einkunn frá hverri rammastærð fyrir sig. 
 
-Til þess að gefa punkti einkunn notum við okkar eigin útgáfu af því sem kallast $\%b$. 
+Til þess að gefa punkti einkunn notum við okkar eigin útgáfu af því sem kallast $\%b$\footnote[1]{Útskýringu á upprunalegu $\%b$ formúlunni er að finna í tækniskyrslu á meðfylgjandi geisladisk}. 
 Útgáfan okkar gefur púnkti tölugildi á bilinu 0-1 ef hann er á milli Bollinger bandanna.
 Ef púnkturinn liggur utan þeirra fær hann tölugildi sem samsvarar hlutfallslegri fjarlægð hans frá meðaltali rammans, 
 sú tala er alltaf hærri en einn.
@@ -414,41 +419,14 @@ sú tala er alltaf hærri en einn.
 
 Hver rammastærð leggur sína einkunn við það sem fyrir stendur, hlutfallslega miðað við fjölda ítranna.
 
-Þannig gefum við punktum sem líta út fyrir að vera
-snörp hækkun í litlum ramma lækkað vægi þegar hann
-lendir innan bandanna í stærri ramma
-og telst því til eðlilegrar hegðunar þegar horft er
-lengra aftur í tímann.
-Punktar sem leggja utan Bollinger bandanna í nokkrum
-rammastærðum fá einnig aukið vægi þar sem hver rammi
-hækkar gildið.
+Þegar litlar breytingar í tímalínu áttu sér stað yfir langt tímabil áttu Bollinger böndin til með að 
+þrengjast í við mikið. Það gerði það að verkum að smávægilegar breytingar eftir rólegt tímabil fengu
+óeðlilega hátt gildi. Til að koma í veg fyrir það er bandbreiddin púnktsins borin saman við meðalbandbreidd
+tímalínunnar, ef bandbreidd púnktins er margfalt þrengri en meðalbandbreiddin þá er púnktinum gefin lægri einkunn. 
 
-Ef að í tímalínunni er tímabil sem inniheldur svipaðar
-eða eins tölur á kafla sem er stærri en rammastærðin er
-vandamál að Bollinger 
-böndin þrengjast mikið. Það gerði það að verkum að
-litlar breytingar eftir þannig tímabil voru gefin
-óeðlilega hátt gildi, 
-jafnvel töluvert hærra gildi en það sem teldist til
-mikið áhugaverðari punkta í sjón. Til að koma í veg
-fyrir þetta er notast við
-einfalda athugun sem skoðar hvort bandbreiddin fyrir
-viðkomandi punkt er óeðlilega þröng miðað við
-meðalbandbreidd tímalínunnar.
-Ef svo er er punktinum gefið lægra gildi. 
+Algengt er að ef tímalína rís eða fellur hratt, þá eru margir púnktar í röð taldir áhugaverðir, sem er mjög eðlilegt.
+Kerfið býður þó upp á þann möguleika að skila einungis áhugaverðasta púnktinum úr röð samliggjandi púnkta.
 
-{
-  \color{red}
-Þegar þetta er skrifað er notast við fasta margföldun en hugmyndir
-eru uppi um að lækka 
-gildið útfrá meðaltali gilda í tímalínunni.
-}
-
-Að lokum hreinsum við flögg sem liggja hlið við hlið,
-liggja sömu megin Bollinger bandanna og innihalda
-sífellt hækkandi gildi, 
-þannig skilum við einungis toppum á hækkunum sem kerfið
-sér, en ekki punkta innan hækkunaninnar.
 
 \section{Horft til framtíðar}
 Út frá niðurstöðu okkar prófana eru þeir punktar sem kerfið metur
