@@ -18,6 +18,7 @@
 \usepackage{wrapfig}
 \usepackage{float}
 \usepackage{verbatim}
+\usepackage[none]{hyphenat}
 
 \begin{document}
 
@@ -268,14 +269,12 @@ nánar tiltekið þá er mikil notkun á veturna en lítil á sumrin.
 millibili.
 
 \subsection{Niðurstaða rannsókna}
-Á vissum tímapúnktu í verkefninu varð okkur ljóst að Bollinger bönd hentuðu
+Á vissum tímapunkti í verkefninu varð okkur ljóst að Bollinger bönd hentuðu
 mjög vel fyrir mest af því sem við óskuðum að kerfið skyldi gera.
 Því var sett aukin áhersla á að prófa mismunandi útfærslur Bollinger banda og
 dregið úr prófunum annarra aðferða.
 
-Út frá niðurstöðu okkar prófana eru þeir punktar sem kerfið metur
-áhugaverða vissulega áhugaverðir en það er þar með ekki sagt að
-sú aðferð sem við völdum virki á allar tegundir tímalína. 
+Hinsvegar eru annmarkar á þessari aðferð.
 
 Sem dæmi má nefna línur sem innihalda mikinn fjölda punkta.
 Líta má á þær tímalínur af \ilqq hærri\irqq \hspace{1pt} upplausn en þær sem innihalda fáa punkta. Í
@@ -297,7 +296,6 @@ rammastærð er notuð en við höfum ekki fundið neina aðferð sem gagnast vi
 finna hentuga rammastærð út frá gögnum í tímalínunni.
 
 Fjallað verður um aðferðir sem gagnast við að skoða þessa eiginleika í kafla~\ref{sec:future}
-
 
 \section{Útfærsla}
 \label{sec:imp_our}
@@ -345,21 +343,6 @@ Kerfið býður þó upp á þann möguleika að skila einungis áhugaverðasta 
 
 
 \section{Rýnir}
-\label{sec:implementation}
-
-
-
-\subsection{Klasarit}
-\label{sec:class_diagram}
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=.75\textwidth]{rynir_class_diagram.png} 
-  \caption{Klasarit} 
-\end{figure}
-
-\todo[inline]{vantar útskýringu á klasariti}
-
 \subsection{Flæðirit}
 \label{sec:flow_chart}
 
@@ -380,7 +363,13 @@ til greiningar sem skilar frá sér lista af flöggum fyrir tímalínuna (TLRepo
 QueryStringHandler tekur saman niðurstöðurnar úr hverri tímalínu og skilar
 sameinaðri niðurstöðu fyrir allt gagnasettið (DSReport).
 
+Að neðan má svo sjá klasarit fyrir Rýnir
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.75\textwidth]{rynir_class_diagram.png} 
+  \caption{Klasarit} 
+\end{figure}
 
 \section{Horft til framtíðar}
 \label{sec:future}
