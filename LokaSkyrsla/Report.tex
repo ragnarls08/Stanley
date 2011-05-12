@@ -33,7 +33,7 @@ breytingar á tímalínum í gagnasafni Datamarket,
 sem gætu bent til þess að um markverða eða áhugaverða þróun sé að ræða.
 
 Í skýrslunni er náin lýsing á verkefninu og hvernig vekráætlun var háttað.
-Einnig greinum við frá þeim reikniaðferðum sem skoðaðar voru með tilliti til 
+Einnig greinum við frá þeim reikniaðferðum sem skoðaðar voru með tilliti til 		\todo{stendur greinum 2x}
 lausnar verkefnisins og greinum frá niðurstöðum okkar. Þá 
 verður farið yfir atriði sem skoða mætti við nánari þróun kerfisins.
 Að lokum er yfirlit yfir framvindu verksins.
@@ -49,7 +49,7 @@ fer það ört vaxandi.
 
 Hvert gagnasett hjá DataMarket inniheldur tímaraðir sem sýna þróun tölulegra stærða yfir tíma. 
 Á hverjum degi eru tugir, eða jafnvel hundruð slíkra gagnasetta uppfærð í kerfinu. 
-Hvert gagnasett inniheldur að lágmarki eina, en allt að nokkurþúsund tímaraðir. Sú
+Hvert gagnasett inniheldur að lágmarki eina, en allt að nokkurþúsund tímaraðir. Sú		\todo{nokkurþúsund, tvo orð?}
 þróun sem ein tímaröð sýnir getur verið allt frá vel
 þekktum stærðum, s.s. verðbólgu, atvinnuleysi eða
 hitastigi í Reykjavík, til mjög sérhæfðra eða jafnvel
@@ -57,9 +57,9 @@ undarlegra hluta, eins og innflutningsverðmæti
 leðurvara frá Brasilíu!
 
 Mikið er fylgst með algengustu stærðum og
-stórvægilegar breytingar í þeim rata iðulega í fréttir
+stórvægilegar breytingar í þeim rata iðulega í fréttir	
 umsvifalaust. En mjög markverð, áhugaverð eða jafnvel
-varasöm þróun getur líka birst í stærðum sem fáir
+varasöm þróun getur líka birst í stærðum sem fáir		\todo{er rett að tala um stærðir, gögn?}
 fylgjast með og enginn tekur etv. eftir. 
 
 Þar sem óhagkvæmt er að fara handvirkt í gegnum þetta mikið magn af gögnum, 
@@ -251,8 +251,8 @@ bætingu á reikniaðferðum og prófuðum uppá nýtt.
 \newpage
 
 
-\section{TækniSkýrsla}
-
+\section{Rannsóknir}
+\label{sec:research}
 \todo[inline]{skrifa stuttann inngang að Tækniskýrslu hluta}
 
 \subsection{Bollinger bönd}
@@ -321,6 +321,42 @@ nánar til tekið þá er mikil notkun á veturna en lítil á sumrin.
 Úr því er síðan hægt að greina að endurtekning á sér stað með 12 staka
 millibili.
 
+\subsection{Niðurstaða rannsókna}
+
+
+\section{Útfærsla}
+\label{sec:imp_our}
+
+Á vissum tímapúnktu í verkefninu varð okkur ljóst að Bollinger bönd hentuðu
+mjög vel fyrir mest af því sem við óskuðum að kerfið skyldi gera.
+Því var sett aukin áhersla á að prófa mismunandi útfærslur Bollinger banda og
+dregið
+úr prófunum annarra aðferða.
+
+Útfærslan okkar byggist á því að ítra mismunandi stórar rammastærðir fyrir
+hverja tímalínu.
+Allir punktar í tímalínunni fá einkunn frá hverri rammastærð fyrir sig. 
+
+Til þess að gefa punkti einkunn notum við okkar eigin útgáfu af því sem kallast $\%b$\footnote[1]{Útskýringu á upprunalegu $\%b$ formúlunni er að finna í tækniskyrslu á meðfylgjandi geisladisk}. 
+Útgáfan okkar gefur púnkti tölugildi á bilinu 0-1 ef hann er á milli Bollinger bandanna.
+Ef púnkturinn liggur utan þeirra fær hann tölugildi sem samsvarar hlutfallslegri fjarlægð hans frá meðaltali rammans, 
+sú tala er alltaf hærri en einn.
+
+\begin{center}
+  $\%b=\frac{abs((item - avg[index])}{(upperlim[index] - avg[index]))}$
+\end{center}
+
+
+Hver rammastærð leggur sína einkunn við það sem fyrir stendur, hlutfallslega miðað við fjölda ítranna.
+
+Þegar litlar breytingar í tímalínu áttu sér stað yfir langt tímabil áttu Bollinger böndin til með að 
+þrengjast í við mikið. Það gerði það að verkum að smávægilegar breytingar eftir rólegt tímabil fengu
+óeðlilega hátt gildi. Til að koma í veg fyrir það er bandbreiddin púnktsins borin saman við meðalbandbreidd
+tímalínunnar, ef bandbreidd púnktins er margfalt þrengri en meðalbandbreiddin þá er púnktinum gefin lægri einkunn. 
+
+Algengt er að ef tímalína rís eða fellur hratt, þá eru margir púnktar í röð taldir áhugaverðir, sem er mjög eðlilegt.
+Kerfið býður þó upp á þann möguleika að skila einungis áhugaverðasta púnktinum úr röð samliggjandi púnkta.
+
 
 %visað í tækniskyrslu í staðinn
 \begin{comment}
@@ -376,6 +412,8 @@ margfölduð eftir sætisröð, þá fæst meðaltalið með eftirfarandi aðfer
 \section{Rýnir}
 \label{sec:implementation}
 
+
+
 \subsection{Klasarit}
 \label{sec:class_diagram}
 
@@ -407,32 +445,6 @@ til greiningar sem skilar frá sér lista af flöggum fyrir tímalínuna (TLRepo
 QueryStringHandler tekur saman niðurstöðurnar úr hverri tímalínu og skilar
 sameinaðri niðurstöðu fyrir allt gagnasettið (DSReport).
 
-\subsection{Útfærsla}
-\label{sec:imp_our}
-
-Útfærslan okkar byggist á því að ítra mismunandi stórar rammastærðir fyrir
-hverja tímalínu.
-Allir punktar í tímalínunni fá einkunn frá hverri rammastærð fyrir sig. 
-
-Til þess að gefa punkti einkunn notum við okkar eigin útgáfu af því sem kallast $\%b$\footnote[1]{Útskýringu á upprunalegu $\%b$ formúlunni er að finna í tækniskyrslu á meðfylgjandi geisladisk}. 
-Útgáfan okkar gefur púnkti tölugildi á bilinu 0-1 ef hann er á milli Bollinger bandanna.
-Ef púnkturinn liggur utan þeirra fær hann tölugildi sem samsvarar hlutfallslegri fjarlægð hans frá meðaltali rammans, 
-sú tala er alltaf hærri en einn.
-
-\begin{center}
-  $\%b=\frac{abs((item - avg[index])}{(upperlim[index] - avg[index]))}$
-\end{center}
-
-
-Hver rammastærð leggur sína einkunn við það sem fyrir stendur, hlutfallslega miðað við fjölda ítranna.
-
-Þegar litlar breytingar í tímalínu áttu sér stað yfir langt tímabil áttu Bollinger böndin til með að 
-þrengjast í við mikið. Það gerði það að verkum að smávægilegar breytingar eftir rólegt tímabil fengu
-óeðlilega hátt gildi. Til að koma í veg fyrir það er bandbreiddin púnktsins borin saman við meðalbandbreidd
-tímalínunnar, ef bandbreidd púnktins er margfalt þrengri en meðalbandbreiddin þá er púnktinum gefin lægri einkunn. 
-
-Algengt er að ef tímalína rís eða fellur hratt, þá eru margir púnktar í röð taldir áhugaverðir, sem er mjög eðlilegt.
-Kerfið býður þó upp á þann möguleika að skila einungis áhugaverðasta púnktinum úr röð samliggjandi púnkta.
 
 
 \section{Horft til framtíðar}
@@ -480,12 +492,6 @@ t.d. út frá því hvort ein endurtekningin sé óeðlilega há eða lág, eða
 hreinlega vanti eitt árið.
 
 
-\subsection{Niðurstaða}
-Á vissum tímapúnktu í verkefninu varð okkur ljóst að Bollinger bönd hentuðu
-mjög vel fyrir mest af því sem við óskuðum að kerfið skyldi gera.
-Því var sett aukin áhersla á að prófa mismunandi útfærslur Bollinger banda og
-dregið
-úr prófunum annarra aðferða.
 
 \hfil \\
 \hfil \\
