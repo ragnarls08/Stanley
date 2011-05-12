@@ -324,7 +324,7 @@ tímalínu óeðlileg hækkun eða lækkun á sér stað.
 Útfærslan okkar byggist á því að ítra mismunandi stórar rammastærðir fyrir hverja tímalínu.
 Allir punktar í tímalínunni fá einkunn frá hverri rammastærð fyrir sig. 
 Til þess að gefa punkti einkunn notum við okkar eigin útgáfu af því sem kallast $\%b$. 
-Útgáfan okkar gefur punkti tölugildi á bilinu 0-1 ef hann er á milli Bollinger bandanna.
+Útgáfan okkar gefur púnkti tölugildi á bilinu 0-1 ef hann er á milli Bollinger bandanna.
 Ef punkturinn liggur utan þeirra fær hann tölugildi sem samsvarar hlutfallslegri fjarlægð hans frá meðaltali rammans, 
 sú tala er alltaf hærri en einn.
 
@@ -332,11 +332,9 @@ sú tala er alltaf hærri en einn.
   $\%b=\frac{abs((item - avg[index])}{(upperlim[index] - avg[index]))}$
 \end{center}
 
-{
-  \color{red}
-Hver rammastærð margfaldar sína útkomu úr formúlunni
-við gildið sem punkturinn hefur fyrir.
-}
+
+Hver rammastærð leggur sína einkunn við það sem fyrir stendur, hlutfallslega miðað við fjölda ítranna.
+
 Þannig gefum við punktum sem líta út fyrir að vera
 snörp hækkun í litlum ramma lækkað vægi þegar hann
 lendir innan bandanna í stærri ramma
