@@ -12,7 +12,7 @@
 %Leitað er af myndum í eftirfarandi möppum
 \graphicspath{{./technical/}{./sprettir/}}
 \linespread{1.5}
-\setcounter{tocdepth}{2}
+%\setcounter{tocdepth}{2}
 
 \usepackage{graphicx}
 \usepackage{wrapfig}
@@ -32,12 +32,10 @@
 \section{Inngangur}
 Skýrsla þessi er um lokaverkefni í Tölvunarfræði við Háskólann í
 Reykjavík, 
-sem unnið var í samvinnu við DataMarket.
-
-Verkefnið snérist um að búa til kerfi sem greinir
+sem unnið var í samvinnu við DataMarket. Verkefnið snérist um að búa til kerfi til að 
 breytingar á tímalínum í gagnasafni DataMarket sem gætu bent til þess að um markverða eða áhugaverða þróun sé að ræða.
 
-Í skýrslunni er náin lýsing á verkefninu og hvernig verkáætlun var háttað.
+Í skýrslunni lýsum við verkefninu ítarlega og hvernig verkáætlun var háttað.
 Einnig segjum við frá þeim reikniaðferðum sem skoðaðar voru með tilliti til 	
 lausnar verkefnisins og greinum frá niðurstöðum okkar. Þá 
 verður farið yfir atriði sem skoða mætti við nánari þróun kerfisins.
@@ -48,41 +46,31 @@ Að lokum er yfirlit yfir framvindu verksins.
 \label{sec:description}
 DataMarket er fyrirtæki sem tekur sama töluleg gögn frá opinberum
 stofnunum og einkaaðilum, gerir þau aðgengileg á einum stað og birtir þau á
-auðskiljanlegan máta. Frá og með 25. janúar 2011 samanstóð gagnasafn þeirra 
+auðskiljanlegan máta. Þann 25. janúar 2011 samanstóð gagnasafn þeirra 
 af meira en 13.000 gagnasettum sem innihélt næstum 100 milljón tímalínur og 
-fer það ört vaxandi.
-
-
-Hvert gagnasett hjá DataMarket inniheldur tímalínur sem sýna þróun tölulegra
+fer það ört vaxandi. Hvert gagnasett hjá DataMarket inniheldur tímalínur sem sýna þróun tölulegra
 gagna og getur innihaldið allt að nokkur þúsund tímalína. 
 Á hverjum degi eru tugir, eða jafnvel hundruð slíkra gagnasetta uppfærð í
-kerfinu.
-
-Sú þróun sem ein tímalína sýnir getur verið allt frá vel þekktum gildum t.d. verðbólgu, atvinnuleysi eða
+kerfinu. Sú þróun sem ein tímalína sýnir getur verið allt frá vel þekktum gildum t.d. verðbólgu, atvinnuleysi eða
 hitastigi í Reykjavík, til mjög sérhæfðra eða jafnvel undarlegri hluta eins og 
 innflutningsverðmæti leðurvara frá Brasilíu! \todo{endurskrifa í heild?}
-
 Mikið er fylgst með algengustu tímalínunum og stórvægilegar breytingar 
 í þeim rata iðulega í fréttir umsvifalaust. 
 En mjög markverð, áhugaverð eða jafnvel varasöm þróun getur líka birst 
-í gögnum sem fáir fylgjast með og enginn tekur etv. eftir. 
+í gögnum sem fáir fylgjast með og jafnvel enginn tekur eftir. 
 
 Þar sem óhagkvæmt er að fara handvirkt í gegnum þetta mikið magn af gögnum 
 til að finna áhugaverða atburði, var þörf á sjálfvirku kerfi til að 
 sinna því hlutverki og fólst verkefni okkar í að útfæra það.
-
 Upprunalega var kerfið hugsað á þann veg að það myndi athuga hvort ný gögn, sem
 væri verið að bæta við tímalínur DataMarket, væru áhugaverð eður ei. Hinsvegar
 varð ljóst í þróunarferlinu að kerfið okkar gæti gert meira en unnið
-eingöngu með nýjustu uppfærslurnar og varð því yfirgripsmeira en
+eingöngu með nýjustu uppfærslurnar og varð það því yfirgripsmeira en
 upprunalega stóð til.
-
 Óskir DataMarket voru að fyrst yrði útbúið einfalt kerfi sem myndi jafnvel 
 skila af sér mikið af ómarktækum niðurstöðum (e. false positives). Það var hugsað
-sem 
-grunnur sem hægt væri að byggja á. Því næst átti að þróa og greina aðferðir við
-að 
-bæta niðurstöðurnar. 
+sem grunnur sem hægt væri að byggja á. Því næst átti að þróa og greina aðferðir við
+að bæta niðurstöðurnar. 
 
 \newpage
 
@@ -91,19 +79,17 @@ bæta niðurstöðurnar.
 
 \subsection{Aðferðafræði}
 
-Þegar byrjað var að skipuleggja verkefnið varð fljótlega greinilegt að verkefnið 
-fæli í sér töluverðar rannsóknir, þ.e. að finna út hvaða reiknirit væru hentug, 
-því myndi Scrum aðferðafræði henta okkur vel. 
-Hún býður uppá skjót viðbrögð þegar breytinga er þörf og 
+Þegar byrjað var að skipuleggja verkefnið varð fljótlega greinilegt að það 
+fæli í sér að finna út hvaða reiknirit væru hentug. Við töldum Scrum aðferðafræði 
+henta vel þar sem hún býður uppá skjót viðbrögð þegar breytinga er þörf og 
 gefur svigrúm til að taka ákvarðanir um virkni á síðasta mögulega tíma.
 \subsubsection{Kröfulisti}
-Eins og kom fram að ofan þá byrjuðum við á því að útbúa einfalda frumgerð 
-og síðan myndum við vinna í að betrumbæta hana. 
+Byrjað var á því að útbúa einfalda frumgerð sem var síðan betrumbætt.
 Útfrá því var verkefninu skipt upp í tvo fasa. 
-Sá fyrri stóð yfir fyrstu tólf vikurnar og var hugsaður til að búa til frumgerð að kerfinu.
+Sá fyrri stóð yfir fyrstu tólf vikurnar og var hugsaður til að búa til frumgerð af kerfinu.
 Seinni fasinn stóð yfir síðustu þrjár vikurnar og var hugsaður til áframhaldandi þróunnar á reikniaðgerðum.
 Beðið var með að skipuleggja seinni fasann þangað til að athugannir okkar á reikniritum voru farnar að skila niðurstöðum. 
-Því vorum við með tvískiptann kröfulista\footnote[1]{Sjá nánar í 
+Því vorum við með tvískiptan kröfulista\footnote[1]{Sjá nánar í 
 um produckt backlog í framvinduskýrslu á meðfylgjandi geisladisk}.
 
 \subsubsection{Hlutverkaskipting}
@@ -130,7 +116,7 @@ valinn fulltrúi hans fyrir fyrri fasa.
 
 \subsubsection{Sprettir}
 Alls var tímabilinu skipt niður í níu spretti. Í fyrri fasa voru sex 
-tveggja vikna sprettir og í þeim seinni þrír. Í sjötta sprett gerðum við ráð fyrir lokaprófum og var hann því
+tveggja vikna sprettir og í þeim seinni þrír. Í sjötta spretti gerðum við ráð fyrir lokaprófum og var hann því
 skipulagður á fjögurra vikna tímabili, 
 en tvær af þeim fóru í prófin. Prófatafla lá ekki fyrir við skipulagningu og því 
 var þessi háttur hafður á. 
@@ -141,13 +127,12 @@ var þessi háttur hafður á.
 Haldið var utan um alla skjölun s.s. kröfulista, framvindurit (e. burndown) og dagbækur\footnote{Sjá Framvinduskýrslu á meðfylgjandi geisladisk}
  hópmeðlima á Google Docs. 
 
-Notast var við Scrum vegg þar sem að sögur og verkefni tengd þeim voru hengd upp til að fá yfirsýn 
+Notast var við Scrum vegg þar sem sögur og verkefni tengd þeim voru hengd upp til að fá yfirsýn 
 yfir framvindu sprettanna. Að hafa skjölun ávallt í augsýn gaf góða raun og hélt mönnum við efnið.
 
 \subsection{Tímaskipulag}
-
-Eitt af því fyrsta sem við gerðum þegar var að ákveða hvenær 
-vikunnar við myndum vinna að verkefninu.
+Eitt af því fyrsta sem við gerðum var að ákveða hvenær 
+vikunnar unnið yrði að verkefninu.
 Viku skipulagið leit svona út:
 
 \vspace{5 mm}
@@ -170,16 +155,17 @@ Farið var eftir þessu skipulagi fyrstu tólf vikurnar.
 Í prófatíma lá vinna við verkefnið niðri. 
 Að loknum prófum voru þrjár vikur sem meðlimir hópsins gátu einbeitt sér alfarið
 að verkefninu. Sett var upp áætlun um að vinna í átta tíma á dag, sjö daga
-vikunnar.  
+vikunnar. Yfirlit yfir tímaáætlun má sjá á mynd~\ref{fig:timeplan}
 
 Í þessari áætlun eru ekki meðtaldir tímarnir sem fóru í undirbúning verkefnisins, þ.e.
-þegar við vorum að funda með Hjálmari Gíslasyni hjá DataMarket og að setja saman
+þegar við funduðum með Hjálmari Gíslasyni hjá DataMarket og að settum saman
 lýsingu verkefnisins haustið 2010.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=1\textwidth]{sprettir_timar.pdf} 
+  \includegraphics[width=1\textwidth]{sprettir_timar.png} 
   \caption{Tímaáætlun} 
+  \label{fig:timeplan}
 \end{figure}
 
 \todo[inline]{subsection fyrir athafnir scrum}
@@ -231,7 +217,7 @@ miðbandið ($HM -K\sigma$).
 %\end{wrapfigure}
 
 
-Bollinger bönd nýtast því vel til greininga á því hvar í
+Bollinger bönd nýtast vel til að greininga hvar í
 tímalínu óeðlileg hækkun eða lækkun á sér stað.
 
 
@@ -257,11 +243,10 @@ rafmagnsframleiðslu á mánuði í Evrópusambandinu.
 
 Hér má sjá að tímalínan hefur ákveðnar endurtekningar, nánar tiltekið þá er mikil notkun á veturna en lítil á sumrin.
 Þessa föstu sveiflu í tímalínunni greinir Fourier og skilar grafi á mynd~\ref{fig:fouriergraph}. 
-
 Úr því er síðan hægt að greina að endurtekning á sér stað með 12 staka
 millibili.
 
-\subsection{Niðurstaða rannsókna}
+\subsection{Niðurstöður rannsókna}
 Eftir að hafa rannsakað mismunandi aðferðir varð okkur ljóst að Bollinger bönd hentuðu
 mjög vel fyrir flest af því sem við ætluðumst til að kerfið gerði.
 Því var sett aukin áhersla á að þróa mismunandi útfærslur Bollinger banda og
