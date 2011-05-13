@@ -319,27 +319,26 @@ rammastærð er notuð.
 Fjallað verður um aðferðir sem gagnast við að skoða þessa eiginleika í kafla~\ref{sec:future_linear}
 
 
-
+\newpage
 \section{Rýnir}
 \subsection{Flæðirit}
 \label{sec:flow_chart}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=.95\textwidth]{rynir_sequence-2.png} 
+  \includegraphics[width=.85\textwidth]{rynir_sequence-2.png} 
   \caption{Flæðirit} 
+  \label{fig:sequence}
 \end{figure}
-\todo[inline]{laga flæði og vísun í mynd}
-Rýnir tekur við lista af fyrirspurnarstrengjum\footnote[1]{Hægt er að nálgast nánari lýsingar um fyrirspurnarstrengi DataMarket á http://datamarket.com/api/v1/} 
-um gagnasett, sem táknað er með QS[] á flæðiritinu, og skilar frá sér skýrslu um niðurstöðurnar fyrir öll
-gagnasett úr listanum (Report). Hver fyrirspurnarstrengur (QS) í listanum er svo
-sendur til QueryStringHandler, þessi virkni er þráðuð. Hver
-QueryStringHandler sér svo um að láta Parser klasann sækja upplýsingar um
-gagnasettið (JSON) í gagnagrunn DataMarket og skila til baka breyttu formi sem
-hentar kerfinu (DS). Hver tímalína innan gagnasettsins er svo send til MathMagic
-til greiningar sem skilar frá sér lista af flöggum fyrir tímalínuna (TLReport).
-QueryStringHandler tekur saman niðurstöðurnar úr hverri tímalínu og skilar
-sameinaðri niðurstöðu fyrir allt gagnasettið (DSReport).
+Á mynd~\ref{fig:sequence} má sjá flæðirit fyrir Rýnir.
+Kerfið tekur við lista af fyrirspurnarstrengjum
+\footnote[1]{Hver fyrirspurnarstrengur stendur fyrir eitt gagnasett, hægt er að nálgast nánari lýsingar um fyrirspurnarstrengi DataMarket á http://datamarket.com/api/v1/}
+\footnote[2]{Táknað á mynd~\ref{fig:sequence} sem QS[]} 
+og skilar til baka skýrslu um niðurstöður. Hver fyrirspurnarstrengur er sendur til QueryStringHandler til greiningar.
+Þar sér Parser klasinn um að sækja gagnasettið\footnote[3]{Táknað á mynd~\ref{fig:sequence} sem JSON} frá þjóni DataMarket
+og skila því í formi sem hentar frekari vinnslu\footnote[4]{Táknað á mynd~\ref{fig:sequence} sem DS}.
+MathMagic greinir hverja tímalínu í gagnasettinu og skilar lista af flöggum\footnote[4]{Táknað á mynd~\ref{fig:sequence} sem TLReport} 
+sem QueryStringHandler tekur saman og skilar \footnote[4]{Táknað á mynd~\ref{fig:sequence} sem DSReport}.
 
 Að neðan má svo sjá klasarit fyrir Rýnir.
 
