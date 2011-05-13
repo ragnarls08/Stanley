@@ -117,6 +117,7 @@ DataMarket kæmi að ákvarðanatöku fyrr en í seinni fasa og því var
 valinn fulltrúi hans fyrir fyrri fasa.
 
 \subsubsection{Sprettir}
+\label{sec:sprettir}
 Alls var tímabilinu skipt niður í níu spretti. Í fyrri fasa voru sex 
 tveggja vikna sprettir og í þeim seinni þrír. Í sjötta spretti gerðum við ráð fyrir lokaprófum og var hann því
 skipulagður á fjögurra vikna tímabili, 
@@ -197,16 +198,15 @@ Tilgangur þeirra er að veita viðeigandi skilgreiningu á háum og lágum gild
 
 Bollinger bönd samanstanda af:
 
-
-\todo[inline]{skilgreina n og k}
-
 \begin{itemize}
-  \item Miðband, $N-lotu$ einfalt hlaupandi meðaltal\footnote[1]{Útskýringu á
+  \item N fjöldi staka sem notuð eru við útreikning á böndum
+  \item K margföldunarstuðull
+  \item Miðband, $N$-lotu einfalt hlaupandi meðaltal\footnote[1]{Útskýringu á
 hlaupandi meðaltali er að finna í tækniskýrslu á meðfylgjandi geisladisk.}.
-  \item Efra band, $N-lotu$ staðalfrávik margfaldað með $K$, fyrir ofan
-miðbandið ($HM + K\sigma$).
-  \item Neðra band, $N-lotu$ staðalfrávik margfaldað með $K$, fyrir neðan
-miðbandið ($HM -K\sigma$).
+  \item Efra band, $N$-lotu staðalfrávik margfaldað með $K$, fyrir ofan
+miðbandið (miðband$+ K\sigma$).
+  \item Neðra band, $N$-lotu staðalfrávik margfaldað með $K$, fyrir neðan
+miðbandið (miðband$- K\sigma$).
 \end{itemize}
 
 
@@ -372,14 +372,21 @@ hreinlega vanti eitt árið.
 
 
 \section{Framvinda}
-\subsection{Sprettir}
-\todo[inline]{stuttann ingang af sprettu}
+Eins og fram kom í kafla~\ref{sec:sprettir} skiptist verkefnið upp í níu spretti. 
+Hér bera að líta stutt yfirlit um hvað var gert í hverjum þeirra. Nánari upplýsingnar 
+er að finna í framvinduskýrslu á meðfylgjandi geisladisk.
 
-\subsubsection{Sprettur 0}
+Myndir~\ref{fig:sp1} til~\ref{fig:sp8} 
+sýna burndown rit fyrir viðkomandi spretti. Á þeim tákna grænar súlur hversu marga tíma var 
+unnið viðkomandi dag og rauðar þær breytingar sem urðu á áætlun, hvort tímum var bætt við eða 
+þeir dregnir frá. Blá línan sýnir framgang verksins og ljósa línan er höfð til viðmiðurnar 
+við áætlun.
+
+\subsection{Sprettur 0}
 Sprettur 0 var til undirbúnings. Ekki voru sögur eins og í
 hefbundnum spretti heldur var skipulögð verkáætlun, gerð áhættugreining og unnið að ýmsum öðrum
 undirbúningi.
-\subsubsection{Sprettur 1}
+\subsection{Sprettur 1}
 Í fyrsta spretti fórum við í að kynna okkur tæknileg atriði sem við ætluðum að
 nota.
 Flest þeirra þekktum við, en höfðum ekki unnið með í Python áður. Þetta voru hlutir
@@ -387,13 +394,17 @@ eins og prófanadrifin þróun, REST-ful þjónustur og hvernig
 unnið er með JSON skrár. Einnig settum við upp grunn að kerfinu sem gat sótt
 gögn frá DataMarket. Náðum ekki alveg að klára það sem við lögðum 
 upp með og urðum að færa hluta úr sögum yfir í næsta sprett.
+\hfil \\
+\hfil \\
+\hfil \\
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.72\textwidth]{Sprettur1_Burndown.png}
   \caption{}
+  \label{fig:sp1}
 \end{figure}
-
-\subsubsection{Sprettur 2}
+\newpage
+\subsection{Sprettur 2}
 Í öðrum fundum við áhugaverð gögn hjá DataMarket og settum upp staðbunda
 gátt (e. service stub) svo að það myndi ekki hindra okkur í þróun ef 
 aðgangur að gagnagrunni DataMarket væri ekki til staðar. Þetta var hluti af
@@ -402,24 +413,34 @@ okkar áhættugreiningu\footnote[1]{Sjá nánar í skjali um áhættugreiningu �
 og létum kerfið sækja gögn og skila niðurstöðum.
 Einnig áttum við fundi með sérfræðingum á sviði stærðfræði og tölfræði, til að ýta
 úr vör hugmyndavinnu fyrir seinni fasa.
+\hfil \\
+\hfil \\
+\hfil \\
 \begin{figure}[H]
  \centering
  \includegraphics[width=0.72\textwidth]{Sprettur2_Burndown.png}
  \caption{}
 \end{figure}
-\subsubsection{Sprettur 3}
+\label{fig:sp2}
+\newpage
+\subsection{Sprettur 3}
 Þegar hér var komið við sögu vorum við farnir að finna ákveðinn takt í
 áætlanagerð og sáum betur hvað við gátum gert ráð fyrir að klára mikið 
 í einum sprett. Við settum upp aðgerðarsöfn (e. libraries) sem voru til þess fallin að
 aðstoða okkur við útreikninga. Það tók þó umtalsvert lengri tíma en við gerðum
 ráð fyrir. Þá bættum við staðbundnu gáttina og kynntum okkur aðgerðarsöfnin.
 Hugmyndavinnu að frekari reikniaðgerðum var haldið áfram.
+\hfil \\
+\hfil \\
+\hfil \\
 \begin{figure}[H]
  \centering
  \includegraphics[width=0.72\textwidth]{Sprettur3_Burndown.png}
  \caption{}
 \end{figure}
-\subsubsection{Sprettur 4}
+\label{fig:sp3}
+\newpage
+\subsection{Sprettur 4}
 Spretturinn fór í að setja upp framenda á kerfið og ákvarða úttak kerfisins. 
 Þegar við vorum svo farnir að nota aðgerðarsöfnin 
 kom á daginn að einföldu aðferðirnar okkar voru mun betri en vonir stóðu til.
@@ -430,54 +451,71 @@ Við gátum nú sýnt þeim hjá DataMarket niðurstöður úr kerfinu okkar og 
 urðu til fleiri hugmyndir um hvernig hægt væri að nýta það (sjá kafla~\ref{sec:description}).
 
 Fáir sögupunktar voru settir í sprettinn og hann kláraður snemma þar sem lokapróf voru framundan.
+\hfil \\
+\hfil \\
+\hfil \\
 \begin{figure}[H]
  \centering
  \includegraphics[width=0.72\textwidth]{Sprettur4_Burndown.png}
  \caption{}
+\label{fig:sp4}
 \end{figure}
-
-\subsubsection{Sprettur 5}
+\newpage
+\subsection{Sprettur 5}
 Síðasti sprettur í fyrri fasa. Funduðum með DataMarket og ákváðum endanlegt form á
 flöggum sem er skilað. Gengum frá lausum endum, kóði yfirfarinn 
 (e. refactor) og fyrsta útgáfa varð til. Hugmyndavinna fyrir annan fasa komin vel á veg.
-
+\hfil \\
+\hfil \\
+\hfil \\
 \begin{figure}[H]
  \centering
  \includegraphics[width=0.72\textwidth]{Sprettur5_Burndown.png}
  \caption{}
+\label{fig:sp5}
 \end{figure}
-
-\subsubsection{Sprettur 6}
+\newpage
+\subsection{Sprettur 6}
 Við höfðum sankað að okkur mikið af upplýsingum og höfðum ákveðnar hugmyndir um
 hvað okkur langaði að gera. Það krafðist þess hinsvegar að við 
 þurftum að framkvæma prófanir til að sjá hvað myndi henta okkar kerfi best. 
 Af þeim sökum voru fáar sögur fullmótaðar, en þeim bætt við þegar líða tók á sprettinn.
 Vinna við lokaskýrslu hófst. Í lok sprettsins vorum við komnir með verulega bættar reikniaðgerðir frá því sem var.
-
+\hfil \\
+\hfil \\
+\hfil \\
 \begin{figure}[H]
  \centering
  \includegraphics[width=0.72\textwidth]{Sprettur6_Burndown.png}
  \caption{}
+\label{fig:sp6}
 \end{figure}
-
-\subsubsection{Sprettur 7}
+\newpage
+\subsection{Sprettur 7}
 Byrjað á lokafrágangi. Allar keyrslustillingar lesnar úr skrá og villumeðhöndlun
 yfirfarin. Sett upp villu og athugasemdakerfi (e. logging system). Framkvæmdum álagsprófanir og 
 yfirfórum niðurstöður úr þeim. Fínstillingar á reikniritum og villur lagfærðar. 
-
+\hfil \\
+\hfil \\
+\hfil \\
 \begin{figure}[H]
  \centering
  \includegraphics[width=0.72\textwidth]{Sprettur7_Burndown.png}
  \caption{}
+\label{fig:sp7}
 \end{figure}
-
-\subsubsection{Sprettur 8}
+\newpage
+\subsection{Sprettur 8}
 Skýrslugerð í forgangi. Lokafrágangur á kóða. Læddum inn einni
 bætingu á reikniaðferðum og prófuðum uppá nýtt.
+\hfil \\
+\hfil \\
+\hfil \\
 \begin{figure}[H]
  \centering
  \includegraphics[width=0.72\textwidth]{Sprettur3_Burndown.png}
  \caption{}
+\label{fig:sp8}
 \end{figure}
 
 \hfil \\
