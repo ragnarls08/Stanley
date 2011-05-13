@@ -255,7 +255,15 @@ dregið úr þróun annarra aðferða.
 
 \section{Útfærsla}
 \label{sec:imp_our}
-\todo[inline]{útskyra rammastærð.. folk greinir...}
+Til að greina gögn með Bollinger böndum þarf að ákveða rammastærð.
+Rammastærðin segir til um hversu langt aftur í tímann skuli litið þegar böndin eru reiknuð.
+Ekki virðist vera til nein almenn leið til að áætla rammastærð útfrá gögnum tímalínunnar, það er að segja án 
+nokkurra annarra fylgigagna.
+Hin hefðbundna leið við ákvörðun rammastærðar er greining á atferli tímalínunnar, sú greining krefst mannlegs innsæis og því 
+þurftum við að leita annarra úrræða því vandamáli.
+
+\subsection{Reiknirit}
+\label{sec:imp_algorithm}
 Reiknirit Rýnis byggir grunn sinn á Bollinger böndum eins og áður hefur komið fram.
 Þar sem erfitt eða ómögulegt reynist að áætla rammastærðir sjálfvirkt þá notast Rýnir við nokkrar mismunandi
 rammastærðir og ítrar í gegnum þær. Hver ítrun gefur öllum punktum í tímalínu ákveðið meðaltalsvægi. Til að reikna
