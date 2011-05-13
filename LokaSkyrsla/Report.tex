@@ -25,6 +25,7 @@
 
 
 \begin{document}
+\raggedright
 
 \tableofcontents
 \newpage
@@ -71,6 +72,7 @@ upprunalega stóð til.
 skila af sér mikið af ómarktækum niðurstöðum (e. false positives). Það var hugsað
 sem grunnur sem hægt væri að byggja á. Því næst átti að þróa og greina aðferðir við
 að bæta niðurstöðurnar. 
+
 
 \newpage
 
@@ -242,9 +244,8 @@ rafmagnsframleiðslu á mánuði í Evrópusambandinu.
 \end{figure}
 
 Hér má sjá að tímalínan hefur ákveðnar endurtekningar, nánar tiltekið þá er mikil notkun á veturna en lítil á sumrin.
-Þessa föstu sveiflu í tímalínunni greinir Fourier og skilar grafi á mynd~\ref{fig:fouriergraph}. 
-Úr því er síðan hægt að greina að endurtekning á sér stað með 12 staka
-millibili.
+Þessa föstu sveiflu í tímalínunni greinir Fourier og skilar grafi eins og mynd~\ref{fig:fouriergraph} sýnir. 
+Hægt er að greina að endurtekningu sem á sér stað með 12 staka millibili.
 
 \subsection{Niðurstöður rannsókna}
 Eftir að hafa rannsakað mismunandi aðferðir varð okkur ljóst að Bollinger bönd hentuðu
@@ -255,14 +256,14 @@ dregið úr þróun annarra aðferða.
 \section{Útfærsla}
 \label{sec:imp_our}
 \todo[inline]{útskyra rammastærð.. folk greinir...}
-Reikniritið í Rýni byggir grunn sinn á Bollinger böndum eins og áður hefur komið fram.
+Reiknirit Rýnis byggir grunn sinn á Bollinger böndum eins og áður hefur komið fram.
 Þar sem erfitt eða ómögulegt reynist að áætla rammastærðir sjálfvirkt þá notast Rýnir við nokkrar mismunandi
-rammastærðir og ítrar í gegnum þær. Hver ítrun gefur öllum punktum í tímalínu ákveðið meðaltals vægi. Til að reikna
+rammastærðir og ítrar í gegnum þær. Hver ítrun gefur öllum punktum í tímalínu ákveðið meðaltalsvægi. Til að reikna
 vægi punkts notum við okkar eigin útgáfu af formúlu sem kallast 
-$\%b$\footnote[1]{Útskýringu á upprunalegu $\%b$ formúlunni og afhverju hún gagnast okkur ekki í óbreyttri mynd er að finna í tækniskýrslu á meðfylgjandi geisladisk}. 
+$\%b$\footnote[1]{Útskýringu á upprunalegu $\%b$ formúlunni og af hverju hún gagnast okkur ekki í óbreyttri mynd er að finna í tækniskýrslu á meðfylgjandi geisladisk}. 
 \\ \hfil
 \\ \hfil
-Okkar útgáfa af $\%b$ virkar sem svo:
+Okkar útgáfa af $\%b$ virkar á eftirfarandi hátt:
 \begin{itemize}
   \item Punktar innan bandanna fá einkunn á bilinu 0-1
   \item Punktar utan bandanna fá einkunn sem samsvarar hlutfallslegri fjarlægð frá meðaltali rammans, sem er ávallt stærri en 1.
@@ -277,14 +278,11 @@ Hér fyrir neðan er síðan formúlan okkar:
 \end{center}
 
 Einkunnirnar eru lagðar saman úr öllum rammastærðum og meðaltal þeirra fundið.
-
 Þegar litlar breytingar eiga sér stað yfir tímabil sem er lengra en rammastærðin eiga
 Bollinger böndin til með að þrengjast mikið. Það gerði það að verkum að smávægilegar breytingar eftir
 rólegt tímabil fengu óeðlilega hátt gildi. 
-
 Vægi punktsins er því minnkað ef bandbreiddin reynist óeðlilega þröng miðað við meðalbandbreidd
-tímalínunnar
-
+tímalínunnar.
 Algengt er að ef tímalína rís eða fellur hratt, þá eru margir punktar í röð
 taldir áhugaverðir, sem er mjög eðlilegt.
 Kerfið býður þó upp á þann möguleika að skila einungis áhugaverðasta punktinum
@@ -293,21 +291,20 @@ Kerfið býður þó upp á þann möguleika að skila einungis áhugaverðasta 
 \subsection{Annmarkar}
 
 \todo[inline]{fært endurorða}
-Hinsvegar eru annmarkar á þessari aðferð. 
-Sem dæmi má nefna línur sem innihalda mikinn fjölda punkta.
-Líta má á að þær tímalínur hafi \ilqq hærri\irqq \hspace{1pt} upplausn en þær sem innihalda fáa punkta. Í
-þeim getur kerfið okkar verið að flagga punkta sem vissulega eru mjög
+Rannsóknir okkar leiddu í ljós að þessi aðferð hentar ekki á allar tímalínur.
+Þar má til dæmis nefna línur sem innihalda mikinn fjölda punkta.
+Líta má á að þær tímalínur hafi \ilqq hærri\irqq \hspace{1pt} upplausn en þær sem innihalda fáa punkta. 
+Í þeim flaggar kerfið okkar punkta sem vissulega eru mjög
 áhugaverðir séu þeir skoðaðir í því samhengi sem kerfið okkar sér þá þ.e. innan
 rammans. Sé ramminn lítill er hægt að bera það saman við að kerfið sé að skoða
 tímalínuna úr lítilli fjarlægð. Aftur á móti sé sama tímalína skoðuð úr meiri
-fjarlægð getur línan virst svo gott sem flöt og því í heildina ansi óáhugaverð.
+fjarlægð getur línan virst svo gott sem flöt og því í heildina óáhugaverð.
 
-Sem annað dæmi væri hægt að hugsa sér tímalínu sem hækkar töluvert upp í ákveðinn
+Önnur tegund sem kerfið grípur ekki væri tímalína sem hækkar töluvert upp í ákveðinn
 hápunkt og taki svo að lækka aftur niður í fyrri gildi. Gerist þetta með nógu
 litlum breytingum á milli punkta er ólíklegt að kerfið okkar sjái nokkuð
 athugavert við þetta þó að mögulega hafi eitthvað merkilegt átt sér stað. 
-
-Í þessum tilvikum þyrfti að skoða tímalínurnar í öðru samhengi: út frá því hvort
+Í þessum tilvikum þyrfti að skoða tímalínurnar út frá því hvort
 það eigi sér stað breyting í hinu almenna ferli tímalínunnar. Bollinger böndin
 eru ekki mjög gagnleg til þess, þar sem útkoman byggir að miklu leiti á hvaða
 rammastærð er notuð. 
@@ -325,7 +322,7 @@ Fjallað verður um aðferðir sem gagnast við að skoða þessa eiginleika í 
   \includegraphics[width=.95\textwidth]{rynir_sequence-2.png} 
   \caption{Flæðirit} 
 \end{figure}
-
+\todo[inline]{laga flæði og vísun í mynd}
 Rýnir tekur við lista af fyrirspurnarstrengjum\footnote[1]{Hægt er að nálgast nánari lýsingar um fyrirspurnarstrengi DataMarket á http://datamarket.com/api/v1/} 
 um gagnasett, sem táknað er með QS[] á flæðiritinu, og skilar frá sér skýrslu um niðurstöðurnar fyrir öll
 gagnasett úr listanum (Report). Hver fyrirspurnarstrengur (QS) í listanum er svo
@@ -374,7 +371,7 @@ hreinlega vanti eitt árið.
 
 \subsubsection{Sprettur 0}
 Sprettur 0 var til undirbúnings. Ekki voru sögur eins og í
-hefbundnum spretti heldur skipulögðum verkáætlun, gerðum áhættugreiningu og unnum að ýmsum öðrum
+hefbundnum spretti heldur var skipulögð verkáætlun, gerð áhættugreining og unnið að ýmsum öðrum
 undirbúningi.
 \subsubsection{Sprettur 1}
 Í fyrsta spretti fórum við í að kynna okkur tæknileg atriði sem við ætluðum að
@@ -387,34 +384,34 @@ upp með og urðum að færa hluta úr sögum yfir í næsta sprett.
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.72\textwidth]{Sprettur1_Burndown.png}
-  
+  \caption{}
 \end{figure}
 
 \subsubsection{Sprettur 2}
 Í öðrum fundum við áhugaverð gögn hjá DataMarket og settum upp staðbunda
-gátt(e.service stub) svo að það myndi ekki hindra okkur í þróun ef 
+gátt (e. service stub) svo að það myndi ekki hindra okkur í þróun ef 
 aðgangur að gagnagrunni DataMarket væri ekki til staðar. Þetta var hluti af
 okkar áhættugreiningu\footnote[1]{Sjá nánar í skjali um áhættugreiningu á meðfylgjandi geisladisk}. 
 Þá útfærðum við fyrstu reikniaðferðirnar sem reiknuðu meðaltal, miðgildi og staðalfrávik
 og létum kerfið sækja gögn og skila niðurstöðum.
-Þá áttum við fundi með sérfræðingum á sviði stærðfræði og tölfræði, til að ýta
+Einnig áttum við fundi með sérfræðingum á sviði stærðfræði og tölfræði, til að ýta
 úr vör hugmyndavinnu fyrir seinni fasa.
 \begin{figure}[H]
  \centering
  \includegraphics[width=0.72\textwidth]{Sprettur2_Burndown.png}
- 
+ \caption{}
 \end{figure}
 \subsubsection{Sprettur 3}
 Þegar hér var komið við sögu vorum við farnir að finna ákveðinn takt í
 áætlanagerð og sáum betur hvað við gátum gert ráð fyrir að klára mikið 
-í einum sprett. Settum upp aðgerðarsöfn(e. libraries) sem voru til þess fallin að
+í einum sprett. Við settum upp aðgerðarsöfn (e. libraries) sem voru til þess fallin að
 aðstoða okkur við útreikninga. Það tók þó umtalsvert lengri tíma en við gerðum
 ráð fyrir. Þá bættum við staðbundnu gáttina og kynntum okkur aðgerðarsöfnin.
-Hugmyndavinnu að frekari reikniaðgerðum haldið áfram.
+Hugmyndavinnu að frekari reikniaðgerðum var haldið áfram.
 \begin{figure}[H]
  \centering
  \includegraphics[width=0.72\textwidth]{Sprettur3_Burndown.png}
- 
+ \caption{}
 \end{figure}
 \subsubsection{Sprettur 4}
 Spretturinn fór í að setja upp framenda á kerfið og ákvarða úttak kerfisins. 
@@ -424,13 +421,13 @@ Einnig komumst við að því að það hafa aðrir beitt þessum aðferðum
 og kallast þær Bollinger bönd, sjá nánar kafla~\ref{sec:research_bollinger_bands}. 
 
 Við gátum nú sýnt þeim hjá DataMarket niðurstöður úr kerfinu okkar og við það
-urðu til fleiri hugmyndir um hvernig hægt væri að nýta það ( sjá kafla~\ref{sec:description}).
+urðu til fleiri hugmyndir um hvernig hægt væri að nýta það (sjá kafla~\ref{sec:description}).
 
 Fáir sögupunktar voru settir í sprettinn og hann kláraður snemma þar sem lokapróf voru framundan.
 \begin{figure}[H]
  \centering
  \includegraphics[width=0.72\textwidth]{Sprettur4_Burndown.png}
- 
+ \caption{}
 \end{figure}
 
 \subsubsection{Sprettur 5}
@@ -441,7 +438,7 @@ flöggum sem er skilað. Gengum frá lausum endum, kóði yfirfarinn
 \begin{figure}[H]
  \centering
  \includegraphics[width=0.72\textwidth]{Sprettur5_Burndown.png}
- 
+ \caption{}
 \end{figure}
 
 \subsubsection{Sprettur 6}
@@ -454,18 +451,18 @@ Vinna við lokaskýrslu hófst. Í lok sprettsins vorum við komnir með veruleg
 \begin{figure}[H]
  \centering
  \includegraphics[width=0.72\textwidth]{Sprettur6_Burndown.png}
- 
+ \caption{}
 \end{figure}
 
 \subsubsection{Sprettur 7}
 Byrjað á lokafrágangi. Allar keyrslustillingar lesnar úr skrá og villumeðhöndlun
-yfirfarin. Sett upp villu og athugasemdakerfi(e. logging system). Framkvæmdum álagsprófannir og 
-yfirfórum niðurstöður úr þeim. Fínstillingar á reikniritum í og villur lagfærðar. 
+yfirfarin. Sett upp villu og athugasemdakerfi (e. logging system). Framkvæmdum álagsprófanir og 
+yfirfórum niðurstöður úr þeim. Fínstillingar á reikniritum og villur lagfærðar. 
 
 \begin{figure}[H]
  \centering
  \includegraphics[width=0.72\textwidth]{Sprettur7_Burndown.png}
- 
+ \caption{}
 \end{figure}
 
 \subsubsection{Sprettur 8}
@@ -474,7 +471,7 @@ bætingu á reikniaðferðum og prófuðum uppá nýtt.
 \begin{figure}[H]
  \centering
  \includegraphics[width=0.72\textwidth]{Sprettur3_Burndown.png}
- 
+ \caption{}
 \end{figure}
 
 \hfil \\
