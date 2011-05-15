@@ -16,7 +16,8 @@ rynir = Rynir()
 #time_series = ["gunni_Awesom","leh3", "yef","1eh3"] # 1. er ologlegur, 2. ekki til, 3. of stor, 4 ok
 #time_series = "yef"
 #time_series = 'yfu|6zj=1'
-time_series = '16z3|ib9=3b'
+#time_series = '16z3|ib9=3b'
+time_series = 'xja|67k=3'
 #time_series = 'x7p|61x=2'
 #time_series = "1eh3" #british fatalities in afghanistan
 #time_series = "1d8b|wzl=6" #crude oil
@@ -70,8 +71,8 @@ upperlim = avg-std*2
 print lowerlim
 print upperlim
 
-fsp.tsplot(lowerlim, '-r')
-fsp.tsplot(upperlim, '-r')
+#fsp.tsplot(lowerlim, '-r')
+#fsp.tsplot(upperlim, '-r')
 #for item in report[0]:
     #for x in item.listOfFlags:
         ##print "-----Flag: " + str(x[0])
@@ -89,7 +90,7 @@ fsp.tsplot(upperlim, '-r')
 
 
 plot.show()
-#plot.savefig('Utlan Glitnis - bond')
+#plot.savefig('Kaup i kaupthing - timalina')
 
 
 
