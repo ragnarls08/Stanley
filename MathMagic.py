@@ -57,7 +57,6 @@ class MathMagic:
 		if frameSize:
 			dictionary = bollingerAnalysis(timeline, dictionary, frameSize, timeAxis)
 		else:	
-			#kalla í fourier, ef það kemur rammastærð úr því þá kalla í BollingerFourier, annars iterativeBollinger
 			dictionary = self.iterativeBollinger(timeline, timeAxis, dictionary)
 
 		
@@ -75,17 +74,17 @@ class MathMagic:
 				  if dictionary[key][0] >= (dictionary[key][3] - self.nMostRecent):
 					filterDict[key] = dictionary[key]
 				else:
-					filterDict[key] = dictionary[key]
-				
+				  filterDict[key] = dictionary[key]
+
+		#if value in config to consolidate flags set to true:
+		if self.consoFlags:
+		  filterDict = self.consolidateFlags(filterDict)
+	
 				
 		listi = []
-		#consolidates flags that are adjecent, picks the highest severity in each adjecent sequence
-		if self.consoFlags:
-			listi = self.consolidateFlags(filterDict)
-		else:
-			tempList = sorted(filterDict.iteritems(), key=operator.itemgetter(1))
-			for item in tempList:
-				listi.append( (item[0], item[1][2], item[1][0]) )
+		tempList = sorted(filterDict.iteritems(), key=operator.itemgetter(1))
+		for item in tempList:
+		  listi.append( (item[0], item[1][2]/item[1][4], item[1][0]) )
 
 		return listi
 
@@ -98,7 +97,7 @@ class MathMagic:
 
 	def consolidateFlags(self, listi):
 		retList = []
-					
+
 		#sort items on severity 
 		listi = sorted(listi.iteritems(), key=operator.itemgetter(1))
 			
@@ -124,17 +123,14 @@ class MathMagic:
 		if currList:
 		  groups.append(currList)
 			
-		#loop through groups, get the max item out of each grouping
+		retDict = {}
+		
 		for item in groups:
 			maxItem = max(item, key=lambda x: (x[1][2])/(x[1][4]))
-			date = maxItem[0]
-			severity = maxItem[1][2]/maxItem[1][4]
-			index = maxItem[1][0]
-			timelineLen = maxItem[1][3]
-			retList.append( (date, severity, index, timelineLen) )
-		
-		return retList
-		
+			retDict[maxItem[0]] = maxItem[1]
+			
+		return retDict
+
 		
 	#bollinger analysis function
 	def bollingerAnalysis(self, timeline, dictionary, frameSize, timeAxis):

@@ -71,8 +71,8 @@ upperlim = avg-std*2
 print lowerlim
 print upperlim
 
-#fsp.tsplot(lowerlim, '-r')
-#fsp.tsplot(upperlim, '-r')
+fsp.tsplot(lowerlim, '-r')
+fsp.tsplot(upperlim, '-r')
 #for item in report[0]:
     #for x in item.listOfFlags:
         ##print "-----Flag: " + str(x[0])
@@ -90,7 +90,7 @@ print upperlim
 
 
 plot.show()
-#plot.savefig('Kaup i kaupthing - timalina')
+#plot.savefig('Kaup i kaupthing - timalina og bond')
 
 
 
