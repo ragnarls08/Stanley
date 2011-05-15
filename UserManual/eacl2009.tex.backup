@@ -55,6 +55,7 @@ Rýnir er skrifaður í Python 2.6 og styðst við eftirfaradi aðgerðasöfn (e
 Engra sérstakara aðgerða er þörf ef allar kröfur eru uppfylltar. Afþjappið skráarpakkanum á þeim stað sem hentar hverju sinni.
 \subsection{Stillingar}
 Í stillingaskrá (e.config) er hægt að stilla eftirfarandi breytur;\\
+<<<<<<< HEAD
 
 \begin{itemize}
   \item Url: Slóðin á þann API sem skal tengjast á.
@@ -74,11 +75,18 @@ Engra sérstakara aðgerða er þörf ef allar kröfur eru uppfylltar. Afþjappi
 \end{itemize}
 
 
+=======
+Framesize: Ákveður rammastærðir eða N-lotur einfalds fljótandi meðaltals (e. simple moving average). \\
+K: Ákveður efri og neðri mörk sem K sinnum N-lotu staðalfrávik þannig að efri mörk eru $ K*\sigma$ og neðri mörk $-(K*\sigma)$.\\
+TOP: Ákveður hversu mörgum flöggum er skilað. Skilar TOP áhugaverðustu flöggunum.\\
+LatestUpdateOnly: Segir til um hvort skila eigi niðurstöðu fyrir alla tímalínuna eða einungis þeirri nýjustu.\\
+API key: aðgangsorð að kerfi Datamarket. Einungis nauðsynlegt ef sækja á mikið af gögnum eða lokuð gögn.\\
+>>>>>>> 15db5427658c178d5923acbb0afdeab594ce1999
 \subsection{Notkun}
 Í Rýni er hægt að kalla á fallið analyze() og senda með því lista af fyrirspurnarstrengjum (e.query strings).
 Nánari útlistun á fyrirspurnarstrengjum Datamarket er að finna á síðu þeirra \url{http://datamarket.com/api/v1/}.
 
 Kallið í analyze() skilar lista af flöggum. Hvert flagg inniheldur upplýsingar um úr hvaða gagnasafni og 
-tímalínu viðkomandi flagg er ásamt staðsetningu innan tímalínu.
+tímalínu viðkomandi flagg er ásamt staðsetningu innan tímalínu og stærð hennar.
 
 \end{document}

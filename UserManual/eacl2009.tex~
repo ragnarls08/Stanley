@@ -48,6 +48,8 @@ Rýnir er skrifaður í Python 2.6 og styðst við eftirfaradi aðgerðasöfn (e
  \item Simplejson, útgáfa 2.0.9 eða nýrra\\ \url{http://pypi.python.org/pypi/simplejson/}
 \end{enumerate}
 
+Ekki er þó mælt með að kefið sé keyrt með óstabílum útgáfum á ofantöldum aðgerðasöfnum.
+
 \section{Almennar leiðbeiningar}
 
 
@@ -55,6 +57,7 @@ Rýnir er skrifaður í Python 2.6 og styðst við eftirfaradi aðgerðasöfn (e
 Engra sérstakara aðgerða er þörf ef allar kröfur eru uppfylltar. Afþjappið skráarpakkanum á þeim stað sem hentar hverju sinni.
 \subsection{Stillingar}
 Í stillingaskrá (e.config) er hægt að stilla eftirfarandi breytur;\\
+
 
 \begin{itemize}
   \item Url: Slóðin á þann API sem skal tengjast á
@@ -66,7 +69,7 @@ Engra sérstakara aðgerða er þörf ef allar kröfur eru uppfylltar. Afþjappi
   \item K: Ákveður efri og neðri mörk sem K sinnum N-lotu staðalfrávik þannig að efri mörk eru $ K*\sigma$ og neðri mörk $-(K*\sigma)$
   \item FrameSize: Ákveður rammastærð eða N-lotu einfalds fljótandi meðaltals (e. simple moving average)
   \item MaxTimelineSize: Ef fjöldi punkta í tímalínu er stærri en MaxTimelineSize þá er sú tímalína ekki send til greiningar
-  \item Numberofthreads: Segir til um hversu marga þræði kerfið hefur leyfi til að nota
+  \item NumberOfThreads: Segir til um hversu marga þræði kerfið hefur leyfi til að nota
 
   \item TopN: Ákveður hversu mörgum flöggum er skilað. Skilar TopN áhugaverðustu flöggunum
   \item NMostRecent: Segir til um hvort skila eigi niðurstöðu fyrir alla tímalínuna eða einungis skoða NMostRecent nýjustu punktanna
@@ -74,11 +77,12 @@ Engra sérstakara aðgerða er þörf ef allar kröfur eru uppfylltar. Afþjappi
 
 Til að fulla greiningu og óskert gögn skal stilla bæði TopN og NMostRecent á 0.
 
+
 \subsection{Notkun}
 Í Rýni er hægt að kalla á fallið analyze() og senda með því lista af fyrirspurnarstrengjum (e.query strings).
 Nánari útlistun á fyrirspurnarstrengjum Datamarket er að finna á síðu þeirra \url{http://datamarket.com/api/v1/}.
 
 Kallið í analyze() skilar lista af flöggum. Hvert flagg inniheldur upplýsingar um úr hvaða gagnasafni og 
-tímalínu viðkomandi flagg er ásamt staðsetningu innan tímalínu.
+tímalínu viðkomandi flagg er ásamt staðsetningu innan tímalínu og stærð hennar.
 
 \end{document}
