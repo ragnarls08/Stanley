@@ -5,7 +5,7 @@ import scikits.timeseries.lib.plotlib as tplot
 from scikits.timeseries.lib.moving_funcs import *
 import scipy as sp
 from StaticGateway import StaticGateway
-
+import traceback
 from Rynir import Rynir
 from DmGateway import DmGateway
 from Parser import Parser
@@ -15,7 +15,8 @@ rynir = Rynir()
 
 #time_series = ["gunni_Awesom","leh3", "yef","1eh3"] # 1. er ologlegur, 2. ekki til, 3. of stor, 4 ok
 #time_series = "yef"
-time_series = 'yfu|6zj=1'
+#time_series = 'yfu|6zj=1'
+time_series = '16z3|ib9=3b'
 #time_series = 'x7p|61x=2'
 #time_series = "1eh3" #british fatalities in afghanistan
 #time_series = "1d8b|wzl=6" #crude oil
@@ -37,7 +38,7 @@ try:
 		for i in x:
 			print i
 except:
-	print 'wrong'
+	pass
 
 #debugging plot below, make sure parameters match the ones actually used
 gate = DmGateway()
@@ -45,8 +46,6 @@ gate = DmGateway()
 ps = Parser()
 
 dset = ps.parse(time_series)
-
-print dset.granularity
 
 series = ts.time_series(dset[1].getMaskedArray(),
 						start_date=ts.Date(freq='year', year=1, month=1))
@@ -56,12 +55,20 @@ fig = tplot.tsfigure()
 # 111 = width, height, subplots
 fsp = fig.add_tsplot(111)
 fsp.tsplot(series, '-')
-avg = mov_average(series, 50)
-std = mov_std(series, 50)
-
+np.seterr(invalid='raise')
+try:
+	avg = mov_average(series, 20)
+	std = mov_std(series, 20)
+except Exception as error:
+	print error
+	traceback.print_exc()
+print series
+print avg
+print std
 lowerlim = avg+std*2
 upperlim = avg-std*2
-
+print lowerlim
+print upperlim
 
 fsp.tsplot(lowerlim, '-r')
 fsp.tsplot(upperlim, '-r')

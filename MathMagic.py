@@ -38,10 +38,8 @@ class MathMagic:
 		
 		#if timeline is too short or too long, return no flags
 		if len(timeline) < 7: 
-			logging.info('Timeline too short')
 			return []
-		if len(timeline) > 500:
-			logging.info('Timeline too long')
+		if len(timeline) > 50000:
 			return []
 		
 		#frameSize = self.fourierAnalysis(timeline, timeAxis)
@@ -132,6 +130,7 @@ class MathMagic:
 		
 	#bollinger analysis function
 	def bollingerAnalysis(self, timeline, dictionary, frameSize, timeAxis):
+		np.seterr(invalid='raise')
 		timeline = timeline.getMaskedArray()
 		
 		try:
@@ -141,7 +140,13 @@ class MathMagic:
 		except NotImplementedError as error:
 			logging.error('From bollingerAnalysis in MathMagic : %s', str(error))
 			return dictionary
-
+		except ValueError as error:
+			logging.error('From bollingerAnalysis in MathMagic : %s', str(error))
+			return dictionary
+		except FloatingPointError as error:
+			raise
+			#logging.error('From bollingerAnalysis in MathMagic : %s', str(error))
+			#return dictionary
 		#set the upper and lower bands for the bollinger analysis at K = 2
 		lowerlim = avg-std*self.K
 		upperlim = avg+std*self.K
@@ -183,7 +188,16 @@ class MathMagic:
 					dictionary[timeAxis[index]] = (index, '-', severity, len(timeline), flaggedCounter)
 			except Exception:
 				traceback.print_exc()
-			
+			if False:
+				print 'FrameSize: ' + str(frameSize)
+				print timeline
+				print 'Denominator: ' + str(denominator)
+				print 'Avg: ' + str(avg[index])
+				print 'Std: ' + str(std[index])
+				print 'Upperlim: ' + str(upperlim[index])
+				print 'Lowerlim: ' + str(lowerlim[index])
+				print 'Severity: ' + str(severity)
+				
 		return dictionary
 
 	#fourier analysis function

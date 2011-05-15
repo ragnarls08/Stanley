@@ -4,6 +4,7 @@ from Parser import Parser
 from MathMagic import MathMagic
 from FlagObj import FlagObj
 import logging
+import traceback
 
 class QueryStringHandler:
 	def __init__(self):
@@ -31,7 +32,9 @@ class QueryStringHandler:
 			return datasetReport
 			#TODO Specify exceptions
 		except TypeError, e:
-			logging.error(e)
+			logging.error(traceback.format_exc())
+			#logging.error(e)
 		except Exception, e:
-			logging.error(e)
+			logging.error(traceback.format_exc())
+			#logging.error(e)
 			return []
