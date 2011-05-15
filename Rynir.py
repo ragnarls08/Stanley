@@ -50,7 +50,7 @@ class Rynir:
 		#if topN is set to 0, a list of all flags is returnd
 		
 		if self.topN > 0:	
-		  self.report = self.getTopResults(self.report)
+		  self.report = [self.getTopResults(self.report)]
 		
 		return self.report
 

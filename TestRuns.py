@@ -18,7 +18,7 @@ rynir = Rynir()
 
 #report = rynir.analyze('c|1tt=1c8b:1tu=1c8i')
 #report = rynir.analyze('16w5|i8b=w')
-report = rynir.analyze(listOfDataSets[5000:5005])
+report = rynir.analyze(listOfDataSets[5000:6000])
 
 
 #report = rynir.analyze("16z9|ibf=1p")
@@ -31,8 +31,8 @@ report = rynir.analyze(listOfDataSets[5000:5005])
 #report = rynir.analyze('16z3|ib9=3b')
 
 #for ds in report:
-  
   	#print ds
+
 
 for ds in report:
   for fo in ds:

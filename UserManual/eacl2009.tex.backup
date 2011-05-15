@@ -40,7 +40,7 @@ Rýnir er skrifaður í Python 2.6 og styðst við eftirfaradi aðgerðasöfn (e
 \renewcommand{\theenumi}{\roman{enumi}}
 \renewcommand{\labelenumi}{\theenumi}
 \begin{enumerate}
- \item NumPy, útgáfa 1.6.0c1 eða nýrra\\ \url{http://numpy.scipy.org/}
+ \item NumPy, útgáfa 1.5.1 eða nýrra\\ \url{http://numpy.scipy.org/}
  \item SciPy, útgáfa 0.7.0 eða nýrra\\ \url{http://www.scipy.org/}
  \item Mathplotlib, útgáfa 0.99.1.1 eða nýrra\\ \url{http://matplotlib.sourceforge.net/index.html}
  \item SciKits.timeseries, útgáfa 0.91.3 eða nýrra\\ \url{http://pytseries.sourceforge.net/index.html}
@@ -55,10 +55,25 @@ Rýnir er skrifaður í Python 2.6 og styðst við eftirfaradi aðgerðasöfn (e
 Engra sérstakara aðgerða er þörf ef allar kröfur eru uppfylltar. Afþjappið skráarpakkanum á þeim stað sem hentar hverju sinni.
 \subsection{Stillingar}
 Í stillingaskrá (e.config) er hægt að stilla eftirfarandi breytur;\\
-N: Ákveður rammastærð eða N-lotu einfalds fljótandi meðaltals (e. simple moving average).\\
-K: Ákveður efri og neðri mörk sem K sinnum N-lotu staðalfrávik þannig að efri mörk eru $ K*\sigma$ og neðri mörk $-(K*\sigma)$.\\
-TOP: Ákveður hversu mörgum flöggum er skilað. Skilar TOP áhugaverðustu flöggunum.\\
-FULL: Segir til um hvort skila eigi niðurstöðu fyrir alla tímalínuna eða einungis þeirri nýjustu.
+
+\begin{itemize}
+  \item Url: Slóðin á þann API sem skal tengjast á.
+  \item Key: Aðgangslykill að API.
+
+  \item ConsolidateFlags: Gefur þann möguleika að skila einungis áhugaverðasta flagginu af röð samliggjandi flagga.
+  \item Filter: Segir til um hversu hátt áhugaverðaleika gildi flagg þarf svo því sé skilað.
+
+  \item K: Ákveður efri og neðri mörk sem K sinnum N-lotu staðalfrávik þannig að efri mörk eru $ K*\sigma$ og neðri mörk $-(K*\sigma)$
+  \item FrameSize: Ákveður rammastærð eða N-lotu einfalds fljótandi meðaltals (e. simple moving average).
+  \item MaxTimelineSize: Ef fjöldi punkta í tímalínu er stærri en MaxTimelineSize þá er sú tímalína ekki send til greiningar.
+  \item Numberofthreads: Segir til um hversu marga þræði kerfið hefur leyfi til að nota.
+
+  \item TopN: Ákveður hversu mörgum flöggum er skilað. Skilar TopN áhugaverðustu flöggunum.
+  \item NMostRecent: Segir til um hvort skila eigi niðurstöðu fyrir alla tímalínuna eða einungis skoða NMostRecent nýjustu punktanna.
+ 
+\end{itemize}
+
+
 \subsection{Notkun}
 Í Rýni er hægt að kalla á fallið analyze() og senda með því lista af fyrirspurnarstrengjum (e.query strings).
 Nánari útlistun á fyrirspurnarstrengjum Datamarket er að finna á síðu þeirra \url{http://datamarket.com/api/v1/}.
