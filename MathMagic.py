@@ -29,19 +29,20 @@ class MathMagic:
 		self.frame2 = self.config.getint('BollingerVariables','framesize2')
 		self.frame3 = self.config.getint('BollingerVariables','framesize3')
 
-		#TODO: Eftir ad setja inn consolidate flags breytu
-		#TODO: filter breyta
+		self.maxTimelineSize = self.config.getint('ReturnOptions','maxTimelineSize')
+
+		self.consoFlags = self.config.getboolean('ReturnValues','consolidateflags')
+		self.filter = self.config.getfloat('ReturnValues','filter')
 		
+		self.nMostRecent = self.config.getint('ReturnOptions','nMostRecent')
 		
 	def analyze(self, timeline, timeAxis, frameSize = None):
 	
 		
 		#if timeline is too short or too long, return no flags
 		if len(timeline) < 7: 
-			logging.info('Timeline too short')
 			return []
-		if len(timeline) > 500:
-			logging.info('Timeline too long')
+		if len(timeline) > self.maxTimelineSize:
 			return []
 		
 		#frameSize = self.fourierAnalysis(timeline, timeAxis)
@@ -56,17 +57,34 @@ class MathMagic:
 		if frameSize:
 			dictionary = bollingerAnalysis(timeline, dictionary, frameSize, timeAxis)
 		else:	
-			#kalla í fourier, ef það kemur rammastærð úr því þá kalla í BollingerFourier, annars iterativeBollinger
 			dictionary = self.iterativeBollinger(timeline, timeAxis, dictionary)
 
-		#TODO config variable for consolidate flags
-		#consolidates flags that are adjecent, picks the highest severity in each adjecent sequence
-		if True:#flag missing
-		  listi = self.consolidateFlags(dictionary)
-		else:
-		  tempList = sorted(dictionary.iteritems(), key=operator.itemgetter(1))
-		  for item in tempList:
-			listi.append( (item[0], item[1][2], item[1][0]) )
+		
+		filterDict = {}
+		
+		#filter out all flags with severity lower than filter.
+		for key in dictionary:
+			if dictionary[key][4] == 0:
+				denominator = 1
+			else:
+				denominator = dictionary[key][4]
+			
+			if dictionary[key][2]/denominator > self.filter:
+				if self.nMostRecent > 0:
+				  if dictionary[key][0] >= (dictionary[key][3] - self.nMostRecent):
+					filterDict[key] = dictionary[key]
+				else:
+				  filterDict[key] = dictionary[key]
+
+		#if value in config to consolidate flags set to true:
+		if self.consoFlags:
+		  filterDict = self.consolidateFlags(filterDict)
+	
+				
+		listi = []
+		tempList = sorted(filterDict.iteritems(), key=operator.itemgetter(1))
+		for item in tempList:
+		  listi.append( (item[0], item[1][2]/item[1][4], item[1][0]) )
 
 		return listi
 
@@ -75,24 +93,11 @@ class MathMagic:
 		self.bollingerAnalysis(timeline,dictionary,self.frame2, timeAxis)
 		self.bollingerAnalysis(timeline,dictionary,self.frame3, timeAxis)
 
-		retDict = {}
-		
-		#TODO config variable for filter
-		#filter out all flags with severity lower than filter.
-		for key in dictionary:
-			if dictionary[key][4] == 0:
-				denominator = 1
-			else:
-				denominator = dictionary[key][4]
-			
-			if dictionary[key][2]/denominator > 1:
-				retDict[key] = dictionary[key]
-
-		return retDict
+		return dictionary
 
 	def consolidateFlags(self, listi):
 		retList = []
-					
+
 		#sort items on severity 
 		listi = sorted(listi.iteritems(), key=operator.itemgetter(1))
 			
@@ -118,20 +123,18 @@ class MathMagic:
 		if currList:
 		  groups.append(currList)
 			
-		#loop through groups, get the max item out of each grouping
+		retDict = {}
+		
 		for item in groups:
 			maxItem = max(item, key=lambda x: (x[1][2])/(x[1][4]))
-			date = maxItem[0]
-			severity = maxItem[1][2]/maxItem[1][4]
-			index = maxItem[1][0]
-			timelineLen = maxItem[1][3]
-			retList.append( (date, severity, index, timelineLen) )
-		
-		return retList
-		
+			retDict[maxItem[0]] = maxItem[1]
+			
+		return retDict
+
 		
 	#bollinger analysis function
 	def bollingerAnalysis(self, timeline, dictionary, frameSize, timeAxis):
+		np.seterr(invalid='raise')
 		timeline = timeline.getMaskedArray()
 		
 		try:
@@ -141,7 +144,13 @@ class MathMagic:
 		except NotImplementedError as error:
 			logging.error('From bollingerAnalysis in MathMagic : %s', str(error))
 			return dictionary
-
+			
+		except ValueError as error:
+			logging.error('From bollingerAnalysis in MathMagic : %s', str(error))
+			return dictionary
+		except FloatingPointError as error:
+			raise
+		
 		#set the upper and lower bands for the bollinger analysis at K = 2
 		lowerlim = avg-std*self.K
 		upperlim = avg+std*self.K
@@ -171,10 +180,8 @@ class MathMagic:
 			severity = percentb + dictionary[timeAxis[index]][2]
 			try:
 				if percentb > 0:
-					#print dictionary[timeAxis[index]][4]
 					flaggedCounter = dictionary[timeAxis[index]][4] + 1
 				else:
-					#print dictionary[timeAxis[index]][4]
 					flaggedCounter = dictionary[timeAxis[index]][4]
 				
 				if item > avg[index]:
@@ -183,7 +190,16 @@ class MathMagic:
 					dictionary[timeAxis[index]] = (index, '-', severity, len(timeline), flaggedCounter)
 			except Exception:
 				traceback.print_exc()
-			
+			if False:
+				print 'FrameSize: ' + str(frameSize)
+				print timeline
+				print 'Denominator: ' + str(denominator)
+				print 'Avg: ' + str(avg[index])
+				print 'Std: ' + str(std[index])
+				print 'Upperlim: ' + str(upperlim[index])
+				print 'Lowerlim: ' + str(lowerlim[index])
+				print 'Severity: ' + str(severity)
+				
 		return dictionary
 
 	#fourier analysis function
@@ -198,13 +214,11 @@ class MathMagic:
 			period=1./freq
 			
 			end = len(power)
-			
 			avg = np.mean(power[1:end])
 			#avg = np.mean(power)
-			print 'avg: ' + str(avg)
 			std = np.std(power[1:end])
 			#std = np.std(power)
-			print 'std: ' + str(std)
+			
 			maxItem = max(power[1:end]-avg)
 			print maxItem
 			
@@ -217,9 +231,6 @@ class MathMagic:
 			loggeing.error(e)
 			
 		finally:
-			print 'fourier says: '
-			print 'returning: ' + str(periodSize)
-			print 'fourier done'
 			plot.plot(period[1:len(period)], power)
 			plot.show()
 			return periodSize

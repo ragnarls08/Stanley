@@ -6,6 +6,10 @@ class TimeLine(list):
 		self.title = title
 		self.cId = cId
 		
+		if type(data) == int or type(data) == float:
+		  data = [data]
+		 
+		
 		super(TimeLine, self).extend( list(data) )
 	
 	def __str__(self):
