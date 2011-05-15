@@ -1,14 +1,14 @@
 \select@language {icelandic}
 \contentsline {section}{\numberline {1}Kr\IeC {\"o}fulisti}{2}
 \contentsline {subsection}{\numberline {1.1}Burndown}{4}
-\contentsline {section}{\numberline {2}Sprettir}{6}
-\contentsline {subsection}{\numberline {2.1}Sprettur 1}{6}
-\contentsline {subsection}{\numberline {2.2}Sprettur 2}{7}
-\contentsline {subsection}{\numberline {2.3}Sprettur 3}{8}
-\contentsline {subsection}{\numberline {2.4}Sprettur 4}{9}
-\contentsline {subsection}{\numberline {2.5}Sprettur 5}{10}
-\contentsline {subsection}{\numberline {2.6}Sprettur 6}{11}
-\contentsline {subsection}{\numberline {2.7}Sprettur 6}{12}
-\contentsline {subsection}{\numberline {2.8}Sprettur 7}{13}
-\contentsline {subsection}{\numberline {2.9}Sprettur 8}{14}
-\contentsline {section}{\numberline {3}T\IeC {\'\i }maskr\IeC {\'a}ning}{15}
+\contentsline {section}{\numberline {2}Sprettir}{5}
+\contentsline {subsection}{\numberline {2.1}Sprettur 1}{5}
+\contentsline {subsection}{\numberline {2.2}Sprettur 2}{6}
+\contentsline {subsection}{\numberline {2.3}Sprettur 3}{6}
+\contentsline {subsection}{\numberline {2.4}Sprettur 4}{7}
+\contentsline {subsection}{\numberline {2.5}Sprettur 5}{7}
+\contentsline {subsection}{\numberline {2.6}Sprettur 6}{8}
+\contentsline {subsection}{\numberline {2.7}Sprettur 6}{8}
+\contentsline {subsection}{\numberline {2.8}Sprettur 7}{9}
+\contentsline {subsection}{\numberline {2.9}Sprettur 8}{9}
+\contentsline {section}{\numberline {3}T\IeC {\'\i }maskr\IeC {\'a}ning}{10}
