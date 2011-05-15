@@ -41,10 +41,8 @@ class MathMagic:
 		
 		#if timeline is too short or too long, return no flags
 		if len(timeline) < 7: 
-			#logging.info('Timeline too short')
 			return []
 		if len(timeline) > self.maxTimelineSize:
-			#logging.info('Timeline too long')
 			return []
 		
 		#frameSize = self.fourierAnalysis(timeline, timeAxis)
@@ -59,7 +57,6 @@ class MathMagic:
 		if frameSize:
 			dictionary = bollingerAnalysis(timeline, dictionary, frameSize, timeAxis)
 		else:	
-			#kalla í fourier, ef það kemur rammastærð úr því þá kalla í BollingerFourier, annars iterativeBollinger
 			dictionary = self.iterativeBollinger(timeline, timeAxis, dictionary)
 
 		
@@ -79,7 +76,7 @@ class MathMagic:
 				else:
 				  filterDict[key] = dictionary[key]
 
-
+		#if value in config to consolidate flags set to true:
 		if self.consoFlags:
 		  filterDict = self.consolidateFlags(filterDict)
 	
@@ -88,8 +85,7 @@ class MathMagic:
 		tempList = sorted(filterDict.iteritems(), key=operator.itemgetter(1))
 		for item in tempList:
 		  listi.append( (item[0], item[1][2]/item[1][4], item[1][0]) )
-		
-		
+
 		return listi
 
 	def iterativeBollinger(self, timeline, timeAxis, dictionary):
@@ -138,6 +134,7 @@ class MathMagic:
 		
 	#bollinger analysis function
 	def bollingerAnalysis(self, timeline, dictionary, frameSize, timeAxis):
+		np.seterr(invalid='raise')
 		timeline = timeline.getMaskedArray()
 		
 		try:
@@ -147,10 +144,13 @@ class MathMagic:
 		except NotImplementedError as error:
 			logging.error('From bollingerAnalysis in MathMagic : %s', str(error))
 			return dictionary
-		except Exception:
-			logging.error(traceback.format_exc())
+			
+		except ValueError as error:
+			logging.error('From bollingerAnalysis in MathMagic : %s', str(error))
 			return dictionary
-
+		except FloatingPointError as error:
+			raise
+		
 		#set the upper and lower bands for the bollinger analysis at K = 2
 		lowerlim = avg-std*self.K
 		upperlim = avg+std*self.K
@@ -190,7 +190,16 @@ class MathMagic:
 					dictionary[timeAxis[index]] = (index, '-', severity, len(timeline), flaggedCounter)
 			except Exception:
 				traceback.print_exc()
-			
+			if False:
+				print 'FrameSize: ' + str(frameSize)
+				print timeline
+				print 'Denominator: ' + str(denominator)
+				print 'Avg: ' + str(avg[index])
+				print 'Std: ' + str(std[index])
+				print 'Upperlim: ' + str(upperlim[index])
+				print 'Lowerlim: ' + str(lowerlim[index])
+				print 'Severity: ' + str(severity)
+				
 		return dictionary
 
 	#fourier analysis function

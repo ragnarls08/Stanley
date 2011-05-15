@@ -15,7 +15,11 @@ for x in f:
 
 rynir = Rynir()
 
-report = rynir.analyze(listOfDataSets[5000:5050])
+
+#report = rynir.analyze('c|1tt=1c8b:1tu=1c8i')
+#report = rynir.analyze('16w5|i8b=w')
+report = rynir.analyze(listOfDataSets[5000:5005])
+
 
 #report = rynir.analyze("16z9|ibf=1p")
 #report = rynir.analyze("12sr|e7l=3p")
@@ -26,11 +30,11 @@ report = rynir.analyze(listOfDataSets[5000:5050])
 #report = rynir.analyze('xja|67k=3') #flagg i endann
 #report = rynir.analyze('16z3|ib9=3b')
 
-for ds in report:
-  
-  	print ds
-
 #for ds in report:
-  #for fo in ds:
-	#print fo
+  
+  	#print ds
+
+for ds in report:
+  for fo in ds:
+	print fo
 
