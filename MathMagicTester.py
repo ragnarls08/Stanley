@@ -20,7 +20,7 @@ class MathMagicTester(unittest.TestCase):
 		
 		dictionary = {}
 		for item in timeAxis:
-			dictionary[item] = (None, None, 1)
+			dictionary[item] = (None, None, 0, len(timeAxis), 0)
 
 		testResult = self.mathMagic.bollingerAnalysis(self.legalTimeline, dictionary, 20, timeAxis)
 		
@@ -28,6 +28,7 @@ class MathMagicTester(unittest.TestCase):
 		#	if testResult[key][2] > 1:
 		#		print 'flag at ' + str(testResult[key][0]) + ' with value of ' + str(self.legalTimeline[testResult[key][0]])
 		#		print testResult[key][2]
+		
 		
 		self.assertGreater(testResult[67][2], 1)
 		self.assertGreater(testResult[106][2], 1)
@@ -54,7 +55,7 @@ class MathMagicTester(unittest.TestCase):
 		timeAxis = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 		dictionary = {}
 		for item in timeAxis:
-			dictionary[item] = (None, None, 1)
+			dictionary[item] = (None, None, 0, len(timeAxis), 0)
 			
 		#check if flag has higher than one severity. severity should be calculated even though timeline has some empty values
 		testResult = self.mathMagic.bollingerAnalysis(self.emptyValuesTimeline, dictionary, 2, timeAxis)
@@ -64,21 +65,34 @@ class MathMagicTester(unittest.TestCase):
 		timeAxis = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 		dictionary = {}
 		for item in timeAxis:
-			dictionary[item] = (None, None, 1)
+			dictionary[item] = (None, None, 0, len(timeAxis), 0)
 			
 		#check if flag has higher than one severity. severity should be calculated even though timeline has some illegal values
 		testResult = self.mathMagic.bollingerAnalysis(self.illegalValuesTimeline, dictionary, 2, timeAxis)
 		self.assertGreater(testResult[11], 1)
 
 	def testRisingConsecutiveFlags(self):
-		dictionary = {0:(0, '+', 1.5), 1:(1, '+', 1.9), 2:(2, '+', 3), 3:(3, '+', 2.5), 4:(4, '+', 2), 5:(5, '+', 2)}
+		dictionary = {0:(0, '+', 1.5, 1, 1), 
+					  1:(1, '+', 1.9, 1, 1), 
+					  2:(2, '+', 3, 1, 1),
+					  3:(3, '+', 2.5, 1, 1), 
+					  4:(4, '+', 2, 1, 1), 
+					  5:(5, '+', 2, 1, 1)}
 		flags = self.mathMagic.consolidateFlags(dictionary)
-		self.assertEqual(flags, [(2, 3, 2)])
+		
+		self.assertEqual(flags, {2: (2, '+', 3, 1, 1)})
 		
 	def testRisingNonConsecutiveFlags(self):
-		dictionary = {0:(0, '+', 1.5), 1:(1, '+', 1.9), 2:(2, '+', 3), 3:(4, '+', 2.5), 4:(5, '+', 2), 5:(6, '+', 2)}
+		dictionary = {0:(0, '+', 1.5, 1, 1), 
+					  1:(1, '+', 1.9, 1, 1), 
+					  2:(2, '+', 3, 1, 1), 
+					  3:(4, '+', 2.5, 1, 1), 
+					  4:(5, '+', 2, 1, 1), 
+					  5:(6, '+', 2, 1, 1)}
 		flags = self.mathMagic.consolidateFlags(dictionary)
-		self.assertEqual(flags, [(2, 3, 2), (3, 2.5, 4)])
+		
+
+		self.assertEqual(flags, {2: (2, '+', 3, 1, 1), 3:(4, '+', 2.5, 1, 1)})
 
 	
 def suite():

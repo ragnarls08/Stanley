@@ -50,7 +50,7 @@ class Rynir:
 		#if topN is set to 0, a list of all flags is returnd
 		
 		if self.topN > 0:	
-		  self.report = self.getTopResults(self.report)
+		  self.report = [self.getTopResults(self.report)]
 		
 		return self.report
 
@@ -93,7 +93,7 @@ class ThreadHelper(threading.Thread):
 	def run(self):
 		while True:
 			try:
-				print self.queue.qsize()
+				print "Items left in queue: " + str(self.queue.qsize())
 				dataSetReport = self.handler.getReport(self.queue.get())
 				if dataSetReport:
 				  self.lock.acquire()
